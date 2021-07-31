@@ -1,0 +1,148 @@
+body {
+	font-family: 'Inter', sans-serif;
+	color: #343434;
+	margin: 0;
+}
+
+nav {
+	display: flex;
+	align-items: center;
+	padding: 15px 0px 0px 30px;
+}
+
+.pesquisa {
+	margin: 0px 10px 0px 40px;
+	width: 50%;
+	display: flex;
+}
+
+.pesquisa button {
+	background-color: white;
+	border: none;
+	border-left: 2px solid #343434;
+	padding: 5px 0px 5px 10px;
+}
+
+.pesquisa-input {
+	font-family: 'Inter', sans-serif;
+	font-size: 14px;
+	color: #343434;
+	border: none;
+	outline: none;
+	margin-right: 5px;
+	width: 100%;
+}
+
+.btn-login {
+	margin-left: auto;
+	margin-right: 30px;
+	color: #343434;
+	font-size: 14px;
+	font-weight: 700;
+	text-decoration: none;
+	border: 1px solid #343434;
+	padding: 10px 30px 10px 30px;
+	border-radius: 7px;
+}
+
+.apresentacao {
+	display: flex;
+	margin: 0 auto;
+	margin-top: 50px;
+	margin-bottom: 100px;
+	max-width: 1180px;
+}
+
+.apresentacao-titulo {
+	font-size: 40px;
+	font-weight: bold;
+	color: #A959DD;
+	margin-bottom: 0px;
+}
+
+.destaque-titulo {
+	color: #343434;
+}
+
+.apresentacao-paragrafo {
+	max-width: 525px;
+	line-height: 24.93px;
+}
+
+.apresentacao-btn {
+	margin-top: 40px;
+}
+
+.btn-cadastrar {
+	margin-right: 22px;
+	color: white;
+	background-color: #343434;
+	text-decoration: none;
+	font-weight: bold;
+	padding: 20px 40px 20px 40px;
+	border-radius: 7px;
+}
+
+.btn-explorar {
+	margin-left: 22px;
+	color: #343434;
+	font-weight: bold;
+}
+
+.apresentacao-2 {
+	width: 100%;
+	background-color: rgba(169, 89, 221, 0.35);
+	padding-top: 100px;
+}
+
+.apresentacao-2-titulo {
+	margin: 0;
+	font-weight: 900;
+	text-align: center;
+	font-size: 40px;
+}
+
+.apresentacao-2-conteudo {
+	display: flex;
+}
+
+.apresentacao-2-imagem {
+	margin-left: 200px;
+}
+
+#icone-lupa {
+	margin-bottom: 150px;
+}
+
+#apresentacao-livro {
+	margin-left: 120px;
+}
+
+#seta-2 {
+	margin-top: 20px;
+	margin-left: 160px;
+}
+
+#emoji-amei {
+	position: absolute;
+	margin-top: 50px;
+}
+
+.apresentacao-2-texto {
+	margin-right: 50px;
+}
+
+.apresentacao-2-subtitulo {
+	margin-top: 200px;
+	margin-bottom: 0px;
+	color: rgba(52, 52, 52, 0.46);
+	font-weight: normal;
+}
+
+.apresentacao-2-titulo-2 {
+	margin: 0;
+}
+
+.apresentacao-2-paragrafo {
+	line-height: 25px;
+}
