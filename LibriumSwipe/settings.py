@@ -27,6 +27,7 @@ SECRET_KEY = ')4^vxo#b!sj_^qs!1xz=g=_+uku1w=ta=hi(2aa+1i@1+-y^o2'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '127.0.0.1',
     'localhost',
     '165.227.188.103',
     'libriumswap.live',
