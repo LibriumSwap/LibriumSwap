@@ -1,13 +1,13 @@
 body {
 	font-family: 'Inter', sans-serif;
 	color: #343434;
-	padding-right: 10px;
-	padding-left: 20px;
+	margin: 0;
 }
 
 nav {
 	display: flex;
 	align-items: center;
+	padding: 15px 0px 0px 30px;
 }
 
 .pesquisa {
@@ -49,7 +49,8 @@ nav {
 	display: flex;
 	margin: 0 auto;
 	margin-top: 50px;
-	max-width: 1150px;
+	margin-bottom: 100px;
+	max-width: 1180px;
 }
 
 .apresentacao-titulo {
@@ -86,4 +87,62 @@ nav {
 	margin-left: 22px;
 	color: #343434;
 	font-weight: bold;
+}
+
+.apresentacao-2 {
+	width: 100%;
+	background-color: rgba(169, 89, 221, 0.35);
+	padding-top: 100px;
+}
+
+.apresentacao-2-titulo {
+	margin: 0;
+	font-weight: 900;
+	text-align: center;
+	font-size: 40px;
+}
+
+.apresentacao-2-conteudo {
+	display: flex;
+}
+
+.apresentacao-2-imagem {
+	margin-left: 200px;
+}
+
+#icone-lupa {
+	margin-bottom: 150px;
+}
+
+#apresentacao-livro {
+	margin-left: 120px;
+}
+
+#seta-2 {
+	margin-top: 20px;
+	margin-left: 160px;
+}
+
+#emoji-amei {
+	position: absolute;
+	margin-top: 50px;
+}
+
+.apresentacao-2-texto {
+	margin-right: 50px;
+}
+
+.apresentacao-2-subtitulo {
+	margin-top: 200px;
+	margin-bottom: 0px;
+	color: rgba(52, 52, 52, 0.46);
+	font-weight: normal;
+}
+
+.apresentacao-2-titulo-2 {
+	margin: 0;
+}
+
+.apresentacao-2-paragrafo {
+	line-height: 25px;
 }
