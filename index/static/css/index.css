@@ -1,0 +1,89 @@
+body {
+	font-family: 'Inter', sans-serif;
+	color: #343434;
+	padding-right: 10px;
+	padding-left: 20px;
+}
+
+nav {
+	display: flex;
+	align-items: center;
+}
+
+.pesquisa {
+	margin: 0px 10px 0px 40px;
+	width: 50%;
+	display: flex;
+}
+
+.pesquisa button {
+	background-color: white;
+	border: none;
+	border-left: 2px solid #343434;
+	padding: 5px 0px 5px 10px;
+}
+
+.pesquisa-input {
+	font-family: 'Inter', sans-serif;
+	font-size: 14px;
+	color: #343434;
+	border: none;
+	outline: none;
+	margin-right: 5px;
+	width: 100%;
+}
+
+.btn-login {
+	margin-left: auto;
+	margin-right: 30px;
+	color: #343434;
+	font-size: 14px;
+	font-weight: 700;
+	text-decoration: none;
+	border: 1px solid #343434;
+	padding: 10px 30px 10px 30px;
+	border-radius: 7px;
+}
+
+.apresentacao {
+	display: flex;
+	margin: 0 auto;
+	margin-top: 50px;
+	max-width: 1150px;
+}
+
+.apresentacao-titulo {
+	font-size: 40px;
+	font-weight: bold;
+	color: #A959DD;
+	margin-bottom: 0px;
+}
+
+.destaque-titulo {
+	color: #343434;
+}
+
+.apresentacao-paragrafo {
+	max-width: 525px;
+	line-height: 24.93px;
+}
+
+.apresentacao-btn {
+	margin-top: 40px;
+}
+
+.btn-cadastrar {
+	margin-right: 22px;
+	color: white;
+	background-color: #343434;
+	text-decoration: none;
+	font-weight: bold;
+	padding: 20px 40px 20px 40px;
+	border-radius: 7px;
+}
+
+.btn-explorar {
+	margin-left: 22px;
+	color: #343434;
+	font-weight: bold;
+}
