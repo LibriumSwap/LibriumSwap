@@ -25,7 +25,11 @@ SECRET_KEY = ')4^vxo#b!sj_^qs!1xz=g=_+uku1w=ta=hi(2aa+1i@1+-y^o2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'libriumswap.live',
+    'www.libriumswap.live',
+]
 
 
 # Application definition
