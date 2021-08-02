@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
+from django.db import IntegrityError
+from django.urls import reverse
+
+from .forms import LoginForm, RegisterForm
+from .models import CustomUser as User
 
 def login_view(request):
 	if request.method == 'POST':
@@ -13,11 +18,14 @@ def login_view(request):
 			login(request, user)
 			return HttpResponseRedirect(reverse("index"))
 		else:
-			return render(request, "books/login.html", {
-			"message": "Usuário e/ou senha inválidos."
+			return render(request, "autenticacao/login.html", {
+				"form": LoginForm(),
+				"message": "Usuário e/ou senha inválidos."
 			})
 	else:
-		return render(request, "books/login.html")
+		return render(request, "autenticacao/login.html", {
+			"form": LoginForm()
+			})
 
 def logout_view(request):
 	logout(request)
@@ -29,23 +37,27 @@ def register(request):
 		email = request.POST["email"]
 
 		# Checar se as senhas são iguais
-		password = request.POST["password"]
-		password_confirm = request.POST["password_confirm"]
-		if senha != senha_confirmacao:
-			return render(request, "books/register.html", {
-			"message": "As senhas não correspondem."
+		password1 = request.POST["password1"]
+		password2 = request.POST["password2"]
+		if password1 != password2:
+			return render(request, "autenticacao/register.html", {
+				"form": RegisterForm(),
+				"message": "As senhas não correspondem."
 			})
 
 		# Tentar criar novo usuário
 		try:
-			user = User.objects.create_user(username, email, password)
+			user = User.objects.create_user(username, email, password1)
 			user.save()
 
 		except IntegrityError:
-			return render(request, "books/register.html", {
-			"message": "Nome de usuário já está em uso."
+			return render(request, "autenticacao/register.html", {
+				"form": RegisterForm(),
+				"message": "Nome de usuário já está em uso."
 			})
 		login(request, user)
 		return HttpResponseRedirect(reverse("index"))
 	else:
-		return render(request, "books/register.html")
+		return render(request, "autenticacao/register.html", {
+			"form": RegisterForm()
+			})

@@ -128,3 +128,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+
+# AUTH SETTINGS
+AUTH_USER_MODEL = 'autenticacao.CustomUser'
+AUTHENTICATION_BACKENDS = ['autenticacao.backends.EmailBackend']

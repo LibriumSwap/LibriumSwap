@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+		<title>LibriumSwipe</title>
+		<link rel="icon" type="image/png" href="{% static 'images/logomarca.svg' %}">
+	</head>
+	<body>
+		<div class="conteudo">
+			<form class="formulario" action="{% url 'login' %}" method="post">
+				{% csrf_token %}
+				<img src="{% static 'images/logo.png' %}">
+				{% if message %}
+				<h4>{{ message }}</h4>
+				{% endif %}
+				<label for="{{ form.username.id_for_label }}">Email ou Usuário</label>
+				{{ form.username }}
+				<label for="{{ form.password.id_for_label }}">Senha</label>
+				{{ form.password }}
+				<a class="esqueci-senha" href="#">Esqueci minha senha</a>
+				<button type="submit">Logar</button>
+				<p>Novo usuário?</p>
+				<a class="btn-registrar" href="{% url 'register' %}">Registrar-se</a>
+			</form>
+			<img src="{% static 'images/logomarca-login.png' %}" width="450px">
+		</div>
+	</body>
+</html>

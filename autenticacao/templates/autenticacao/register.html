@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+		<title>LibriumSwipe</title>
+		<link rel="icon" type="image/png" href="{% static 'images/logomarca.svg' %}">
+	</head>
+	<body>
+		<div class="conteudo">
+			<form class="formulario" action="{% url 'register' %}" method="post">
+				{% csrf_token %}
+				<img src="{% static 'images/logo.png' %}">
+				{% if message %}
+				<h4>{{ message }}</h4>
+				{% endif %}
+				<label for="{{ form.username.id_for_label }}">Email</label>
+				{{ form.email }}
+				<label for="{{ form.username.id_for_label }}">Username</label>
+				{{ form.username }}
+				<label for="{{ form.password.id_for_label }}">Senha</label>
+				{{ form.password1 }}
+				<label for="{{ form.password.id_for_label }}">Confirmar Senha</label>
+				{{ form.password2 }}
+				<button type="submit" style="margin-top: 20px;">Registrar</button>
+				<p>Já possui conta?</p>
+				<a class="btn-registrar" href="{% url 'login' %}">Logar-se</a>
+			</form>
+			<img src="{% static 'images/logomarca-login.png' %}" width="450px">
+		</div>
+	</body>
+</html>

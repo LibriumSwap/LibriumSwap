@@ -18,14 +18,14 @@
 				<input class="pesquisa-input" type="text" name="q">
 				<button class="bi bi-search"></button>
 			</form>
-			<a href="#" class="btn-login">Fazer login</a>
+			<a href="{% url 'login' %}" class="btn-login">Fazer login</a>
 		</nav>
 		<div class="apresentacao">
 			<div class="apresentacao-texto">
 				<h1 class="apresentacao-titulo">Ajudando a <b class="destaque-titulo">melhorar</b> a circulação de <b class="destaque-titulo">livros</b> físicos pelo Brasil</h1>
 				<p class="apresentacao-paragrafo">No LibriumSwipe você pode comprar, alugar e anunciar livros além de poder trocar aqueles seus livros que estão começando a virar parte da decoração da sua estante por outros! <i class="bi bi-emoji-laughing"></i></p>
 				<div class="apresentacao-btn">
-					<a href="#" class="btn-cadastrar">Se cadastrar</a> ou <a href="#" class="btn-explorar">Explorar livros <i class="bi bi-arrow-right"></i></a>
+					<a href="{% url 'register' %}" class="btn-cadastrar">Se cadastrar</a> ou <a href="#" class="btn-explorar">Explorar livros <i class="bi bi-arrow-right"></i></a>
 				</div>
 			</div>
 			<img src="{% static 'images/apresentacao.png' %}" width="519px">

@@ -146,3 +146,93 @@ nav {
 .apresentacao-2-paragrafo {
 	line-height: 25px;
 }
+
+.apresentacao-3 {
+	display: flex;
+	height: 800px;
+	justify-content: center;
+	align-items: center;
+}
+
+.apresentacao-3-texto {
+	max-width: 600px;
+}
+
+.apresentacao-4 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 800px;
+}
+
+.quadro-1, .quadro-2 {
+	background-color: #D4AAEF;
+	color: white;
+	border-radius: 44px;
+	padding: 20px;
+}
+
+.apresentacao-4 h3 {
+	margin: 0px 100px 0px 100px;
+}
+
+.apresentacao-4 h4 {
+	width: 100%;
+	text-align: center;
+}
+
+.quadro-2 {
+	margin-top: auto;
+}
+
+.apresentacao-5 {
+	margin-bottom: 70px;
+}
+
+.apresentacao-5 .apresentacao-5-div{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 800px;
+	margin: 0px 50px 0px 50px;
+}
+
+.apresentacao-5 button {
+	border: none;
+	outline: none;
+	display: block;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+footer {
+	background-color: #A959DD;
+	color: white;
+	padding: 30px 60px 30px 60px;
+}
+
+.rodape-info {
+	display: flex;
+}
+
+.rodape-sobre, .rodape-contato {
+	max-width: 450px;
+	margin-right: 50px;
+}
+
+.rodape-info p {
+	margin-left: 30px;
+}
+
+footer hr {
+	border-color: rgba(255, 255, 255, 0.44);
+}
+
+.rodape-extra-info {
+	display: flex;
+	align-items: center;
+}
+
+.rodape-extra-info img {
+	margin-left: auto;
+}
