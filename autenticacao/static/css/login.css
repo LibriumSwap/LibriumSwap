@@ -55,6 +55,7 @@ button {
 	border: none;
 	font-weight: bold;
 	padding: 15px;
+	cursor: pointer;
 }
 
 p {
