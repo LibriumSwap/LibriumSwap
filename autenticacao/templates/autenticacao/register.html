@@ -14,7 +14,7 @@
 		<div class="conteudo">
 			<form class="formulario" action="{% url 'register' %}" method="post">
 				{% csrf_token %}
-				<img src="{% static 'images/logo.png' %}">
+				<a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}"></a>
 				{% if message %}
 				<h4>{{ message }}</h4>
 				{% endif %}
