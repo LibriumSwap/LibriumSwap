@@ -5,19 +5,18 @@
 	<head>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
 		<title>LibriumSwipe</title>
 		<link rel="icon" type="image/png" href="{% static 'images/logomarca.svg' %}">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="HandheldFriendly" content="true">
 	</head>
 	<body>
 		<nav>
 			<img src="{% static 'images/logo.png' %}">
-			<form class="pesquisa">
-				<input class="pesquisa-input" type="text" name="q">
-				<button class="bi bi-search"></button>
-			</form>
 			<a href="{% url 'login' %}" class="btn-login">Fazer login</a>
 		</nav>
 		<div class="apresentacao">

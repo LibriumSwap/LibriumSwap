@@ -10,29 +10,6 @@ nav {
 	padding: 15px 0px 0px 30px;
 }
 
-.pesquisa {
-	margin: 0px 10px 0px 40px;
-	width: 50%;
-	display: flex;
-}
-
-.pesquisa button {
-	background-color: white;
-	border: none;
-	border-left: 2px solid #343434;
-	padding: 5px 0px 5px 10px;
-}
-
-.pesquisa-input {
-	font-family: 'Inter', sans-serif;
-	font-size: 14px;
-	color: #343434;
-	border: none;
-	outline: none;
-	margin-right: 5px;
-	width: 100%;
-}
-
 .btn-login {
 	margin-left: auto;
 	margin-right: 30px;
