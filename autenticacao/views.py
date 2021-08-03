@@ -98,4 +98,4 @@ def password_reset_request(request):
 					return HttpResponse('Invalid header found.')
 				return redirect ("/reset-password/done")
 			return HttpResponseRedirect(reverse('index'))
-	return render(request, "registration/password_reset_form.html", context={"form":PasswordResetForm()})
+	return render(request, template_name="registration/password_reset_form.html", context={"form":PasswordResetForm()})
