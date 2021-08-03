@@ -74,9 +74,9 @@ def register(request):
 
 def password_reset_request(request):
 	if request.method == "POST":
-		password_reset_form = PasswordResetForm(request.POST)
+		form = PasswordResetForm(request.POST)
 		if password_reset_form.is_valid():
-			data = password_reset_form.cleaned_data['email']
+			data = form.cleaned_data['email']
 			user = User.objects.get(Q(email=data))
 			current_site = get_current_site(request)
 			if user:
