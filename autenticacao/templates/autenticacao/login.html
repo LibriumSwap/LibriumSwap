@@ -22,7 +22,7 @@
 				{{ form.username }}
 				<label for="{{ form.password.id_for_label }}">Senha</label>
 				{{ form.password }}
-				<a class="esqueci-senha" href="#">Esqueci minha senha</a>
+				<a class="esqueci-senha" href="{% url 'password_reset' %}">Esqueci minha senha</a>
 				<button type="submit">Logar</button>
 				<p>Novo usuário?</p>
 				<a class="btn-registrar" href="{% url 'register' %}">Registrar-se</a>
