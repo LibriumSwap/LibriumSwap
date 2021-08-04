@@ -10,10 +10,21 @@
 }
 
 @media screen and (max-width: 425px) {
+	svg {
+		display: inline-block;
+	}
+
 	.conteudo {
 		margin-top: 0;
 	}
+
 	svg {
 		display: block;
+	}
+
+	.fundo {
+		height: 200px;
+		background-color: #A959DD;
+		width: 100%;
 	}
 }

@@ -94,7 +94,7 @@ svg {
 	margin-bottom: 30px;
 }
 
-input[type="text"], input[type="password"] {
+input[type="email"], input[type="text"], input[type="password"] {
 	font: 15px/24px "Inter", "Inter", sans-serif; 
 	color: #343434; width: 100%; 
 	box-sizing: border-box; 
@@ -106,7 +106,8 @@ input[type="text"], input[type="password"] {
 	border: 0; 
 	padding: 4px 0; 
 	border-bottom: 1px solid rgba(52, 52, 52, 0.5); 
-	background-color: transparent;}
+	background-color: transparent;
+}
 
 .effect-16 ~ .focus-border {
 	position: absolute; 
@@ -115,12 +116,14 @@ input[type="text"], input[type="password"] {
 	width: 0; 
 	height: 2px; 
 	background-color: #A959DD; 
-	transition: 0.4s;}
+	transition: 0.4s;
+}
 
 .effect-16:focus ~ .focus-border,
 .has-content.effect-16 ~ .focus-border {
 	width: 100%; 
-	transition: 0.4s;}
+	transition: 0.4s;
+}
 
 .effect-16 ~ label {
 	position: absolute; 
@@ -130,10 +133,12 @@ input[type="text"], input[type="password"] {
 	color: rgba(52, 52, 52, 0.5); 
 	transition: 0.3s; 
 	z-index: -1; 
-	letter-spacing: 0.5px;}
+	letter-spacing: 0.5px;
+}
 
 .effect-16:focus ~ label, .has-content.effect-16 ~ label{
 	top: -16px; 
 	font-size: 12px; 
 	color: #A959DD; 
-	transition: 0.3s;}
+	transition: 0.3s;
+}
