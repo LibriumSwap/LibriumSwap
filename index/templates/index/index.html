@@ -8,6 +8,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/index_responsive.css' %}">
 		<title>LibriumSwipe</title>
 		<link rel="icon" type="image/png" href="{% static 'images/logomarca.svg' %}">
 		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -15,29 +16,31 @@
 		<meta name="HandheldFriendly" content="true">
 	</head>
 	<body>
-		<nav>
-			<img src="{% static 'images/logo.png' %}">
-			<a href="{% url 'login' %}" class="btn-login">Fazer login</a>
-		</nav>
-		<div class="apresentacao">
-			<div class="apresentacao-texto">
-				<h1 class="apresentacao-titulo">Ajudando a <b class="destaque-titulo">melhorar</b> a circulação de <b class="destaque-titulo">livros</b> físicos pelo Brasil</h1>
-				<p class="apresentacao-paragrafo">No LibriumSwipe você pode comprar, alugar e anunciar livros além de poder trocar aqueles seus livros que estão começando a virar parte da decoração da sua estante por outros! <i class="bi bi-emoji-laughing"></i></p>
-				<div class="apresentacao-btn">
-					<a href="{% url 'register' %}" class="btn-cadastrar">Se cadastrar</a> ou <a href="#" class="btn-explorar">Explorar livros <i class="bi bi-arrow-right"></i></a>
+		<div class="apresentacao-fundo">
+			<nav>
+				<img src="{% static 'images/logo.png' %}">
+				<a href="{% url 'login' %}" class="btn-login">Fazer login</a>
+			</nav>
+			<div class="apresentacao">
+				<div class="apresentacao-texto">
+					<h1 class="apresentacao-titulo">Ajudando a <b class="destaque-titulo">melhorar</b> a circulação de <b class="destaque-titulo">livros</b> físicos pelo Brasil</h1>
+					<p class="apresentacao-paragrafo">No LibriumSwipe você pode comprar, alugar e anunciar livros além de poder trocar aqueles seus livros que estão começando a virar parte da decoração da sua estante por outros! <i class="bi bi-emoji-laughing"></i></p>
+					<div class="apresentacao-btn">
+						<a href="{% url 'register' %}" class="btn-cadastrar">Se cadastrar</a> <p>ou</p> <a href="#" class="btn-explorar">Explorar livros <i class="bi bi-arrow-right"></i></a>
+					</div>
 				</div>
+				<img src="{% static 'images/apresentacao.png' %}" width="40%" height="auto">
 			</div>
-			<img src="{% static 'images/apresentacao.png' %}" width="519px">
+			<div class="seta-icone">
+				<i class="bi bi-caret-down-fill"></i>
+			</div>
+			<svg style="display: block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffffff" fill-opacity="1" d="M0,160L30,154.7C60,149,120,139,180,154.7C240,171,300,213,360,208C420,203,480,149,540,154.7C600,160,660,224,720,261.3C780,299,840,309,900,272C960,235,1020,149,1080,144C1140,139,1200,213,1260,240C1320,267,1380,245,1410,234.7L1440,224L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path></svg>
 		</div>
 		<div class="apresentacao-2">
 			<h1 class="apresentacao-2-titulo">Como funciona?</h1>
 			<div class="apresentacao-2-conteudo">
 				<div class="apresentacao-2-imagem">
-					<img id="icone-lupa" src="{% static 'images/icone-lupa.svg' %}">
-					<img src="{% static 'images/seta-1.svg' %}">
-					<img id="apresentacao-livro" src="{% static 'images/apresentacao-livro.png' %}" width="210px">
-					<img id="seta-2" src="{% static 'images/seta-2.svg' %}">
-					<img id="emoji-amei" src="{% static 'images/emoji-amei.svg' %}">
+					<img id="icone-lupa" src="{% static 'images/livro.png' %}" height="auto" width="100%">
 				</div>
 				<div class="apresentacao-2-texto">
 					<h4 class="apresentacao-2-subtitulo">Crie uma conta</h4>
@@ -53,22 +56,25 @@
 				<h1 class="apresentacao-3-titulo apresentacao-2-titulo-2">Pague de diversas formas!</h1>
 				<p class="apresentacao-3-paragrafo">Você pode fazer o pagamento usando cartão de crédito ou débito, boleto bancário, Paypal ou PIX.</p>
 			</div>
-			<img src="{% static 'images/pagamento.png' %}">
+			<div class="apresentacao-3-imagem">
+				<img src="{% static 'images/pagamento.png' %}" width="100%" height="auto">
+			</div>
 		</div>
 		<div class="apresentacao-4">
 			<div class="quadro-1">
 				<h4 class="quadro-titulo">Espere o livro chegar até você</h4>
-				<img src="{% static 'images/rota.png' %}" width="400px">
+				<img src="{% static 'images/rota.png' %}" width="100%" height="auto">
 			</div>
 			<h3>ou</h3>
 			<div class="quadro-2">
-				<img src="{% static 'images/aperto_de_mao.png' %}" width="400px">
+				<img src="{% static 'images/aperto_de_mao.png' %}" width="100%" height="auto">
 				<h4 class="quadro-titulo">Encontre-se com quem você fará a troca</h4>
 			</div>
 		</div>
+		<svg style="display: block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#a959dd" fill-opacity="1" d="M0,32L48,58.7C96,85,192,139,288,181.3C384,224,480,256,576,224C672,192,768,96,864,90.7C960,85,1056,171,1152,181.3C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
 		<div class="apresentacao-5">
 			<div class="apresentacao-5-div">
-				<img src="{% static 'images/mulher_lendo.png' %}">
+				<img src="{% static 'images/mulher_lendo.png' %}" width="80%" height="auto">
 				<div class="apresentacao-5-texto">
 					<h1 class="apresentacao-5-titulo apresentacao-2-titulo-2">Aproveite o seu novo livro!</h1>
 					<p class="apresentacao-3-paragrafo">Continue usando o LibriumSwap e aproveite os benefícios que os livros nos trazem.</p>

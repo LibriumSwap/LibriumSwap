@@ -1,0 +1,124 @@
+@media screen and (max-width: 2560px) {
+
+}
+
+@media screen and (max-width: 1440px) {
+	body {
+		font-size: 1rem;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	body {
+		font-size: 1rem;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	
+}
+
+@media screen and (max-width: 480px) {
+	nav {
+		padding: 0;
+	}
+
+	nav img {
+		width: 100%;
+	}
+
+	.btn-login {
+		display: none;
+	}
+
+	.apresentacao-fundo {
+		background-color: #A959DD;
+	}
+
+	.apresentacao {
+		color: white;
+		flex-direction: column-reverse;
+		flex-wrap: wrap;
+		padding: 30px;
+		background-color: ;
+	}
+
+	.apresentacao h1{
+		font-size: 28px;
+		color: white;
+		text-align: center;
+	}
+
+	.apresentacao-texo {
+		display: block;
+	}
+
+	.apresentacao-paragrafo {
+		line-height: 24.93px;
+	}
+
+	.apresentacao p {
+		text-align: center;
+	}
+
+	.apresentacao img {
+		width: 80%;
+	}
+
+	.apresentacao-btn {
+		display: grid;
+		width: 100%;
+	}
+
+	.apresentacao-btn p {
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+
+	.btn-cadastrar {
+		padding: 20px 0 20px 0;
+	}
+
+	.btn-explorar {
+		font-weight: normal;
+	}
+
+	.apresentacao-btn p, .apresentacao-btn a{
+		width: 100%;
+		text-align: center;
+		margin: 0;
+		color: white;
+	}
+
+	.apresentacao-btn i {
+		display: none;
+	}
+
+	.apresentacao-2-titulo {
+		font-size: 26px;
+	}
+
+	.apresentacao-2-titulo-2 {
+		font-size: 18px;
+	}
+
+	.apresentacao-2-subtitulo {
+		font-size: 16px;
+	}
+
+	.apresentacao-2-texto {
+		font-size: 14px;
+	}
+
+	.apresentacao-2-paragrafo {
+		line-height: 19px;
+	}
+
+	.apresentacao-3-texto {
+		margin-right: 30px;
+	}
+
+	.apresentacao-3-paragrafo {
+		font-size: 14px;
+	}
+}
