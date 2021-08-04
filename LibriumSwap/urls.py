@@ -21,3 +21,5 @@ urlpatterns = [
     path("", include('autenticacao.urls')),
     path('admin/', admin.site.urls),
 ]
+
+handler404 = "LibriumSwap.views.page_not_found_view"
