@@ -4,11 +4,19 @@ body {
 	margin: 0;
 }
 
+svg {
+	display: none;
+}
+
+#logo {
+	margin-bottom: 40px;
+}
+
 .conteudo {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-top: 100px;
+	margin-top: 60px;
 }
 
 .formulario {
@@ -24,21 +32,6 @@ body {
 	font-weight: normal;
 	border-radius: 7px;
 	margin: 0;
-	margin-top: 10px;
-}
-
-label {
-	font-size: 13px;
-	color: rgba(52, 52, 52, 0.5);
-	margin-top: 20px;
-}
-
-input {
-	color: #343434;
-	outline: none;
-	border: none;
-	border-bottom: 0.5px solid rgba(52, 52, 52, 0.5);
-	font-size: 16px;
 }
 
 .esqueci-senha {
@@ -48,7 +41,7 @@ input {
 	margin: 5px 0px 15px auto;
 }
 
-button {
+.formulario button {
 	background-color: #343434;
 	color: white;
 	border-radius: 7px;
@@ -58,33 +51,23 @@ button {
 	cursor: pointer;
 }
 
-p {
+.formulario p {
 	text-align: center;
 	font-size: 13px;
-	margin: 18px 0px 18px 0px;
+	margin: 18px 5px 18px 5px;
 	background-color: white;
-	position: relative;
 }
 
-
-p::before {
-	content: "";
-	display:block;
-	width: 150px;
-	height: 1px;
-	background: rgba(52, 52, 52, 0.5);
-	position: absolute;
-	margin-top: 8px;
+.novo-usuario {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-p::after {
-	content: "";
-	width: 150px;
+.linha {
 	height: 1px;
-	background: rgba(52, 52, 52, 0.5);
-	position: absolute;
-	margin-top: 8px;
-	margin-left: 3px;
+	width: 33%;
+	background-color: rgba(52, 52, 52, 0.5);
 }
 
 .btn-registrar {
@@ -98,3 +81,59 @@ p::after {
 	border-radius: 7px;
 	text-align: center;
 }
+
+:focus {
+	outline: none;
+}
+
+.col-3{
+	position: relative;
+}
+
+#input-email {
+	margin-bottom: 30px;
+}
+
+input[type="text"], input[type="password"] {
+	font: 15px/24px "Inter", "Inter", sans-serif; 
+	color: #343434; width: 100%; 
+	box-sizing: border-box; 
+	letter-spacing: 1px;
+	width: 100%;
+}
+
+.effect-16 {
+	border: 0; 
+	padding: 4px 0; 
+	border-bottom: 1px solid rgba(52, 52, 52, 0.5); 
+	background-color: transparent;}
+
+.effect-16 ~ .focus-border {
+	position: absolute; 
+	bottom: 0; 
+	left: 0; 
+	width: 0; 
+	height: 2px; 
+	background-color: #A959DD; 
+	transition: 0.4s;}
+
+.effect-16:focus ~ .focus-border,
+.has-content.effect-16 ~ .focus-border {
+	width: 100%; 
+	transition: 0.4s;}
+
+.effect-16 ~ label {
+	position: absolute; 
+	left: 0; 
+	width: 100%; 
+	top: 9px; 
+	color: rgba(52, 52, 52, 0.5); 
+	transition: 0.3s; 
+	z-index: -1; 
+	letter-spacing: 0.5px;}
+
+.effect-16:focus ~ label, .has-content.effect-16 ~ label{
+	top: -16px; 
+	font-size: 12px; 
+	color: #A959DD; 
+	transition: 0.3s;}

@@ -7,30 +7,57 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/login_responsive.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
 		<title>LibriumSwipe</title>
 		<link rel="icon" type="image/png" href="{% static 'images/logomarca.svg' %}">
+		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+		<script src="{% static 'js/input_effect.js' %}"></script>
+		<title>LibriumSwipe</title>
+		<link rel="icon" type="image/png" href="{% static 'images/logomarca.svg' %}">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="HandheldFriendly" content="true">
 	</head>
 	<body>
+		<svg height="100%" width="100%" id="svg" viewBox="0 0 1440 500" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><path d="M 0,500 C 0,500 0,166 0,166 C 48.38749570594298,168.60322913088285 96.77499141188596,171.2064582617657 172,184 C 247.22500858811404,196.7935417382343 349.2875300583991,219.77739608381998 418,213 C 486.7124699416009,206.22260391618002 522.0748883545174,169.68395740295435 587,163 C 651.9251116454826,156.31604259704565 746.4129165235315,179.48677430436274 832,189 C 917.5870834764685,198.51322569563726 994.2734455513569,194.36894537959466 1050,172 C 1105.7265544486431,149.63105462040534 1140.4933012710408,109.03744417725866 1202,105 C 1263.5066987289592,100.96255582274134 1351.7533493644796,133.48127791137068 1440,166 C 1440,166 1440,500 1440,500 Z" stroke="none" stroke-width="0" fill="#a959dd88" class="transition-all duration-300 ease-in-out delay-150" transform="rotate(-180 720 250)"></path><path d="M 0,500 C 0,500 0,333 0,333 C 50.95499828237719,335.18000687049124 101.90999656475438,337.3600137409825 176,325 C 250.09000343524562,312.6399862590175 347.3150120233597,285.7399519065613 433,304 C 518.6849879766403,322.2600480934387 592.8299553418069,385.68017863277225 645,389 C 697.1700446581931,392.31982136722775 727.3651666094125,335.53933356234967 795,323 C 862.6348333905875,310.46066643765033 967.7093782205429,342.16248711782896 1046,362 C 1124.290621779457,381.83751288217104 1175.7973205084163,389.8107179663346 1237,383 C 1298.2026794915837,376.1892820336654 1369.1013397457918,354.5946410168327 1440,333 C 1440,333 1440,500 1440,500 Z" stroke="none" stroke-width="0" fill="#a959ddff" class="transition-all duration-300 ease-in-out delay-150" transform="rotate(-180 720 250)"></path></svg>
 		<div class="conteudo">
 			<form class="formulario" action="{% url 'register' %}" method="post">
 				{% csrf_token %}
-				<a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}"></a>
+				<a id="logo" href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" width="100%" height="auto"></a>
 				{% if message %}
 				<h4>{{ message }}</h4>
 				{% endif %}
-				<label for="{{ form.username.id_for_label }}">Email</label>
-				{{ form.email }}
-				<label for="{{ form.username.id_for_label }}">Username</label>
-				{{ form.username }}
-				<label for="{{ form.password.id_for_label }}">Senha</label>
-				{{ form.password1 }}
-				<label for="{{ form.password.id_for_label }}">Confirmar Senha</label>
-				{{ form.password2 }}
+				<div class="col-3 input-effect" id="input-email">
+		        	<input name="email" class="effect-16" type="text" placeholder="">
+		            <label>Email</label>
+		            <span class="focus-border"></span>
+		        </div>
+		        <div class="col-3 input-effect" id="input-email">
+		        	<input name="username" class="effect-16" type="text" placeholder="">
+		            <label>Nome de usuário</label>
+		            <span class="focus-border"></span>
+		        </div>
+		        <div class="col-3 input-effect">
+		        	<input name="password1" class="effect-16" type="password" placeholder="">
+		            <label>Senha</label>
+		            <span class="focus-border"></span>
+		        </div>
+		        <div class="col-3 input-effect">
+		        	<input name="password2" class="effect-16" type="password" placeholder="">
+		            <label>Confirmar senha</label>
+		            <span class="focus-border"></span>
+		        </div>
 				<button type="submit" style="margin-top: 20px;">Registrar</button>
-				<p>Já possui conta?</p>
+				<div class="novo-usuario">
+					<div class="linha"></div>
+					<p>Já possui conta?</p>
+					<div class="linha"></div>
+				</div>
 				<a class="btn-registrar" href="{% url 'login' %}">Logar-se</a>
 			</form>
-			<img src="{% static 'images/logomarca-login.png' %}" width="450px">
+			<img id="logomarca" src="{% static 'images/logomarca-login.png' %}" width="450px">
 		</div>
+		<svg height="100%" width="100%" id="svg" viewBox="0 0 1440 500" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><path d="M 0,500 C 0,500 0,166 0,166 C 69.74373067674338,192.41497767090345 139.48746135348676,218.82995534180694 203,223 C 266.51253864651324,227.17004465819306 323.79388526279627,209.09515630367568 385,208 C 446.20611473720373,206.90484369632432 511.33699759532817,222.7894194434902 595,214 C 678.6630024046718,205.2105805565098 780.8581243558914,171.74716592236345 850,166 C 919.1418756441086,160.25283407763655 955.2305049811062,182.221916867056 1019,187 C 1082.7694950188938,191.778083132944 1174.219855719684,179.36516660941257 1249,173 C 1323.780144280316,166.63483339058743 1381.890072140158,166.31741669529373 1440,166 C 1440,166 1440,500 1440,500 Z" stroke="none" stroke-width="0" fill="#a959dd88" class="transition-all duration-300 ease-in-out delay-150"></path><path d="M 0,500 C 0,500 0,333 0,333 C 55.156303675712806,341.9797320508417 110.31260735142561,350.9594641016833 181,350 C 251.6873926485744,349.0405358983167 337.9058742700103,338.14187564410855 422,333 C 506.0941257299897,327.85812435589145 588.0638955685332,328.47303332188255 641,323 C 693.9361044314668,317.52696667811745 717.8385434558572,305.9659910683614 792,292 C 866.1614565441428,278.0340089316386 990.5819306080384,261.6630024046719 1063,282 C 1135.4180693919616,302.3369975953281 1155.8337341119889,359.3819993129509 1210,374 C 1264.1662658880111,388.6180006870491 1352.0831329440057,360.80900034352453 1440,333 C 1440,333 1440,500 1440,500 Z" stroke="none" stroke-width="0" fill="#a959ddff" class="transition-all duration-300 ease-in-out delay-150"></path></svg>
 	</body>
 </html>

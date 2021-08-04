@@ -1,0 +1,19 @@
+@media screen and (max-width: 926px) {
+	#logomarca {
+		display: none;
+	}
+
+	.formulario {
+		margin-right: 0;
+		width: 90%;
+	}
+}
+
+@media screen and (max-width: 425px) {
+	.conteudo {
+		margin-top: 0;
+	}
+	svg {
+		display: block;
+	}
+}
