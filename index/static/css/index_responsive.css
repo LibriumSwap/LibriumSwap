@@ -121,4 +121,40 @@
 	.apresentacao-3-paragrafo {
 		font-size: 14px;
 	}
+
+	.apresentacao-4 {
+		height: 500px;
+	}
+
+	.apresentacao-5 button {
+		padding-right: 10px;
+		padding-left: 10px;
+	}
+
+	footer {
+		padding: 30px 5% 30px 5%;
+	}
+
+	.rodape-info {
+		display: block;
+	}
+
+	.rodape-sobre, .rodape-contato {
+		margin: 0;
+	}
+
+	.rodape-info p {
+		font-size: 12px;
+		margin: 0;
+		width: 100%;
+	}
+
+	.rodape-extra-info {
+		font-size: 12px;
+		text-align: center;
+	}
+
+	footer img {
+		display: none;
+	}
 }
