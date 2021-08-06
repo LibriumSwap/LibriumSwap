@@ -1,0 +1,206 @@
+body {
+	font-family: 'Inter', sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+#logomarca-mobile {
+	display: none;
+}
+
+nav {
+	padding: 0px 20px 0px 20px;
+	background-color: #A959DD;
+	display: flex;
+	align-items: center;
+}
+
+nav input, nav button, nav a {
+	font-weight: bold;
+	border: none;
+	outline: none;
+	color: white;
+}
+
+.pesquisa {
+	min-width: 1px;
+	padding: 10px;
+	display: flex;
+	background-color: #D4AAEF;
+	border-radius: 6px;
+	flex-grow: 1;
+	margin-right: 20px;
+}
+
+.pesquisa input {
+	min-width: 1px;
+	flex-grow: 1;
+	background-color: #D4AAEF;
+	color: #343434;
+	font-size: 14px;
+	font-weight: normal;
+	border-radius: 6px;
+	margin-right: 10px;
+	font-family: 'Inter', sans-serif;
+}
+
+.pesquisa button {
+	margin-left: auto;
+	background-color: #D4AAEF;
+	color: white;
+	border-left: 2px solid white;
+}
+
+.menu {
+	display: flex;
+	align-items: center;
+	color: white;
+	margin-left: auto;
+	font-size: 18px;
+	height: 76px;
+}
+
+.menu i {
+	font-size: 24px;
+}
+
+.menu button {
+	background-color: #A959DD;
+}
+
+.menu-usuario {
+	margin-top: 55px;
+	margin-right: 10px;
+	position: relative;
+	height: 100%;
+}
+
+.dropdown-usuario {
+	border: 1px solid rgba(52, 52, 52, 0.15);
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	margin-top: 26px;
+	display: none;
+	position: absolute;
+	left: -120%;
+	z-index: 1;
+	width: 200px;
+}
+
+.dropdown-usuario:hover {
+	display: grid;
+}
+
+.dropdown-usuario a {
+	padding: 12px 16px;
+	border-bottom: 1px solid rgba(52, 52, 52, 0.15);
+	text-decoration: none;
+	font-weight: normal;
+	color: #343434;
+	background-color: white;
+}
+
+.dropdown-usuario:after {
+	position: absolute;
+	top: -6px;
+	left: 68%;
+	display: inline-block;
+	border-right: 6px solid transparent;
+	border-bottom: 6px solid #ffffff;
+	border-left: 6px solid transparent;
+	content: '';
+}
+
+.menu-usuario:hover .dropdown-usuario {
+	display: grid;
+}
+
+#arrow-usuario::before {
+	transform: rotate(0deg);
+	transition: transform 0.25s linear;
+}
+
+.menu-usuario:hover #arrow-usuario::before {
+	transform: rotate(180deg);
+	transition: transform 0.25s linear;
+}
+
+.btn-icones a, .btn-icones button, .menu-btn{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.menu-btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: all .5s ease-in-out;
+  /* border: 3px solid #fff; */
+}
+.menu-btn__burger {
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(255,101,47,.2);
+  transition: all .2s ease-in-out;
+}
+.menu-btn__burger::before,
+.menu-btn__burger::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(255,101,47,.2);
+  transition: all .2s ease-in-out;
+}
+.menu-btn__burger::before {
+  transform: translateY(-8px);
+}
+.menu-btn__burger::after {
+  transform: translateY(8px);
+}
+/* ANIMATION */
+.menu-btn.open .menu-btn__burger {
+  transform: translateX(-50px);
+  background: transparent;
+  box-shadow: none;
+}
+.menu-btn.open .menu-btn__burger::before {
+  transform: rotate(45deg) translate(35px, -35px);
+}
+.menu-btn.open .menu-btn__burger::after {
+  transform: rotate(-45deg) translate(35px, 35px);
+}
+
+
+@media screen and (max-width: 850px) {
+	#logomarca {
+		display: none;
+	}
+
+	#logomarca-mobile {
+		display: block;
+		margin-right: 20px;
+	}
+}
+
+@media screen and (max-width: 660px) {
+	.menu {
+		display: none;
+	}
+
+	.pesquisa {
+		margin-right: 0;
+	}
+
+	.menu-btn {
+		margin-left: 20px;
+	}
+}

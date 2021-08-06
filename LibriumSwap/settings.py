@@ -41,7 +41,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     'index',
     'autenticacao',
-    'LibriumSwap',
+    'livros',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -143,3 +143,6 @@ EMAIL_HOST_USER = 'contato@libriumswap.live'
 EMAIL_HOST_PASSWORD = 'eocyghasqpft85242003'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+# MEDIA SETTINGS
+MEDIA_ROOT = os.path.join(BASE_DIR, 'livros/static/images')

@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>LibriumSwipe</title>
+		<link rel="icon" type="image/png" href="{% static 'images/logomarca.svg' %}">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="HandheldFriendly" content="true">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+		<script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
+	</head>
+	<body>
+		<nav>
+			<img id="logomarca" src="{% static 'images/logo.png' %}">
+			<img id="logomarca-mobile" src="{% static 'images/logomarca.png' %}">
+			<form class="pesquisa">
+				{% csrf_token %}
+				<input type="text" name="q">
+				<button type="submit"><i class="bi bi-search"></i></button>
+			</form>
+			<div class="menu">
+				<i class="bi bi-person"></i>
+				<div class="menu-usuario">
+					<button>{{ request.user.username }}</button>
+					<i id="arrow-usuario" class="bi bi-caret-down-fill" style="font-size: 12px;"></i>
+					<div class="dropdown-usuario">
+						<a>Modo escuro <button>a</button></a>
+						<a href="#">Favoritos</a>
+						<a href="#">Anúncios</a>
+						<a href="#">Notificações</a>
+						<a href="#">Compras</a>
+						<a href="#">Segurança</a>
+						<a href="#">Privacidade</a>
+						<a href="#">Configurações</a>
+						<a disabled style="color: white;">Curioso</a>
+						<a href="{% url 'logout' %}">Sair</a>
+					</div>
+				</div>
+				<div class="btn-icones">
+					<a href="#"><i class="bi bi-chat"></i></a>
+					<a href="#"><i class="bi bi-bag"></i></a>
+				</div>
+			</div>
+			<div class="menu-btn">
+					<div class="menu-btn__burger"></div>
+				</div>
+		</nav>
+	</body>
+</html>
