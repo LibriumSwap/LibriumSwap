@@ -121,12 +121,10 @@ nav input, nav button, nav a {
 
 #arrow-usuario::before {
 	transform: rotate(0deg);
-	transition: transform 0.25s linear;
 }
 
 .menu-usuario:hover #arrow-usuario::before {
 	transform: rotate(180deg);
-	transition: transform 0.25s linear;
 }
 
 .btn-icones a, .btn-icones button, .menu-btn{
@@ -149,7 +147,81 @@ nav input, nav button, nav a {
 }
 
 .dropdown-usuario-mobile a {
+	display: flex;
 	color: #343434;
+}
+
+.dropdown-usuario-mobile button {
+	padding: 12px 16px;
+	background-color: white;
+	color: #343434;
+	font-weight: normal;
+	border-bottom: 1px solid rgba(52, 52, 52, 0.15);
+	font-size: 16px;
+	text-align: left;
+	display: flex;
+}
+
+.dropdown-usuario-mobile i {
+	margin-right: 10px;
+}
+
+.dropdown-usuario-mobile a .bi {
+	margin-right: 10px;
+}
+
+.fa-chevron-right {
+	margin-left: auto;
+	color: #343434;
+}
+
+.nav-2 {
+	display: flex;
+	color: rgba(52, 52, 52, 0.8);
+	justify-content: center;
+}
+
+.nav-2 h4 {
+	margin-top: 10px;
+	border-right: 1px solid rgba(52, 52, 52, 0.8);
+	padding: 5px 25px 5px 25px;
+	cursor: pointer;
+}
+
+.nav-2 h4:last-child {
+	border-right: none !important;
+}
+
+.nav-2 a {
+	color: rgba(52, 52, 52, 0.8);
+	text-decoration: none;
+}
+
+.div-dropdown {
+	position: relative;
+}
+
+.dropdown {
+	display: none;
+	position: absolute;
+	top: 75%;
+	left: -42%;
+	text-decoration: none;
+	border-right: 1px solid rgba(0, 0, 0, 0.2);
+	border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.dropdown a {
+	text-decoration: none;
+	text-align: center;
+	color: #343434;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	padding: 12px 16px;
+	width: 200px;
+}
+
+.dropdown-categorias {
+	left: -30%;
 }
 
 @media screen and (max-width: 850px) {
@@ -188,42 +260,67 @@ nav input, nav button, nav a {
   -webkit-tap-highlight-color: transparent;
   /* border: 3px solid #fff; */
 }
-.menu-btn__burger {
-  width: 20px;
-  height: 2px;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(255,101,47,0);
-  transition: .2s ease-in-out;
-}
-.menu-btn__burger::before,
-.menu-btn__burger::after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 2px;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(255,101,47, 0);
-  transition: .2s ease-in-out;
-}
-.menu-btn__burger::before {
-  transform: translateY(-8px);
-}
-.menu-btn__burger::after {
-  transform: translateY(8px);
-}
-/* ANIMATION */
-.menu-btn.open .menu-btn__burger {
-  transform: translateX(-50px);
-  background: transparent;
-  box-shadow: none;
-}
+	.menu-btn__burger {
+	  width: 20px;
+	  height: 2px;
+	  background: #fff;
+	  border-radius: 5px;
+	  box-shadow: 0 2px 5px rgba(255,101,47,0);
+	  transition: .2s ease-in-out;
+	}
+	.menu-btn__burger::before,
+	.menu-btn__burger::after {
+	  content: '';
+	  position: absolute;
+	  width: 20px;
+	  height: 2px;
+	  background: #fff;
+	  border-radius: 5px;
+	  box-shadow: 0 2px 5px rgba(255,101,47, 0);
+	  transition: .2s ease-in-out;
+	}
+	.menu-btn__burger::before {
+	  transform: translateY(-8px);
+	}
+	.menu-btn__burger::after {
+	  transform: translateY(8px);
+	}
+	/* ANIMATION */
+	.menu-btn.open .menu-btn__burger {
+	  transform: translateX(-50px);
+	  background: transparent;
+	  box-shadow: none;
+	}
 
-.menu-btn.open .menu-btn__burger::before {
-  transform: rotate(45deg) translate(35px, -35px);
-}
-.menu-btn.open .menu-btn__burger::after {
-  transform: rotate(-45deg) translate(35px, 35px);
-}
+	.menu-btn.open .menu-btn__burger::before {
+	  transform: rotate(45deg) translate(35px, -35px);
+	}
+	.menu-btn.open .menu-btn__burger::after {
+	  transform: rotate(-45deg) translate(35px, 35px);
+	}
+
+	.nav-2 {
+		display: none;
+	}
+
+	.dropdown-generos-mobile, .dropdown-categorias-mobile {
+		display: none;
+		top: 70px;
+		left: 0;
+		z-index: 3;
+		width: 100%;
+		border: none;
+	}
+
+	.dropdown-generos-mobile a, .dropdown-categorias-mobile a {
+		font-weight: normal;
+		background-color: white;
+		width: 100%;
+		padding: 12px 0px 12px 0px;
+	}
+
+	.dropdown-generos-mobile button, .dropdown-categorias-mobile button {
+		padding: 12px 0px 12px 0px;
+		background-color: rgba(0, 0, 0, 0.2);
+	}
 }
