@@ -9,5 +9,11 @@ document.addEventListener('DOMContentLoaded', function () {
       menuBtn.classList.remove('open');
       menuOpen = false;
     }
+    dropdown = document.querySelector('.dropdown-usuario-mobile')
+    if (dropdown.style.display == 'grid') {
+      dropdown.style.display = 'none'
+    } else {
+      dropdown.style.display = 'grid'
+    }
   });
 })
