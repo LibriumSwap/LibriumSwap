@@ -24,7 +24,7 @@ form {
 }
 
 .swiper-container {
-  width: 350px;
+  max-width: 350px;
   height: 500px;
 }
 
@@ -173,4 +173,48 @@ input[type="text"], input[type="number"] {
 	font-size: 12px; 
 	color: #A959DD; 
 	transition: 0.3s;
+}
+
+@media screen and (max-width: 767px) {
+	form {
+		display: block;
+		padding-left: 5%;
+		padding-right: 5%;
+	}
+
+	.div-1 {
+		display: block;
+	}
+
+	.imagens {
+		margin: 0;
+		margin-bottom: 30px;
+	}
+
+	.inputs-2 {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.inputs-2 label {
+		justify-content: center;
+		align-items: center;
+		padding: 10px;
+		margin-right: 10px;
+	}
+
+	.inputs-3 {
+		display: grid;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.inputs-3 textarea {
+		margin: 0;
+	}
+
+	.inputs-3 button {
+		margin-right: 0;
+	}
 }

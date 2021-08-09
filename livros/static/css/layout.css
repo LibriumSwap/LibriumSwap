@@ -140,6 +140,7 @@ nav input, nav button, nav a {
 	left: 0;
 	width: 100%;
 	border: none !important;
+	z-index: 3;
 }
 
 .dropdown-usuario-mobile::after {

@@ -10,7 +10,7 @@ imageInputs.forEach(imageInput => {
     }
     label.style.backgroundColor = ""
     label.style.background = "url(" + url + ") no-repeat center";
-    label.style.backgroundSize = "350px 500px";
+    label.style.backgroundSize = "auto 500px";
   })
 })
 
