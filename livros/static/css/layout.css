@@ -202,6 +202,7 @@ nav input, nav button, nav a {
 }
 
 .dropdown {
+	z-index: 3;
 	display: none;
 	position: absolute;
 	top: 75%;
@@ -219,6 +220,12 @@ nav input, nav button, nav a {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 	padding: 12px 16px;
 	width: 200px;
+}
+
+.dropdown a:hover {
+	transition: 0.1s;
+	background-color: #D1BFDD;
+	color: white;
 }
 
 .dropdown-categorias {

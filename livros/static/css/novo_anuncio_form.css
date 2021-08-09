@@ -56,13 +56,43 @@ h2 {
 	text-align: center;
 }
 
+.inputs-2 ul {
+	display: flex;
+	list-style-type: none;
+}
+
 .inputs-2 input {
 	width: 100%;
 }
 
+.inputs-2 input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.inputs-2 label {
+  display: inline-block;
+  opacity: 0.5;
+  background-color: #fff;
+  color: #343434;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 2px solid #343434;
+  cursor: pointer;
+}
+
+.inputs-2 input[type="radio"]:checked + label {
+	opacity: 1;
+  background-color: #343434;
+  color: white;
+}
+
 .inputs-3 {
 	display: grid;
-	max-width: 660px;
+	max-width: 709px;
 }
 
 .inputs-3 h2 {
@@ -75,10 +105,16 @@ h2 {
 }
 
 .inputs-3 button {
-	margin: 30px;
-	margin-left: auto;
-	padding: 20px 40px;
-	max-width: 200px;
+	margin: 30px 30px 30px auto;
+	padding: 10px 50px 10px 50px;
+	background-color: #820AD1;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	font-family: "Inter", sans-serif;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 :focus {
@@ -90,7 +126,7 @@ h2 {
 	margin-bottom: 30px;
 }
 
-input[type="text"] {
+input[type="text"], input[type="number"] {
 	font: 15px/24px "Inter", "Inter", sans-serif; 
 	color: #343434; width: 100%; 
 	box-sizing: border-box; 

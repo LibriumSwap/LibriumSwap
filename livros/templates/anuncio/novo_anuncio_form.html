@@ -40,11 +40,16 @@
 		        </div>
     			<h2>Categoria</h2>
     			<div class="inputs-2">
-    				{{ form.categoria }}
+    				{% for input in form.categoria %}
+    					{{ input.tag }}
+    					<label for="{{ input.id_for_label }}">{{ input.choice_label }}</label>
+    				{% endfor %}
     			</div>
     			<h2>Preço</h2>
-    			<div class="inputs-2">
-    				{{ form.preco }}
+    			<div class="col-3 input-effect inputs-2">
+		        	{{ form.preco }}
+		            <span class="focus-border"></span>
+		        </div>
     			</div>
 			</div>
 		</div>
@@ -53,7 +58,7 @@
 			{{ form.sinopse }}
 			<h2>Detalhes</h2>
 			{{ form.detalhes }}
-			<button type="submit">Publicar</button>
+			<button type="submit" class="draw meet">Publicar</button>
 		</div>
 	</form>
 
