@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>LibriumSwipe</title>
+		<title>{% block title %}LibriumSwipe{% endblock%}</title>
 		<link rel="icon" type="image/png" href="{% static 'images/logomarca.svg' %}">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -15,6 +15,7 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 		<script src="https://kit.fontawesome.com/dbedd68923.js" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
+		{% block head %}{% endblock %}
 	</head>
 	<body>
 		<nav>
@@ -56,7 +57,7 @@
 				<a href="#"><i class="bi bi-chat"></i>Chat</a>
 				<button id="btn-categorias"><i class="bi bi-list-ul"></i>Categorias<i class="fas fa-chevron-right"></i></button>
 				<button id="btn-generos"><i class="bi bi-book"></i></i>Gêneros<i class="fas fa-chevron-right"></i></button>
-				<a href="#"><i class="bi bi-plus-circle"></i>Anunciar</a>
+				<a href="{% url 'novo_anuncio' %}"><i class="bi bi-plus-circle"></i>Anunciar</a>
 				<a href="#"><i class="bi bi-geo-alt"></i>Perto de mim</a>
 				<a href="#"><i class="bi bi-moon"></i>Modo escuro</a>
 				<a href="#"><i class="bi bi-star"></i>Favoritos</a>
@@ -116,7 +117,9 @@
 				</div>
 			</div>
 			<h4><a href="#">Perto de mim<i class="bi bi-geo-alt"></i></a></h4>
-			<h4><a href="#">Anunciar<i class="bi bi-geo-alt"></i></a></h4>
+			<h4><a href="{% url 'novo_anuncio' %}">Anunciar<i class="bi bi-geo-alt"></i></a></h4>
 		</div>
+		{% block body %}
+		{% endblock %}
 	</body>
 </html>

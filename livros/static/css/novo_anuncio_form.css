@@ -1,0 +1,108 @@
+body {
+	color: #343434;
+}
+
+h1 {
+	text-align: center;
+}
+
+form {
+	display: grid;
+}
+
+.div-1 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.imagens {
+	text-align: center;
+	margin-right: 70px;
+}
+
+.swiper-container {
+  width: 350px;
+  height: 500px;
+}
+
+.swiper-slide input{
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+
+.swiper-slide label {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(169, 89, 221, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  font-size: 60px;
+}
+
+.livro-info {
+	display: grid;
+}
+
+:focus {
+	outline: none;
+}
+
+.col-3{
+	position: relative;
+}
+
+input[type="text"] {
+	font: 15px/24px "Inter", "Inter", sans-serif; 
+	color: #343434; width: 100%; 
+	box-sizing: border-box; 
+	letter-spacing: 1px;
+	width: 100%;
+}
+
+.effect-16 {
+	border: 0; 
+	padding: 4px 0; 
+	border-bottom: 1px solid rgba(52, 52, 52, 0.5); 
+	background-color: transparent;
+}
+
+.effect-16 ~ .focus-border {
+	position: absolute; 
+	bottom: 0; 
+	left: 0; 
+	width: 0; 
+	height: 2px; 
+	background-color: #A959DD; 
+	transition: 0.4s;
+}
+
+.effect-16:focus ~ .focus-border,
+.has-content.effect-16 ~ .focus-border {
+	width: 100%; 
+	transition: 0.4s;
+}
+
+.effect-16 ~ label {
+	position: absolute; 
+	left: 0; 
+	width: 100%; 
+	top: 9px; 
+	color: rgba(52, 52, 52, 0.5); 
+	transition: 0.3s; 
+	z-index: -1; 
+	letter-spacing: 0.5px;
+}
+
+.effect-16:focus ~ label, .has-content.effect-16 ~ label{
+	top: -16px; 
+	font-size: 12px; 
+	color: #A959DD; 
+	transition: 0.3s;
+}

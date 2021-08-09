@@ -1,0 +1,61 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/novo_anuncio_form.css' %}">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+{% endblock %}
+
+{% block title %}Novo anúncio{% endblock %}
+
+{% block body %}
+	<h1>Novo anúncio</h1>
+	<form action="{% url 'novo_anuncio' %}" enctype="multipart/form-data" method="post">
+		{% csrf_token %}
+		<div class="div-1">
+			<div class="imagens">
+				<h3>Imagem do livro</h3>
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">{{ form.imagem1 }} <label for="id_imagem1" id="imagem1"><i class="bi bi-camera-fill"></i></label></div>
+						<div class="swiper-slide">{{ form.imagem2 }} <label for="id_imagem2" id="imagem2"><i class="bi bi-camera-fill"></i></label></div>
+						<div class="swiper-slide">{{ form.imagem3 }} <label for="id_imagem3" id="imagem3"><i class="bi bi-camera-fill"></i></label></div>
+						<div class="swiper-slide">{{ form.imagem4 }} <label for="id_imagem4" id="imagem4"><i class="bi bi-camera-fill"></i></label></div>
+					</div>
+					<div class="swiper-pagination"></div>
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-next"></div>
+				</div>
+			</div>
+			<div class="livro-info">
+				<div class="col-3 input-effect">
+		        	{{ form.titulo }}
+		            <label>Título</label>
+		            <span class="focus-border"></span>
+		        </div>
+    			<div class="col-3 input-effect">
+		        	{{ form.autor }}
+		            <label>Autor(a)</label>
+		            <span class="focus-border"></span>
+		        </div>
+    			<h4>Categoria</h4>
+    			<div>
+    				{{ form.categoria }}
+    			</div>
+    			<h4>Preço</h4>
+    			<div>
+    				{{ form.preco }}
+    			</div>
+			</div>
+		</div>
+		{{ form.sinopse.label_tag }}
+		{{ form.sinopse }}
+		{{ form.detalhes.label_tag }}
+		{{ form.detalhes }}
+		<button type="submit">Publicar</button>
+	</form>
+
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<script src="{% static 'js/slide.js' %}"></script>
+	<script src="{% static 'js/novo_anuncio_form.js' %}"></script>
+{% endblock %}

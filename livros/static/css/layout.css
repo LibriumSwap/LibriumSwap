@@ -212,6 +212,7 @@ nav input, nav button, nav a {
 }
 
 .dropdown a {
+	background-color: white;
 	text-decoration: none;
 	text-align: center;
 	color: #343434;
