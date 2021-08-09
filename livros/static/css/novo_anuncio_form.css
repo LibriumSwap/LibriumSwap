@@ -24,7 +24,7 @@ form {
 }
 
 .swiper-container {
-  max-width: 350px;
+  width: 350px;
   height: 500px;
 }
 
@@ -190,6 +190,12 @@ input[type="text"], input[type="number"] {
 		margin: 0;
 		margin-bottom: 30px;
 	}
+
+	.swiper-container {
+		max-width: 350px;
+		width: 100%;
+	}
+
 
 	.inputs-2 {
 		display: flex;
