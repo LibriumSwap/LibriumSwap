@@ -8,6 +8,8 @@ h1 {
 
 form {
 	display: grid;
+	justify-content: center;
+	align-items: center;
 }
 
 .div-1 {
@@ -50,12 +52,42 @@ form {
 	display: grid;
 }
 
+h2 {
+	text-align: center;
+}
+
+.inputs-2 input {
+	width: 100%;
+}
+
+.inputs-3 {
+	display: grid;
+	max-width: 660px;
+}
+
+.inputs-3 h2 {
+	text-align: left;
+}
+
+.inputs-3 textarea {
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+.inputs-3 button {
+	margin: 30px;
+	margin-left: auto;
+	padding: 20px 40px;
+	max-width: 200px;
+}
+
 :focus {
 	outline: none;
 }
 
 .col-3{
 	position: relative;
+	margin-bottom: 30px;
 }
 
 input[type="text"] {

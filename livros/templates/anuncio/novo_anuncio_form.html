@@ -14,7 +14,7 @@
 		{% csrf_token %}
 		<div class="div-1">
 			<div class="imagens">
-				<h3>Imagem do livro</h3>
+				<h2>Imagem do livro</h2>
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">{{ form.imagem1 }} <label for="id_imagem1" id="imagem1"><i class="bi bi-camera-fill"></i></label></div>
@@ -38,24 +38,27 @@
 		            <label>Autor(a)</label>
 		            <span class="focus-border"></span>
 		        </div>
-    			<h4>Categoria</h4>
-    			<div>
+    			<h2>Categoria</h2>
+    			<div class="inputs-2">
     				{{ form.categoria }}
     			</div>
-    			<h4>Preço</h4>
-    			<div>
+    			<h2>Preço</h2>
+    			<div class="inputs-2">
     				{{ form.preco }}
     			</div>
 			</div>
 		</div>
-		{{ form.sinopse.label_tag }}
-		{{ form.sinopse }}
-		{{ form.detalhes.label_tag }}
-		{{ form.detalhes }}
-		<button type="submit">Publicar</button>
+		<div class="inputs-3">
+			<h2>Sinópse</h2>
+			{{ form.sinopse }}
+			<h2>Detalhes</h2>
+			{{ form.detalhes }}
+			<button type="submit">Publicar</button>
+		</div>
 	</form>
 
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 	<script src="{% static 'js/slide.js' %}"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script src="{% static 'js/novo_anuncio_form.js' %}"></script>
 {% endblock %}

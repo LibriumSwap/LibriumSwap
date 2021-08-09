@@ -5,9 +5,23 @@ imageInputs.forEach(imageInput => {
     url = URL.createObjectURL(imageInput.files[0]);
     label = document.querySelector(`#${imageInput.name}`)
     icon = label.querySelector('i')
-    label.removeChild(icon)
+    if (icon) {
+      label.removeChild(icon)
+    }
     label.style.backgroundColor = ""
     label.style.background = "url(" + url + ") no-repeat center";
     label.style.backgroundSize = "350px 500px";
   })
 })
+
+$(window).on('load', function(){
+  $(".col-3 input").val("");
+  
+  $(".input-effect input").focusout(function(){
+    if($(this).val() != ""){
+      $(this).addClass("has-content");
+    }else{
+      $(this).removeClass("has-content");
+    }
+  })
+});
