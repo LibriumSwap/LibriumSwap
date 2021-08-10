@@ -1,6 +1,6 @@
 const swiper = new Swiper('.swiper-container', {
   // Optional parameters
-  slidesPerView: 1,
+  slidesPerView: 3,
   spaceBetween: 10,
   autoHeight: true,
   freeMode: true,
@@ -17,9 +17,6 @@ const swiper = new Swiper('.swiper-container', {
 
   // Responsive breakpoints
   breakpoints: {
-    100: {
-      slidesPerView: 3,
-    },
     416: {
       slidesPerView: 4
     },
