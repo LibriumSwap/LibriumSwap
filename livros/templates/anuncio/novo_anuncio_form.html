@@ -9,6 +9,9 @@
 {% block title %}Novo anúncio{% endblock %}
 
 {% block body %}
+	{% for erro in erros.values %}
+		{{ erro }}
+	{% endfor %}
 	<h1>Novo anúncio</h1>
 	<form action="{% url 'novo_anuncio' %}" enctype="multipart/form-data" method="post">
 		{% csrf_token %}

@@ -19,8 +19,8 @@
 	</head>
 	<body>
 		<nav>
-			<img id="logomarca" src="{% static 'images/logo.png' %}">
-			<img id="logomarca-mobile" src="{% static 'images/logomarca.png' %}">
+			<a href="{% url 'home' %}"><img id="logomarca" src="{% static 'images/logo.png' %}"></a>
+			<a href="{% url 'home' %}"><img id="logomarca-mobile" src="{% static 'images/logomarca.png' %}"></a>
 			<form class="pesquisa">
 				{% csrf_token %}
 				<input type="text" name="q">

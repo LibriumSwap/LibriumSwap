@@ -1,3 +1,5 @@
 from django.contrib import admin
+from livros.models import LivroAnuncio, LivroAnuncioImagem
 
-# Register your models here.
+admin.site.register(LivroAnuncio)
+admin.site.register(LivroAnuncioImagem)

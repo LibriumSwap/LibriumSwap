@@ -17,4 +17,3 @@ class NovoAnuncioForm(forms.Form):
 	preco = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'effect-16'}))
 	sinopse = forms.CharField(widget=forms.Textarea(attrs={'class': 'draw meet'}), required=False)
 	detalhes = forms.JSONField(max_length=248, required=False)
-	data_publicacao = forms.DateField(required=False)

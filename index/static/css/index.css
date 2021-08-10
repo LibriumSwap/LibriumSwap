@@ -153,25 +153,17 @@ nav {
 	height: 500px;
 }
 
+.apresentacao-4 img {
+	width: 400px;
+}
+
+.apresentacao-4 h4 {
+	text-align: center;
+}
+
 .apresentacao-4 h3{
 	margin-right: 40px;
 	margin-left: 40px;
-}
-
-.imagem-quadro {
-	background-color: #D4AAEF;
-	color: white;
-	border-radius: 44px;
-	padding: 20px;
-}
-
-.quadro-1 {
-	margin-bottom: auto;
-}
-
-.quadro-2 {
-	margin-top: auto;
-	text-align: right;
 }
 
 .apresentacao-5 {
@@ -179,8 +171,7 @@ nav {
 }
 
 .apresentacao-5 img {
-	border-radius: 62px;
-	margin-bottom: 30px;
+	max-width: 700px;
 }
 
 .apresentacao-5-div {
