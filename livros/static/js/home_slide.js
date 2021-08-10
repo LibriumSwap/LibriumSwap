@@ -1,8 +1,9 @@
 const swiper = new Swiper('.swiper-container', {
   // Optional parameters
-  slidesPerView: 4,
+  slidesPerView: 1,
   spaceBetween: 10,
   autoHeight: true,
+  freeMode: true,
   // If we need pagination
   pagination: {
     el: '.swiper-pagination',
@@ -14,22 +15,34 @@ const swiper = new Swiper('.swiper-container', {
     prevEl: '.swiper-button-prev',
   },
 
-  //Responsive breakpoints
+  // Responsive breakpoints
   breakpoints: {
-    // when window width is >= 320px
-    426: {
-      slidesPerView: 2,
-    },
-    // when window width is >= 480px
-    833: {
+    100: {
       slidesPerView: 3,
     },
-    // when window width is >= 640px
-    1121: {
+    416: {
+      slidesPerView: 4
+    },
+    518: {
+      slidesPerView: 5,
+    },
+    520: {
+      slidesPerView: 3,
+    },
+    690: {
       slidesPerView: 4,
     },
-    1400: {
+    876: {
       slidesPerView: 5,
+    },
+    1052: {
+      slidesPerView: 4,
+    },
+    1317: {
+      slidesPerView: 5,
+    },
+    1610: {
+      slidesPerView: 6,
     }
   }
 });
