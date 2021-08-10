@@ -1,11 +1,16 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from .forms import NovoAnuncioForm
 from .models import Livro, LivroAnuncio, LivroAnuncioImagem
 from autenticacao.models import CustomUser
 
 def home(request):
-	return render(request, "home/home.html")
+	recentes = LivroAnuncio.objects.all().order_by('id')[:6]
+	return render(request, "home/home.html", {
+		"recentes": recentes
+		})
 
 def novo_anuncio(request):
 	if request.method == "POST":
@@ -46,6 +51,7 @@ def novo_anuncio(request):
 
 			livro_anuncio.save()
 
+			return HttpResponseRedirect(reverse('home'))
 		else:
 			return render(request, "anuncio/novo_anuncio_form.html", {
 				"form": form,

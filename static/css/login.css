@@ -16,7 +16,8 @@ svg {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-top: 60px;
+	padding: 5%;
+	padding-top: 0;
 }
 
 .formulario {
@@ -32,6 +33,7 @@ svg {
 	font-weight: normal;
 	border-radius: 7px;
 	margin: 0;
+	margin-bottom: 20px;
 }
 
 .esqueci-senha {
@@ -80,6 +82,10 @@ svg {
 	border: 1px solid #343434;
 	border-radius: 7px;
 	text-align: center;
+}
+
+#logomarca {
+	max-width: 600px;
 }
 
 :focus {

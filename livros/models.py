@@ -23,4 +23,4 @@ class LivroAnuncio(models.Model):
 	sinopse = models.TextField()
 
 class LivroAnuncioImagem(models.Model):
-	imagem = models.ImageField(upload_to='anuncios')
+	imagem = models.ImageField(upload_to='images/anuncios')

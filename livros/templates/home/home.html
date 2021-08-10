@@ -1,1 +1,35 @@
 {% extends 'home/layout.html' %}
+
+{% load static %}
+
+{% block title %}Início{% endblock %}
+
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+{% endblock %}
+
+{% block body %}
+<div class="recentes">
+	<div class="recentes-header">
+		<h1>Anúncios recentes</h1>
+		<a href="#">Ver todos</a>
+	</div>
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			{% for recente in recentes %}
+				<div class="swiper-slide">
+					<img src="{{ recente.imagens.first.imagem.url }}">
+				</div>
+			{% endfor %}
+		</div>
+		<div class="swiper-pagination"></div>
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-button-next"></div>
+	</div>
+</div>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="{% static 'js/home_slide.js' %}"></script>
+{% endblock %}

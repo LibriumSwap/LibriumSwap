@@ -145,4 +145,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # MEDIA SETTINGS
-MEDIA_ROOT = os.path.join(BASE_DIR, 'livros/static/images')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

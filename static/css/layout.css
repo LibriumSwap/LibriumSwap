@@ -4,6 +4,10 @@ body {
 	padding: 0;
 }
 
+#logomarca {
+	max-width: 250px;
+}
+
 #logomarca-mobile {
 	display: none;
 }
