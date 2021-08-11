@@ -10,6 +10,12 @@ from .forms import NovoAnuncioForm
 from .models import Livro, LivroAnuncio, LivroAnuncioImagem
 from autenticacao.models import CustomUser
 
+def anuncio(request, id_anuncio):
+	anuncio = LivroAnuncio.objects.get(id=id_anuncio)
+	return render(request, "anuncio/anuncio.html", {
+		"anuncio": anuncio
+		})
+
 def nova_imagem(imagem):
 	i = Image.open(imagem)
 	thumb_io = BytesIO()
@@ -21,12 +27,6 @@ def nova_imagem(imagem):
 	imagem_model = LivroAnuncioImagem(imagem=inmemory_uploaded_file)
 	imagem_model.save()
 	return imagem_model
-
-def home(request):
-	recentes = LivroAnuncio.objects.all().order_by('id')[:11]
-	return render(request, "home/home.html", {
-		"recentes": recentes
-		})
 
 def novo_anuncio(request):
 	if request.method == "POST":

@@ -21,9 +21,11 @@ document.addEventListener('DOMContentLoaded', function () {
     categoriaBtn.addEventListener("click", evt => {
       const preco = document.querySelector('.preco')
       if (categoriaBtn == document.querySelector('label[for="id_categoria_0"]') || categoriaBtn == document.querySelector('label[for="id_categoria_1"]')) {
-        preco.style.display = "block"
+        preco.style.opacity = "1"
+        preco.querySelector("input").removeAttribute("disabled")
       } else {
-        preco.style.display = "none"
+        preco.style.opacity = "0.35"
+        preco.querySelector("input").setAttribute("disabled", true)
       }
     })
   })

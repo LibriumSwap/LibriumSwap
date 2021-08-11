@@ -22,7 +22,7 @@
 			{% for recente in recentes %}
 				<div class="swiper-slide">
 					<div>
-						<img src="{{ recente.imagens.first.imagem.url }}">
+						<a href="{% url 'anuncio_livro' recente.id %}"><img src="{{ recente.imagens.first.imagem.url }}"></a>
 						<h2>{{ recente.get_categoria_display }}</h2>
 						{% if recente.preco %}
 							<p>R${{ recente.preco }}</p>

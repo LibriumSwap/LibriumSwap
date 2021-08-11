@@ -1,0 +1,13 @@
+{% extends "home/layout.html" %}
+
+{% load static %}
+
+{% block title %}Anúncio{% endblock %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/anuncio.css' %}">
+{% endblock %}
+
+{% block body %}
+	{{ anuncio.titulo }}
+{% endblock %}
