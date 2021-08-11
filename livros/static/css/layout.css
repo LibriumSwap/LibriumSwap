@@ -91,7 +91,7 @@ nav input, nav button, nav a {
 	display: none;
 	position: absolute;
 	left: -120%;
-	z-index: 1;
+	z-index: 2;
 	width: 200px;
 }
 

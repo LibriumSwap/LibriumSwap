@@ -37,10 +37,14 @@ svg {
 }
 
 .esqueci-senha {
-	color: #A959DD;
+	color: #424242;
 	font-size: 13px;
 	text-decoration: none;
 	margin: 5px 0px 15px auto;
+}
+
+.esqueci-senha:hover {
+	color: #A959DD;
 }
 
 .formulario button {
@@ -51,6 +55,14 @@ svg {
 	font-weight: bold;
 	padding: 15px;
 	cursor: pointer;
+}
+
+.formulario button:hover {
+	background-color: #313131;
+}
+
+.formulario button:active {
+	background-color: #292929;
 }
 
 .formulario p {
@@ -82,6 +94,10 @@ svg {
 	border: 1px solid #343434;
 	border-radius: 7px;
 	text-align: center;
+}
+
+.btn-registrar:hover {
+	background-color: #f6f6f6;
 }
 
 #logomarca {

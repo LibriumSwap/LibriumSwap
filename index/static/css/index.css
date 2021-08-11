@@ -20,14 +20,22 @@ nav {
 .btn-login {
 	margin-left: auto;
 	margin-right: 30px;
-	background-color: white;
-	color: #343434;
+	color: white;
 	font-size: 14px;
 	font-weight: 700;
 	text-decoration: none;
 	border: 1px solid white;
 	padding: 10px 30px 10px 30px;
 	border-radius: 7px;
+}
+
+.btn-login:hover {
+	background-color: white;
+	color: #343434;
+}
+
+.btn-login:active {
+	background-color: #f8f8f8;
 }
 
 .apresentacao-fundo {
@@ -71,6 +79,14 @@ nav {
 	font-weight: bold;
 	padding: 20px 40px 20px 40px;
 	border-radius: 7px;
+}
+
+.btn-cadastrar:hover {
+	background-color: #313131;
+}
+
+.btn-cadastrar:active {
+	background-color: #292929;
 }
 
 .apresentacao-btn p {
