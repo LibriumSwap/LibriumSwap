@@ -20,7 +20,13 @@
 		<div class="swiper-wrapper">
 			{% for recente in recentes %}
 				<div class="swiper-slide">
-					<img src="{{ recente.imagens.first.imagem.url }}">
+					<div>
+						<img src="{{ recente.imagens.first.imagem.url }}">
+						<h2>{{ recente.get_categoria_display }}</h2>
+						{% if recente.preco %}
+							<p>R${{ recente.preco }}</p>
+						{% endif %}
+					</div>
 				</div>
 			{% endfor %}
 			<div class="swiper-slide ver-mais">
@@ -30,7 +36,6 @@
 				</a>
 			</div>
 		</div>
-		<div class="swiper-pagination"></div>
 		<div class="swiper-button-prev"></div>
 		<div class="swiper-button-next"></div>
 	</div>

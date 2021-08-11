@@ -14,9 +14,9 @@ class Livro(models.Model):
 class LivroAnuncio(models.Model):
 	livro = models.ForeignKey('Livro', on_delete=models.PROTECT, blank=True, null=True)
 	detalhes = models.JSONField(max_length=248, default=dict)
-	categoria = models.CharField(max_length=1, choices=CATEGORIA_CHOICES, blank=False, null=False)
+	categoria = models.CharField(max_length=10, choices=CATEGORIA_CHOICES, blank=False, null=False)
 	anunciante = models.ForeignKey('autenticacao.CustomUser', on_delete=models.CASCADE)
-	preco = models.FloatField(max_length=64)
+	preco = models.FloatField(max_length=64, blank=True)
 	imagens = models.ManyToManyField('LivroAnuncioImagem')
 	titulo = models.CharField(max_length=128)
 	autor = models.CharField(max_length=64)

@@ -45,14 +45,16 @@
     			<div class="inputs-2">
     				{% for input in form.categoria %}
     					{{ input.tag }}
-    					<label for="{{ input.id_for_label }}">{{ input.choice_label }}</label>
+    					<label class="categoria" for="{{ input.id_for_label }}">{{ input.choice_label }}</label>
     				{% endfor %}
     			</div>
-    			<h2>Preço</h2>
-    			<div class="col-3 input-effect inputs-2">
-		        	{{ form.preco }}
-		            <span class="focus-border"></span>
-		        </div>
+    			<div class="preco">
+	    			<h2>Preço</h2>
+	    			<div class="col-3 input-effect inputs-2">
+			        	{{ form.preco }}
+			            <span class="focus-border"></span>
+			        </div>
+			    </div>
     			</div>
 			</div>
 		</div>

@@ -105,6 +105,7 @@ h2 {
 .inputs-3 {
 	display: grid;
 	max-width: 709px;
+	margin-top: 20px;
 }
 
 .inputs-3 h2 {

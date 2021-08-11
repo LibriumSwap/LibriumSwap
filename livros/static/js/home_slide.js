@@ -1,13 +1,9 @@
 const swiper = new Swiper('.swiper-container', {
   // Optional parameters
-  slidesPerView: 3,
   spaceBetween: 10,
+  slidesPerView: 3,
   autoHeight: true,
   freeMode: true,
-  // If we need pagination
-  pagination: {
-    el: '.swiper-pagination',
-  },
 
   // Navigation arrows
   navigation: {

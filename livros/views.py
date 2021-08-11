@@ -35,13 +35,17 @@ def novo_anuncio(request):
 			titulo = form.cleaned_data["titulo"]
 			autor = form.cleaned_data["autor"]
 			categoria = form.cleaned_data["categoria"]
-			preco = form.cleaned_data["preco"]
+			
+				
 			sinopse = form.cleaned_data["sinopse"]
 			detalhes = form.cleaned_data["detalhes"]
 
 			user = get_object_or_404(CustomUser, username=request.user.username)
 
-			livro_anuncio = LivroAnuncio(anunciante=user, titulo=titulo, autor=autor, categoria=categoria, preco=preco, sinopse=sinopse, detalhes=detalhes)
+			livro_anuncio = LivroAnuncio(anunciante=user, titulo=titulo, autor=autor, categoria=categoria, sinopse=sinopse, detalhes=detalhes)
+			if categoria != "T":
+				preco = form.cleaned_data["preco"]
+				livro_anuncio.preco = preco
 			livro_anuncio.save()
 
 			# Comprimir imagem antes de salvar e adicionar em livro_anuncio
