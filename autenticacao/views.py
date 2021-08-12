@@ -12,6 +12,7 @@ from django.db import IntegrityError
 from django.urls import reverse
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib.sites.shortcuts import get_current_site
+from django.core.exceptions import ObjectDoesNotExist
 
 
 from .forms import LoginForm, RegisterForm
@@ -77,7 +78,10 @@ def password_reset_request(request):
 		form = PasswordResetForm(request.POST)
 		if form.is_valid():
 			data = form.cleaned_data['email']
-			user = User.objects.get(Q(email=data))
+			try:
+				user = User.objects.get(Q(email=data))
+			except User.DoesNotExist:
+				return redirect ("/reset-password/done")
 			current_site = get_current_site(request)
 			if user:
 				subject = "Solicitação de troca de senha"

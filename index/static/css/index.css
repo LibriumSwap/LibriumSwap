@@ -1,7 +1,3 @@
-html {
-	font-size: 100%;
-}
-
 .first { margin-top: 0 !important; margin-left: 0 !important; }
 .last { margin-bottom: 0 !important; margin-right: 0 !important; }
 
@@ -47,10 +43,11 @@ nav {
 	justify-content: center;
 	align-items: center;
 	padding: 50px;
+	padding-top: 0;
 }
 
 .apresentacao-titulo {
-	font-size: 40px;
+	font-size: 3vw;
 	font-weight: bold;
 	color: white;
 	margin-bottom: 0px;
@@ -159,6 +156,9 @@ nav {
 	max-width: 500px;
 }
 
+.apresentacao-3-texto {
+	max-width: 50%;
+}
 
 .apresentacao-4 {
 	display: flex;

@@ -1,24 +1,23 @@
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 3840px) {
 	body {
-		font-size: 1rem;
+		font-size: 1.5vw;
+		line-height: 1;
+	}
+
+	h1 {
+		font-size: 3vw;
+	}
+
+	p {
+		line-height: 1.1 !important;
 	}
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 768px) {
 	body {
-		font-size: 1rem;
+		font-size: 3.5vw;
 	}
-}
 
-@media screen and (max-width: 908px) {
-	.apresentacao-4 {
-		display: grid;
-		height: 900px;
-		text-align: center;
-	}
-}
-
-@media screen and (max-width: 480px) {
 	nav {
 		padding: 0;
 	}
@@ -51,10 +50,6 @@
 
 	.apresentacao-texo {
 		display: block;
-	}
-
-	.apresentacao-paragrafo {
-		line-height: 24.93px;
 	}
 
 	.apresentacao p {
