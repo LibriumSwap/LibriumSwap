@@ -104,7 +104,7 @@ body {
 
 @media screen and (max-width: 660px) {
 	.anuncio-apresentacao {
-		display: grid;
+		display: block;
 	}
 
 	.anuncio-imagens {
