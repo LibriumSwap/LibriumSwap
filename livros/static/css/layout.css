@@ -20,7 +20,7 @@ nav {
 	padding: 0px 20px 0px 20px;
 	background-color: #A959DD;
 	display: flex;
-	align-items: center;
+	justify-content: center;
 }
 
 nav input, nav button, nav a {
@@ -28,6 +28,14 @@ nav input, nav button, nav a {
 	border: none;
 	outline: none;
 	color: white;
+}
+
+.nav-div {
+	max-width: 1610px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .pesquisa {

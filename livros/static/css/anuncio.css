@@ -1,0 +1,133 @@
+body {
+	color: #343434;
+}
+
+.anuncio-apresentacao {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+.anuncio-info {
+	margin-left: 30px;
+	width: 350px;
+	display: grid;
+}
+
+.anuncio-info h2 {
+	margin: 0;
+	display: flex;
+	width: 100%;
+}
+
+.anuncio-info h2 button {
+	margin-left: auto;
+	background-color: white;
+	outline: none;
+	border: none;
+	color: #820AD1;
+	font-size: 24px;
+	cursor: pointer;
+}
+
+.anuncio-info p {
+	margin-top: 0;
+}
+
+
+.avaliacoes {
+	display: flex;
+	color: #820AD1;
+}
+
+.avaliacoes p {
+	color: #343434;
+	font-size: 12px;
+	margin-left: 2px;
+}
+
+.anuncio-info h4 {
+	font-weight: normal;
+	text-align: center;
+}
+
+.btn {
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: bold;
+	outline: none;
+	border: 1px solid #820AD1;
+	text-align: center;
+	padding: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.btn-comprar {
+	background-color: #820AD1;
+	color: white;
+	margin-bottom: 10px;
+}
+
+.btn-carrinho {
+	background-color: white;
+	color: #820AD1;
+}
+
+.anuncio-sinopse, .anuncio-detalhes {
+	margin-top: 100px;
+	padding-right: 6%;
+	padding-left: 6%;
+}
+
+.anuncio-sinopse p {
+	margin-left: 50px;
+}
+
+.anuncio-detalhes table {
+	width: 100%;
+	margin-left: 50px;
+	border-spacing: 10px;
+}
+
+@media screen and (max-width: 822px) {
+	.anuncio-apresentacao {
+		padding-left: 5%;
+		padding-right: 5%;
+	}
+
+	img {
+		width: auto;
+	}
+}
+
+@media screen and (max-width: 660px) {
+	.anuncio-apresentacao {
+		display: grid;
+	}
+
+	.anuncio-imagens {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 40px;
+	}
+
+	.anuncio-info {
+		margin-left: 0;
+		width: 100%;
+	}
+
+	.anuncio-sinopse, .anuncio-detalhes {
+		margin-top: 50px;
+	}
+
+	.anuncio-sinopse p {
+		margin-left: 0;
+	}
+
+	.anuncio-detalhes table {
+		margin-left: 0;
+	}
+}

@@ -9,5 +9,53 @@
 {% endblock %}
 
 {% block body %}
-	{{ anuncio.titulo }}
+	<div class="anuncio-apresentacao">
+		<div class="anuncio-imagens">
+			<img src="{{ anuncio.imagens.first.imagem.url }}" width="350px" height="auto">
+		</div>
+		<div class="anuncio-info">
+			<h2>{{ anuncio.titulo }}<button class="bi bi-heart"></button></h2>
+			<p>por {{ anuncio.autor }}</p>
+
+			<div class="avaliacoes">
+				<i class="bi bi-star-fill"></i>
+				<i class="bi bi-star-fill"></i>
+				<i class="bi bi-star-fill"></i>
+				<i class="bi bi-star-fill"></i>
+				<i class="bi bi-star-fill"></i>
+				<p>100 avaliações</p>
+			</div>
+
+			<h4>Anunciado por {{ anuncio.anunciante.username }}</h4>
+			<a href="#" class="btn btn-comprar">Comprar</a>
+			<button class="btn btn-carrinho">Adicionar ao carrinho</button>
+		</div>
+	</div>
+	<div class="anuncio-sinopse">
+		<h1>Sinópse</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit, semper iaculis egestas dui. Nec cras ante egestas quis vestibulum et tellus viverra. Risus enim massa dolor praesent feugiat vel velit tellus ullamcorper. Vitae et sociis justo, tellus id consectetur mattis ullamcorper lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit, semper iaculis egestas dui. Nec cras ante egestas quis vestibulum et tellus viverra. Risus enim massa dolor praesent feugiat vel velit tellus ullamcorper. Vitae et sociis justo, tellus id consectetur mattis ullamcorper.</p>
+	</div>
+	<div class="anuncio-detalhes">
+		<h1>Detalhes</h1>
+		<table>
+			<tr>
+				<td>Peso</td>
+				<td>0.4kg</td>
+			</tr>
+			<tr>
+				<td>ISBN</td>
+				<td>9788584424665</td>
+			</tr>
+			<tr>
+				<td>Editora</td>
+				<td>Editora tal</td>
+			</tr>
+			<tr>
+				<td>Número de páginas</td>
+				<td>666</td>
+			</tr>
+		</table>
+	</div>
+
+	<script type="text/javascript" src="{% static 'js/anuncio.js' %}"></script>
 {% endblock %}
