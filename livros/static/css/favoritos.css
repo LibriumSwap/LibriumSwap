@@ -1,0 +1,41 @@
+body {
+	color: #343434;
+}
+
+h1 {
+	margin-left: 5%;
+}
+
+hr {
+	width: 80%;
+	border-color: rgba(255, 255, 255, 0.44);
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
+
+.favoritos {
+	width: 100%;
+}
+
+.anuncio {
+	display: flex;
+	align-items: center;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.anuncio-texto {
+	margin-left: 15px;
+	display: flex;
+	width: 100%;
+}
+
+#preco {
+	margin-left: auto;
+}
+
+@media screen and (max-width: 660px) {
+	.anuncio-texto {
+		display: block;
+	}
+}

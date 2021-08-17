@@ -1,19 +1,34 @@
 import sys
+import json
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
+from django.db.models import Q
 from io import BytesIO
 from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from .forms import NovoAnuncioForm
 from .models import Livro, LivroAnuncio, LivroAnuncioImagem
-from autenticacao.models import CustomUser
+from autenticacao.models import User
 
 def anuncio(request, id_anuncio):
 	anuncio = LivroAnuncio.objects.get(id=id_anuncio)
+
+	if User.objects.filter(username=request.user.username, favoritos=anuncio):
+		return render(request, "anuncio/anuncio.html", {
+		"anuncio": anuncio,
+		"favorito": True
+		})
 	return render(request, "anuncio/anuncio.html", {
 		"anuncio": anuncio
+		})
+
+def pesquisa(request):
+	entrada = request.GET.get('q')
+	resultados = LivroAnuncio.objects.filter(Q(titulo__icontains=entrada) | Q(autor__icontains=entrada) | Q(anunciante__username__icontains=entrada))
+	return render(request, "anuncio/pesquisa.html", {
+		"resultados": resultados
 		})
 
 def nova_imagem(imagem):
@@ -40,7 +55,7 @@ def novo_anuncio(request):
 			sinopse = form.cleaned_data["sinopse"]
 			detalhes = form.cleaned_data["detalhes"]
 
-			user = get_object_or_404(CustomUser, username=request.user.username)
+			user = get_object_or_404(User, username=request.user.username)
 
 			livro_anuncio = LivroAnuncio(anunciante=user, titulo=titulo, autor=autor, categoria=categoria, sinopse=sinopse, detalhes=detalhes)
 			if categoria != "T":
@@ -71,3 +86,32 @@ def novo_anuncio(request):
 		return render(request, "anuncio/novo_anuncio_form.html", {
 			"form": NovoAnuncioForm(),
 			})
+
+
+def favorito(request):
+	user = get_object_or_404(User, username=request.user.username)
+
+	if request.method == "POST":
+		data = json.loads(request.body)
+		id_anuncio = data.get('id')
+
+		anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)
+
+		if User.objects.filter(username=request.user.username, favoritos=anuncio):
+			user.favoritos.remove(anuncio)
+			user.save()
+
+			return JsonResponse({'success': 'removido'})
+
+		else:
+			user.favoritos.add(anuncio)
+			user.save()
+
+			return JsonResponse({'success': 'adicionado'})
+		
+def favoritos(request):
+	user = User.objects.get(username=request.user.username)
+
+	return render(request, "anuncio/favoritos.html", {
+		"favoritos": user.favoritos.all()
+		})

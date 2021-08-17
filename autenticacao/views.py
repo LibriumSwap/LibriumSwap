@@ -16,7 +16,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 from .forms import LoginForm, RegisterForm
-from .models import CustomUser as User
+from .models import User
 
 def login_view(request):
 	if request.method == 'POST':

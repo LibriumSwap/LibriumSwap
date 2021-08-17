@@ -133,7 +133,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 
 # AUTH SETTINGS
-AUTH_USER_MODEL = 'autenticacao.CustomUser'
+AUTH_USER_MODEL = 'autenticacao.User'
 AUTHENTICATION_BACKENDS = ['autenticacao.backends.EmailBackend']
 
 # EMAIL SETTINGS

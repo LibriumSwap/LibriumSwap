@@ -1,0 +1,29 @@
+{% extends 'home/layout.html' %}
+
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/favoritos.css' %}">
+{% endblock %}
+
+{% block body %}
+	<h1>Favoritos</h1>
+	<hr>
+	<div class="favoritos">
+		{% for favorito in favoritos %}
+			<div class="anuncio">
+				<img src="{{ favorito.imagens.first.imagem.url }}" width="120px">
+				<div class="anuncio-texto">
+					<div class="anuncio-info">
+						<h2>{{ favorito.titulo }}</h2>
+						<p>{{ favorito.autor }}</p>
+					</div>
+					{% if favorito.preco %}
+						<h2 id="preco">R$ {{ favorito.preco }}</h2>
+					{% endif %}
+				</div>
+			</div>
+			<hr>
+		{% endfor %}
+	</div>
+{% endblock %}

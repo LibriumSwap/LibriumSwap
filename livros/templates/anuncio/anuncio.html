@@ -14,7 +14,15 @@
 			<img src="{{ anuncio.imagens.first.imagem.url }}" width="350px" height="auto">
 		</div>
 		<div class="anuncio-info">
-			<h2>{{ anuncio.titulo }}<button class="bi bi-heart"></button></h2>
+			{% csrf_token %}
+			<h2>
+				{{ anuncio.titulo }}
+				{% if favorito %}
+					<button id="favorito" class="bi bi-heart-fill" data-id="{{ anuncio.id }}"></button>
+				{% else %}
+					<button id="favorito" class="bi bi-heart" data-id="{{ anuncio.id }}"></button>
+				{% endif %}
+			</h2>
 			<p>por {{ anuncio.autor }}</p>
 
 			<div class="avaliacoes">

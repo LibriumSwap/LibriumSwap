@@ -22,8 +22,7 @@
 			<div class="nav-div">
 				<a href="{% url 'home' %}"><img id="logomarca" src="{% static 'images/logo.png' %}"></a>
 				<a href="{% url 'home' %}"><img id="logomarca-mobile" src="{% static 'images/logomarca.png' %}"></a>
-				<form class="pesquisa">
-					{% csrf_token %}
+				<form class="pesquisa" action="{% url 'pesquisa' %}" method="get">
 					<input type="text" name="q">
 					<button type="submit"><i class="bi bi-search"></i></button>
 				</form>
@@ -34,7 +33,7 @@
 						<i id="arrow-usuario" class="bi bi-caret-down-fill" style="font-size: 12px;"></i>
 						<div class="dropdown-usuario">
 							<a>Modo escuro <button>a</button></a>
-							<a href="#">Favoritos</a>
+							<a href="{% url 'favoritos' %}">Favoritos</a>
 							<a href="#">Anúncios</a>
 							<a href="#">Notificações</a>
 							<a href="#">Compras</a>
