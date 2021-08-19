@@ -30,3 +30,4 @@ if settings.DEBUG:
                               document_root=settings.MEDIA_ROOT)
 
 handler404 = "LibriumSwap.views.page_not_found_view"
+handler500 = "LibriumSwap.views.error_view"
