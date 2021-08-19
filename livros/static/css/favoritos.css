@@ -30,6 +30,11 @@ hr {
 	width: 100%;
 }
 
+a {
+	color: #343434;
+	text-decoration: none;
+}
+
 #preco {
 	margin-left: auto;
 }

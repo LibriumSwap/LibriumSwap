@@ -15,6 +15,16 @@ body {
 	display: grid;
 }
 
+.anuncio-info h3 {
+	width: 100%;
+	text-align: center;
+	background-color: #343434;
+	color: white;
+	padding: 10px;
+	margin-bottom: 35px;
+	border-radius: 5px;
+}
+
 .anuncio-info h2 {
 	margin: 0;
 	display: flex;

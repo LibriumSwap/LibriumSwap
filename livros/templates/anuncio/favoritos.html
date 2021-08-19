@@ -12,10 +12,10 @@
 	<div class="favoritos">
 		{% for favorito in favoritos %}
 			<div class="anuncio">
-				<img src="{{ favorito.imagens.first.imagem.url }}" width="120px">
+				<a href="{% url 'anuncio_livro' favorito.id %}"><img src="{{ favorito.imagens.first.imagem.url }}" width="120px"></a>
 				<div class="anuncio-texto">
 					<div class="anuncio-info">
-						<h2>{{ favorito.titulo }}</h2>
+						<a href="{% url 'anuncio_livro' favorito.id %}"><h2>{{ favorito.titulo }}</h2></a>
 						<p>{{ favorito.autor }}</p>
 					</div>
 					{% if favorito.preco %}

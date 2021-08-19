@@ -7,4 +7,112 @@
 {% endblock %}
 
 {% block body %}
+	<div class="resultados-conteudo">
+		<div class="resultados-filtro">
+			<div class="resultados-genero">
+				<h2>Gênero</h2>
+				<ul>
+					<li>Arte e fotografia</li>
+					<li>Biografias e memoriais</li>
+					<li>Negócios e investimento</li>
+					<li>Infantil</li>
+					<li>HQ’s e ilustrados</li>
+					<li>Culinária</li>
+					<li>Fantasia</li>
+					<li>Histórias</li>
+					<li>Terror e suspense</li>
+					<li>Comédia</li>
+					<li>Literatura e ficção</li>
+				</ul>
+			</div>
+			<div class="resultados-categoria">
+				<h2>Categoria</h2>
+				<ul>
+					<li>Venda</li>
+					<li>Aluguel</li>
+					<li>Troca</li>
+				</ul>
+			</div>
+			<div class="resultados-preco">
+				<h2>Faixa de preço</h2>
+				<input type="number" name="preco-min">
+				<text>Até</text>
+				<input type="number" name="preco-max">
+				<button class="filtro-preco bi bi-caret-right-fill"></button>
+			</div>
+			<div class="resultados-localizacao">
+				<h2>Localização</h2>
+				<ul>
+					<li>Acre</li>
+					<li>Alagoas</li>
+					<li>Amapá</li>
+					<li>Amazonas</li>
+					<li>Bahia</li>
+					<li>Ceará</li>
+					<li>Distrito Federal</li>
+					<li>Espírito Santo</li>
+					<li>Goiás</li>
+					<li>MaranhãoMato Grosso</li>
+					<li>Mato Grosso</li>
+					<li>Mato Grosso do Sul</li>
+					<li>Minas Gerais</li>
+					<li>Pará</li>
+					<li>Paraíba</li>
+					<li>Paraná</li>
+					<li>Pernambuco</li>
+					<li>Piauí</li>
+					<li>Rio de Janeiro</li>
+					<li>Rio Grande do Norte</li>
+					<li>Rio Grande do Sul</li>
+					<li>Rondônia</li>
+					<li>Roraima</li>
+					<li>Santa Catarina</li>
+					<li>São Paulo</li>
+					<li>Sergipe</li>
+					<li>Tocantins</li>
+				</ul>
+			</div>
+		</div>
+		<div class="resultados-anuncios-div">
+			<div class="resultados-header">
+				<div class="resultados-info">
+					<p>{{ n_resultados }} resultados para "{{ entrada }}"</p>
+					Página 1 de 5
+				</div>
+				<div class="ordenar">
+					<b>Ordenar por: </b>
+					<select>
+						<option>mais relevantes</option>
+						<option>menor preço</option>
+						<option>maior preço</option>
+						<option>mais recentes</option>
+					</select>
+				</div>
+			</div>
+			<div class="resultados-anuncios">
+				{% for anuncio in resultados %}
+					<div class="anuncio">
+						<a href="{% url 'anuncio_livro' anuncio.id %}"><img src="{{ anuncio.imagens.first.imagem.url }}"></a>
+						<h3>{{ anuncio.get_categoria_display }}</h3>
+						<a href="{% url 'anuncio_livro' anuncio.id %}"><h2>{{ anuncio.titulo }}</h2></a>
+						<p>por {{ anuncio.autor }}</p>
+						<div class="anuncio-avaliacao">
+							<i class="bi bi-star-fill"></i>
+							<i class="bi bi-star-fill"></i>
+							<i class="bi bi-star-fill"></i>
+							<i class="bi bi-star-fill"></i>
+							<i class="bi bi-star-fill"></i>
+							<p>100 avaliações</p>
+						</div>
+						{% if anuncio.categoria != "T" %}
+							<div class="anuncio-preco">
+								<p>R$</p>
+								<h2>{{ anuncio.preco }}</h2>
+							</div>
+						{% endif %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
 {% endblock %}

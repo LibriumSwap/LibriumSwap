@@ -78,11 +78,15 @@ def password_reset_request(request):
 		form = PasswordResetForm(request.POST)
 		if form.is_valid():
 			data = form.cleaned_data['email']
+
+			# Checar se email existe no banco de dados
 			try:
 				user = User.objects.get(Q(email=data))
 			except User.DoesNotExist:
 				return redirect ("/reset-password/done")
 			current_site = get_current_site(request)
+
+			# Envia o email caso o email exista
 			if user:
 				subject = "Solicitação de troca de senha"
 				email_template_name = "registration/password_reset_email.txt"

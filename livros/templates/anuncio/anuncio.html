@@ -15,6 +15,7 @@
 		</div>
 		<div class="anuncio-info">
 			{% csrf_token %}
+			<h3>{{ anuncio.get_categoria_display }}</h3>
 			<h2>
 				{{ anuncio.titulo }}
 				{% if favorito %}
@@ -41,7 +42,7 @@
 	</div>
 	<div class="anuncio-sinopse">
 		<h1>Sinópse</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit, semper iaculis egestas dui. Nec cras ante egestas quis vestibulum et tellus viverra. Risus enim massa dolor praesent feugiat vel velit tellus ullamcorper. Vitae et sociis justo, tellus id consectetur mattis ullamcorper lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit, semper iaculis egestas dui. Nec cras ante egestas quis vestibulum et tellus viverra. Risus enim massa dolor praesent feugiat vel velit tellus ullamcorper. Vitae et sociis justo, tellus id consectetur mattis ullamcorper.</p>
+		<p>{{ anuncio.sinopse }}</p>
 	</div>
 	<div class="anuncio-detalhes">
 		<h1>Detalhes</h1>

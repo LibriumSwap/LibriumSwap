@@ -28,7 +28,9 @@ def pesquisa(request):
 	entrada = request.GET.get('q')
 	resultados = LivroAnuncio.objects.filter(Q(titulo__icontains=entrada) | Q(autor__icontains=entrada) | Q(anunciante__username__icontains=entrada))
 	return render(request, "anuncio/pesquisa.html", {
-		"resultados": resultados
+		"resultados": resultados,
+		"n_resultados": resultados.count(),
+		"entrada": entrada
 		})
 
 def nova_imagem(imagem):
@@ -47,6 +49,8 @@ def novo_anuncio(request):
 	if request.method == "POST":
 		form = NovoAnuncioForm(request.POST, request.FILES)
 		if form.is_valid():
+
+			# Criar uma variável para cada valor do formulário
 			titulo = form.cleaned_data["titulo"]
 			autor = form.cleaned_data["autor"]
 			categoria = form.cleaned_data["categoria"]
@@ -58,6 +62,8 @@ def novo_anuncio(request):
 			user = get_object_or_404(User, username=request.user.username)
 
 			livro_anuncio = LivroAnuncio(anunciante=user, titulo=titulo, autor=autor, categoria=categoria, sinopse=sinopse, detalhes=detalhes)
+
+			# Caso a categoria seja troca o preço não precisa ser inserido
 			if categoria != "T":
 				preco = form.cleaned_data["preco"]
 				livro_anuncio.preco = preco
@@ -78,6 +84,7 @@ def novo_anuncio(request):
 
 			return HttpResponseRedirect(reverse('home'))
 		else:
+			# Retornar erros em caso de erro
 			return render(request, "anuncio/novo_anuncio_form.html", {
 				"form": form,
 				"erros": form.errors
