@@ -24,6 +24,7 @@ def anuncio(request, id_anuncio):
 		"anuncio": anuncio
 		})
 
+
 def pesquisa(request):
 	entrada = request.GET.get('q')
 	resultados = LivroAnuncio.objects.filter(Q(titulo__icontains=entrada) | Q(autor__icontains=entrada) | Q(anunciante__username__icontains=entrada))
@@ -115,3 +116,11 @@ def favoritos(request):
 	return render(request, "anuncio/favoritos.html", {
 		"favoritos": user.favoritos.all()
 		})
+
+
+def generos(request, generos):
+	return render(request, "home/generos.html", {})
+
+
+def categorias(request, categorias):
+	return render(request, "home/categorias.html", {})
