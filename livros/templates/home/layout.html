@@ -95,26 +95,26 @@
 			<div class="div-dropdown div-dropdown-generos">
 				<h4 id="generos">Gêneros<i id="arrow-usuario" class="bi bi-caret-down-fill"></i></h4>
 				<div class="dropdown dropdown-generos">
-					<a href="#">Autoajuda</a>
-					<a href="#">Científicos</a>
-					<a href="#">Didáticos</a>
-					<a href="#">Ficção</a>
-					<a href="#">HQ</a>
-					<a href="#">Infantil</a>
-					<a href="#">Literatura</a>
-					<a href="#">Não ficção</a>
-					<a href="#">Romance</a>
-					<a href="#">Suspense</a>
-					<a href="">Terror</a>
+					<a href="{% url 'generos' 'autoajuda' %}">Autoajuda</a>
+					<a href="{% url 'generos' 'cientificos' %}">Científicos</a>
+					<a href="{% url 'generos' 'didaticos' %}">Didáticos</a>
+					<a href="{% url 'generos' 'ficção' %}">Ficção</a>
+					<a href="{% url 'generos' 'hq' %}">HQ</a>
+					<a href="{% url 'generos' 'infantil' %}">Infantil</a>
+					<a href="{% url 'generos' 'literatura' %}">Literatura</a>
+					<a href="{% url 'generos' 'não-ficção' %}">Não ficção</a>
+					<a href="{% url 'generos' 'romance' %}">Romance</a>
+					<a href="{% url 'generos' 'suspense' %}">Suspense</a>
+					<a href="{% url 'generos' 'terror' %}">Terror</a>
 				</div>
 			</div>
 
 			<div class="div-dropdown div-dropdown-categorias">
 				<h4 id="categorias">Categorias<i id="arrow-usuario" class="bi bi-caret-down-fill"></i></h4>
 				<div class="dropdown dropdown-categorias">
-					<a href="#">Venda</a>
-					<a href="#">Aluguel</a>
-					<a href="#">Troca</a>
+					<a href="{% url 'categorias' 'venda'%}">Venda</a>
+					<a href="{% url 'categorias' 'aluguel'%}">Aluguel</a>
+					<a href="{% url 'categorias' 'troca'%}">Troca</a>
 				</div>
 			</div>
 			<h4><a href="#">Perto de mim <i class="bi bi-geo-alt"></i></a></h4>
