@@ -13,7 +13,7 @@
 		{{ erro }}
 	{% endfor %}
 	<h1>Novo anúncio</h1>
-	<form action="{% url 'novo_anuncio' %}" enctype="multipart/form-data" method="post">
+	<form action="{% url 'novo_anuncio' %}" enctype="multipart/form-data" method="post" onsubmit="anunciar();">
 		{% csrf_token %}
 		<div class="div-1">
 			<div class="imagens">
@@ -62,6 +62,13 @@
 			<h2>Sinópse</h2>
 			{{ form.sinopse }}
 			<h2>Detalhes</h2>
+			<div class="detalhe-inputs">
+				<div class="detalhe-input">
+					<input type="text" name="detalhe-nome">
+					<input type="text" name="detalhe-valor">
+				</div>
+			</div>
+			<button id="btn-novo-detalhe" class="bi bi-plus-circle"></button>
 			{{ form.detalhes }}
 			<button type="submit" class="draw meet">Publicar</button>
 		</div>

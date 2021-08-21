@@ -47,22 +47,12 @@
 	<div class="anuncio-detalhes">
 		<h1>Detalhes</h1>
 		<table>
+			{% for key, value in anuncio.detalhes.items %}
 			<tr>
-				<td>Peso</td>
-				<td>0.4kg</td>
+				<td>{{ key|capfirst }}</td>
+				<td>{{ value|capfirst }}</td>
 			</tr>
-			<tr>
-				<td>ISBN</td>
-				<td>9788584424665</td>
-			</tr>
-			<tr>
-				<td>Editora</td>
-				<td>Editora tal</td>
-			</tr>
-			<tr>
-				<td>Número de páginas</td>
-				<td>666</td>
-			</tr>
+			{% endfor %}
 		</table>
 	</div>
 

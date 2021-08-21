@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
 class User(AbstractUser):
-	#favoritos = models.ManyToManyField('livros.LivroAnuncio')
+	favoritos = models.ManyToManyField('livros.LivroAnuncio')
 	email = models.EmailField(_('email address'), unique=True, blank=False)
 	enderecos = models.ManyToManyField('EnderecoUser')
 	is_funcionario = models.BooleanField(default=False)

@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
+  sliderImagens()
+  categorias()
+  efeitosInput()
+  detalhes()
+})
+
+function sliderImagens () {
   imageInputs = document.querySelectorAll('.image-input')
 
   imageInputs.forEach(imageInput => {
@@ -14,7 +21,9 @@ document.addEventListener('DOMContentLoaded', function () {
       label.style.backgroundSize = "auto 500px";
     })
   })
+}
 
+function categorias () {
   categoriaBtns = document.querySelectorAll('.categoria')
 
   categoriaBtns.forEach(categoriaBtn => {
@@ -29,7 +38,41 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     })
   })
+}
 
+function detalhes () {
+  novoDetalheBtn = document.querySelector('#btn-novo-detalhe')
+
+  novoDetalheBtn.addEventListener("click", evt => {
+    evt.preventDefault()
+
+    detalheInputs = document.querySelectorAll('.detalhe-input')
+    
+    detalheInputs = detalheInputs[0].cloneNode(true)
+    detalheInputs.children[0].value = ""
+    detalheInputs.children[1].value = ""
+    detalheInputsDiv = document.querySelector('.detalhe-inputs')
+    detalheInputsDiv.appendChild(detalheInputs)
+  })
+}
+
+function anunciar () {
+  detalheInputs = document.querySelectorAll('.detalhe-input')
+  detalhes = new Object()
+
+  for (let i = 0; i < detalheInputs.length; i++) {
+    if (detalheInputs[i].children[0].value && detalheInputs[i].children[1].value) {
+      detalhes[detalheInputs[i].children[0].value] = detalheInputs[i].children[1].value
+    }
+  }
+
+  detalhesTexto = document.querySelector('#id_detalhes')
+  detalhesTexto.value = JSON.stringify(detalhes)
+  console.log(detalhesTexto.value)
+  return true;
+}
+
+function efeitosInput () {
   $(window).on('load', function(){
     $(".col-3 input").val("");
     
@@ -41,4 +84,4 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     })
   });
-})
+}

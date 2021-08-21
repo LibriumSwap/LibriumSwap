@@ -1,0 +1,126 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block title %}LibriumSwipe{% endblock%}</title>
+		<link rel="icon" type="image/png" href="{% static 'images/logomarca.svg' %}">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="HandheldFriendly" content="true">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+		<script src="https://kit.fontawesome.com/dbedd68923.js" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
+		{% block head %}{% endblock %}
+	</head>
+	<body>
+		<nav>
+			<div class="nav-div">
+				<a href="{% url 'home' %}"><img id="logomarca" src="{% static 'images/logo.png' %}"></a>
+				<a href="{% url 'home' %}"><img id="logomarca-mobile" src="{% static 'images/logomarca.png' %}"></a>
+				<form class="pesquisa" action="{% url 'pesquisa' %}" method="get">
+					<input type="text" name="q">
+					<button type="submit"><i class="bi bi-search"></i></button>
+				</form>
+				<div class="menu">
+					<i class="bi bi-person"></i>
+					<div class="menu-usuario">
+						<button>{{ request.user.username }}</button>
+						<i id="arrow-usuario" class="bi bi-caret-down-fill" style="font-size: 12px;"></i>
+						<div class="dropdown-usuario">
+							<a>Modo escuro <button>a</button></a>
+							<a href="{% url 'favoritos' %}">Favoritos</a>
+							<a href="#">Anúncios</a>
+							<a href="#">Notificações</a>
+							<a href="#">Compras</a>
+							<a href="#">Segurança</a>
+							<a href="#">Privacidade</a>
+							<a href="#">Configurações</a>
+							<a disabled style="color: white;">Curioso</a>
+							<a href="{% url 'logout' %}">Sair</a>
+						</div>
+					</div>
+					<div class="btn-icones">
+						<a href="#"><i class="bi bi-chat"></i></a>
+						<a href="#"><i class="bi bi-bag"></i></a>
+					</div>
+				</div>
+				<div class="menu-btn">
+					<div class="menu-btn__burger"></div>
+				</div>
+				<div class="dropdown-usuario dropdown-usuario-mobile">
+					<a href="#"><i class="bi bi-bag"></i>Sacola</a>
+					<a href="#"><i class="bi bi-chat"></i>Chat</a>
+					<button id="btn-categorias"><i class="bi bi-list-ul"></i>Categorias<i class="fas fa-chevron-right"></i></button>
+					<button id="btn-generos"><i class="bi bi-book"></i></i>Gêneros<i class="fas fa-chevron-right"></i></button>
+					<a href="{% url 'novo_anuncio' %}"><i class="bi bi-plus-circle"></i>Anunciar</a>
+					<a href="#"><i class="bi bi-geo-alt"></i>Perto de mim</a>
+					<a href="#"><i class="bi bi-moon"></i>Modo escuro</a>
+					<a href="{% url 'favoritos' %}"><i class="bi bi-star"></i>Favoritos</a>
+					<a href="#"><i class="bi bi-megaphone"></i>Anúncios</a>
+					<a href="#"><i class="bi bi-person"></i>Minha conta</a>
+					<a href="#"><i class="bi bi-bell"></i>Notificações</a>
+					<a href="#"><i class="bi bi-bag-check"></i>Compras</a>
+					<a href="#"><i class="bi bi-gear"></i>Configurações</a>
+					<a disabled style="color: white;">Curioso</a>
+					<a href="{% url 'logout' %}"><i class="bi bi-box-arrow-right"></i>  Sair</a>
+				</div>
+				<div class="dropdown dropdown-generos-mobile">
+					<button id="dropdown-voltar"><i class="fas fa-chevron-left"></i></button>
+					<a href="#">Autoajuda</a>
+					<a href="#">Científicos</a>
+					<a href="#">Didáticos</a>
+					<a href="#">Ficção</a>
+					<a href="#">HQ</a>
+					<a href="#">Infantil</a>
+					<a href="#">Literatura</a>
+					<a href="#">Não ficção</a>
+					<a href="#">Romance</a>
+					<a href="#">Suspense</a>
+					<a href="">Terror</a>
+				</div>
+				<div class="dropdown dropdown-categorias-mobile">
+					<button id="dropdown-voltar"><i class="fas fa-chevron-left"></i></button>
+					<a href="#">Venda</a>
+					<a href="#">Aluguel</a>
+					<a href="#">Troca</a>
+				</div>
+			</div>
+		</nav>
+		<div class="nav-2">
+			<div class="div-dropdown div-dropdown-generos">
+				<h4 id="generos">Gêneros<i id="arrow-usuario" class="bi bi-caret-down-fill"></i></h4>
+				<div class="dropdown dropdown-generos">
+					<a href="{% url 'generos' 'autoajuda' %}">Autoajuda</a>
+					<a href="{% url 'generos' 'cientificos' %}">Científicos</a>
+					<a href="{% url 'generos' 'didaticos' %}">Didáticos</a>
+					<a href="{% url 'generos' 'ficção' %}">Ficção</a>
+					<a href="{% url 'generos' 'hq' %}">HQ</a>
+					<a href="{% url 'generos' 'infantil' %}">Infantil</a>
+					<a href="{% url 'generos' 'literatura' %}">Literatura</a>
+					<a href="{% url 'generos' 'não-ficção' %}">Não ficção</a>
+					<a href="{% url 'generos' 'romance' %}">Romance</a>
+					<a href="{% url 'generos' 'suspense' %}">Suspense</a>
+					<a href="{% url 'generos' 'terror' %}">Terror</a>
+				</div>
+			</div>
+
+			<div class="div-dropdown div-dropdown-categorias">
+				<h4 id="categorias">Categorias<i id="arrow-usuario" class="bi bi-caret-down-fill"></i></h4>
+				<div class="dropdown dropdown-categorias">
+					<a href="{% url 'categorias' 'venda'%}">Venda</a>
+					<a href="{% url 'categorias' 'aluguel'%}">Aluguel</a>
+					<a href="{% url 'categorias' 'troca'%}">Troca</a>
+				</div>
+			</div>
+			<h4><a href="#">Perto de mim <i class="bi bi-geo-alt"></i></a></h4>
+			<h4><a href="{% url 'novo_anuncio' %}">Anunciar</a></h4>
+		</div>
+		{% block body %}
+		{% endblock %}
+	</body>
+</html>

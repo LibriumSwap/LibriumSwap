@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = ')4^vxo#b!sj_^qs!1xz=g=_+uku1w=ta=hi(2aa+1i@1+-y^o2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
@@ -65,7 +65,7 @@ ROOT_URLCONF = 'LibriumSwap.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [str(BASE_DIR.joinpath('LibriumSwap/templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

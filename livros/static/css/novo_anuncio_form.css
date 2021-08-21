@@ -92,7 +92,7 @@ h2 {
   font-size: 16px;
   font-weight: bold;
   border-radius: 5px;
-  border: 2px solid #343434;
+  border: 1px solid #343434;
   cursor: pointer;
 }
 
@@ -112,10 +112,21 @@ h2 {
 	text-align: left;
 }
 
+.inputs-3 .detalhe-input {
+	display: flex;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
 .inputs-3 textarea {
+	font-family: "Inter", sans-serif;
 	padding: 10px;
 	margin-left: 30px;
 	margin-right: 30px;
+}
+
+#id_detalhes {
+	display: none;
 }
 
 .inputs-3 button {
