@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
   categorias()
   efeitosInput()
   detalhes()
+  excluirDetalhe()
 })
 
 function sliderImagens () {
@@ -44,15 +45,29 @@ function detalhes () {
   novoDetalheBtn = document.querySelector('#btn-novo-detalhe')
 
   novoDetalheBtn.addEventListener("click", evt => {
-    evt.preventDefault()
 
     detalheInputs = document.querySelectorAll('.detalhe-input')
     
     detalheInputs = detalheInputs[0].cloneNode(true)
-    detalheInputs.children[0].value = ""
-    detalheInputs.children[1].value = ""
+    detalheInputs.children[0].children[0].children[0].value = ""
+    detalheInputs.children[0].children[1].children[0].value = ""
     detalheInputsDiv = document.querySelector('.detalhe-inputs')
     detalheInputsDiv.appendChild(detalheInputs)
+    detalheInputs.scrollIntoView({ behavior: 'smooth'})
+    excluirDetalhe()
+  })
+}
+
+function excluirDetalhe () {
+  excluirBtns = document.querySelectorAll('.btn-excluir')
+
+  excluirBtns.forEach(excluirBtn => {
+    excluirBtn.onclick = function () {
+      detalheInputsDiv = document.querySelector('.detalhe-inputs')
+      if (detalheInputsDiv.children.length > 1) {
+        detalheInputsDiv.removeChild(excluirBtn.parentElement)
+      }
+    }
   })
 }
 
@@ -61,8 +76,8 @@ function anunciar () {
   detalhes = new Object()
 
   for (let i = 0; i < detalheInputs.length; i++) {
-    if (detalheInputs[i].children[0].value && detalheInputs[i].children[1].value) {
-      detalhes[detalheInputs[i].children[0].value] = detalheInputs[i].children[1].value
+    if (detalheInputs[i].children[0].children[0].children[0].value && detalheInputs[i].children[0].children[1].children[0].value) {
+      detalhes[detalheInputs[i].children[0].children[0].children[0].value] = detalheInputs[i].children[0].children[1].children[0].value
     }
   }
 

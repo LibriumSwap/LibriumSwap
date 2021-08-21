@@ -64,11 +64,22 @@
 			<h2>Detalhes</h2>
 			<div class="detalhe-inputs">
 				<div class="detalhe-input">
-					<input type="text" name="detalhe-nome">
-					<input type="text" name="detalhe-valor">
+					<div>
+						<div class="col-3">
+							<input class="effect-1" type="text" name="detalhe-nome" placeholder="Nome do detalhe" style="margin-right: 5px;">
+							<span class="focus-border"></span>
+						</div>
+						<div class="col-3">
+							<input class="effect-1" type="text" name="detalhe-valor" placeholder="Detalhe" style="margin-left: 5px;">
+							<span class="focus-border"></span>
+						</div>
+					</div>
+					<button class="bi bi-trash btn-excluir" type="button"></button>
 				</div>
 			</div>
-			<button id="btn-novo-detalhe" class="bi bi-plus-circle"></button>
+			<div class="novo-detalhe">
+				<button type="button" id="btn-novo-detalhe" class="bi bi-plus"></button>
+			</div>
 			{{ form.detalhes }}
 			<button type="submit" class="draw meet">Publicar</button>
 		</div>
