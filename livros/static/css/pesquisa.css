@@ -65,6 +65,37 @@ body {
 .ordenar {
 	margin-left: auto;
 	margin-right: 15px;
+	position: relative;
+}
+
+.btn-ordenar {
+	background-color: white;
+	color: #343434;
+	border: none;
+	outline: none;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.dropdown-ordenar {
+	display: none;
+	position: absolute;
+	top: 65%;
+	left: 23%;
+	font-size: 14px;
+}
+
+.dropdown-ordenar ul {
+	list-style-type: none;
+}
+
+.dropdown-ordenar li {
+	text-align: left;
+	width: 100%;
+	border: 0.5px solid rgba(52, 52, 52, 0.2);
+	cursor: pointer;
+	padding: 10px 0px 10px 10px;
+	background-color: white;
 }
 
 .resultados-anuncios {

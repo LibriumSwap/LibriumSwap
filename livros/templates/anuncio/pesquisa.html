@@ -80,13 +80,17 @@
 					Página 1 de 5
 				</div>
 				<div class="ordenar">
-					<b>Ordenar por: </b>
-					<select>
-						<option>mais relevantes</option>
-						<option>menor preço</option>
-						<option>maior preço</option>
-						<option>mais recentes</option>
-					</select>
+					<b>Ordenar por </b>
+					<button class="btn-ordenar">Mais relevantes</button>
+					<i class="bi bi-caret-down-fill"></i>
+					<div class="dropdown-ordenar">
+						<ul>
+							<li class="btn-order">mais relevantes</li>
+							<li class="btn-order" data-order="min_preco">menor preço</li>
+							<li class="btn-order" data-order="max_preco">maior preço</li>
+							<li class="btn-order" data-order="recentes">mais recentes</li>
+						<ul>
+					</div>
 				</div>
 			</div>
 			<div class="resultados-anuncios">

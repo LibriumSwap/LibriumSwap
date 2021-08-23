@@ -31,6 +31,14 @@ def pesquisa(request):
 
 	if request.GET.get('categoria'):
 		resultados = resultados.filter(categoria=request.GET.get('categoria')[0].upper())
+
+	if request.GET.get('order') == 'min_preco':
+		resultados = resultados.order_by('preco')
+	if request.GET.get('order') == 'max_preco':
+		resultados = resultados.order_by('-preco')
+	if request.GET.get('order') == 'recentes':
+		resultados = resultados.order_by('-id')
+
 	return render(request, "anuncio/pesquisa.html", {
 		"resultados": resultados,
 		"n_resultados": resultados.count(),
