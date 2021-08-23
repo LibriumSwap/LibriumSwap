@@ -28,6 +28,9 @@ def anuncio(request, id_anuncio):
 def pesquisa(request):
 	entrada = request.GET.get('q')
 	resultados = LivroAnuncio.objects.filter(Q(titulo__icontains=entrada) | Q(autor__icontains=entrada) | Q(anunciante__username__icontains=entrada))
+
+	if request.GET.get('categoria'):
+		resultados = resultados.filter(categoria=request.GET.get('categoria')[0].upper())
 	return render(request, "anuncio/pesquisa.html", {
 		"resultados": resultados,
 		"n_resultados": resultados.count(),

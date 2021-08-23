@@ -24,6 +24,7 @@ body {
 }
 
 .resultados-filtro li {
+	cursor: pointer;
 	font-size: 14px;
 	margin-bottom: 5px;
 }
