@@ -9,6 +9,10 @@
 {% block body %}
 	<div class="resultados-conteudo">
 		<div class="resultados-filtro">
+			<div class="filtro-mobile">
+				<h1>Filtrar por</h1>
+				<i class="bi bi-x-lg x-filtro"></i>
+			</div>
 			<div class="resultados-genero">
 				<h2>Gênero</h2>
 				<ul>
@@ -92,6 +96,22 @@
 						<ul>
 					</div>
 				</div>
+			</div>
+			<div class="filtros">
+				<button class="btn-filtrar-mobile"><i class="bi bi-funnel"></i>Filtrar</button>
+				<button class="btn-ordenar-mobile"><i class="bi bi-arrow-down-up"></i>Ordenar</button>
+			</div>
+			<div class="resultados-header-mobile">
+				<div>
+					<h1>Ordenar por</h1>
+					<i class="bi bi-x-lg x-ordenar"></i>
+				</div>
+				<ul>
+					<li class="btn-order">mais relevantes</li>
+					<li class="btn-order" data-order="min_preco">menor preço</li>
+					<li class="btn-order" data-order="max_preco">maior preço</li>
+					<li class="btn-order" data-order="recentes">mais recentes</li>
+				<ul>
 			</div>
 			<div class="resultados-anuncios">
 				{% for anuncio in resultados %}

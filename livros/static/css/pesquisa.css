@@ -156,3 +156,141 @@ body {
 .anuncio-preco p {
 	margin-top: 3px;
 }
+
+.filtros {
+	display: none;
+}
+
+.resultados-header-mobile {
+	display: none;
+}
+
+@media screen and (max-width: 660px) {
+	.filtros {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.filtros button {
+		margin-top: 1px;
+		background-color: white;
+		color: #A959DD;
+		border: 1px solid rgba(52, 52, 52, 0.15);
+		outline: none;
+		padding: 10px;
+		font-size: 16px;
+		width: 50%;
+	}
+
+	.filtros i {
+		margin-right: 5px;
+	}
+
+	.filtro-mobile {
+		align-items: center;
+		margin-top: 30px;
+	}
+
+	.filtro-mobile i {
+		color: #A959DD;
+		margin-left: auto;
+		margin-right: 20px;
+	}
+
+	.resultados-filtro {
+		display: none;
+		position: fixed; 
+   		overflow: hidden;
+		top: 0%;
+		width: 100%;
+		background-color: white;
+		border: none;
+		padding: 0;
+		margin-top: 0;
+		height: 100%;
+	}
+
+	.resultados-genero ul, .resultados-categoria ul, .resultados-preco input, 
+	.resultados-preco text, .resultados-preco button, .resultados-localizacao ul {
+		display: none;
+	}
+
+	.resultados-filtro h1 {
+		margin-left: 20px;
+	}
+
+	.resultados-filtro h2 {
+		font-weight: normal;
+		padding: 12px 25px;
+		font-size: 16px;
+		border-bottom: 1px solid rgba(52, 52, 52, 0.15);
+		margin: 0;
+	}
+
+	.resultados-header {
+		display: none;
+	}
+
+	.resultados-header-mobile {
+		display: none;
+		position: fixed;
+		overflow: hidden;
+		top: 0;
+		background-color: white;
+		width: 100%;
+		height: 100%;
+	}
+
+	.resultados-header-mobile div {
+		display: flex;
+		align-items: center;
+		margin-top: 30px;
+	}
+
+	.resultados-header-mobile h1 {
+		margin-left: 20px;
+	}
+
+	.resultados-header-mobile i {
+		margin-left: auto;
+		margin-right: 20px;
+		color: #A959DD;
+	}
+
+	.resultados-header-mobile ul {
+		list-style-type: none;
+		width: 100%;
+		padding: 0;
+	}
+
+	.resultados-header-mobile li {
+		width: 100%;
+		font-size: 16px;
+		padding: 12px 25px;
+		border-bottom: 1px solid rgba(52, 52, 52, 0.15);
+	}
+
+	.resultados-anuncios {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-gap: 10px;
+		border: none;
+		padding: 5px;
+	}
+
+	.anuncio {
+		margin: 0;
+	}
+
+	.anuncio img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+@media screen and (max-width: 536px) {
+	.resultados-anuncios {
+		grid-template-columns: 1fr 1fr;
+	}
+}

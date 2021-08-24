@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	ordenar()
 	precoFiltro()
 	generoFiltro()
+	filtrarMobile()
+	ordenarMobile()
 })
 
 function urlParametros (parametro_string) {
@@ -107,4 +109,38 @@ function generoFiltro () {
 			window.location.href = `/livro/pesquisa/${string}`
 		}
 	})
+}
+
+function filtrarMobile () {
+	btnFiltarMobile = document.querySelector('.btn-filtrar-mobile')
+
+	filtroHeader = document.querySelector('.filtro-mobile')
+	filtroDiv = document.querySelector('.resultados-filtro')
+
+	btnFiltarMobile.onclick = function () {
+		filtroHeader.style.display = "flex"
+		filtroDiv.style.display = "block"
+	}
+
+	fecharFiltro = document.querySelector('.x-filtro')
+
+	fecharFiltro.onclick = function () {
+		filtroDiv.style.display = "none"
+	}
+}
+
+function ordenarMobile () {
+	btnOrdenar = document.querySelector('.btn-ordenar-mobile')
+
+	ordenarDiv = document.querySelector('.resultados-header-mobile')
+
+	btnOrdenar.onclick = function () {
+		ordenarDiv.style.display = "block"
+	}
+
+	fecharOrdenar = document.querySelector('.x-ordenar')
+
+	fecharOrdenar.onclick = function () {
+		ordenarDiv.style.display = "none"
+	}
 }

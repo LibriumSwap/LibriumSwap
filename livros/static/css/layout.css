@@ -162,10 +162,11 @@ nav input, nav button, nav a {
 .dropdown-usuario-mobile a {
 	display: flex;
 	color: #343434;
+	padding: 12px 25px;
 }
 
 .dropdown-usuario-mobile button {
-	padding: 12px 16px;
+	padding: 12px 25px;
 	background-color: white;
 	color: #343434;
 	font-weight: normal;
