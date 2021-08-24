@@ -28,9 +28,15 @@ def anuncio(request, id_anuncio):
 def pesquisa(request):
 	entrada = request.GET.get('q')
 	resultados = LivroAnuncio.objects.filter(Q(titulo__icontains=entrada) | Q(autor__icontains=entrada) | Q(anunciante__username__icontains=entrada))
+	print(resultados.get(titulo="Teste").detalhes)
 
 	if request.GET.get('categoria'):
 		resultados = resultados.filter(categoria=request.GET.get('categoria')[0].upper())
+
+	if request.GET.get('preco_min'):
+		resultados = resultados.filter(preco__gte=request.GET.get('preco_min'))
+	if request.GET.get('preco_max'):
+		resultados = resultados.filter(preco__lte=request.GET.get('preco_max'))
 
 	if request.GET.get('order') == 'min_preco':
 		resultados = resultados.order_by('preco')
@@ -38,6 +44,9 @@ def pesquisa(request):
 		resultados = resultados.order_by('-preco')
 	if request.GET.get('order') == 'recentes':
 		resultados = resultados.order_by('-id')
+
+	if request.GET.get('genero'):
+		resultados = resultados.filter(detalhes__gênero=request.GET.get('genero'))
 
 	return render(request, "anuncio/pesquisa.html", {
 		"resultados": resultados,

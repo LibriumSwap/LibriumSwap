@@ -71,17 +71,17 @@
 				</div>
 				<div class="dropdown dropdown-generos-mobile">
 					<button id="dropdown-voltar"><i class="fas fa-chevron-left"></i></button>
-					<a href="#">Autoajuda</a>
-					<a href="#">Científicos</a>
-					<a href="#">Didáticos</a>
-					<a href="#">Ficção</a>
-					<a href="#">HQ</a>
-					<a href="#">Infantil</a>
-					<a href="#">Literatura</a>
-					<a href="#">Não ficção</a>
-					<a href="#">Romance</a>
-					<a href="#">Suspense</a>
-					<a href="">Terror</a>
+					<a href="{% url 'generos' 'autoajuda' %}">Autoajuda</a>
+					<a href="{% url 'generos' 'cientificos' %}">Científicos</a>
+					<a href="{% url 'generos' 'didaticos' %}">Didáticos</a>
+					<a href="{% url 'generos' 'ficção' %}">Ficção</a>
+					<a href="{% url 'generos' 'hq' %}">HQ</a>
+					<a href="{% url 'generos' 'infantil' %}">Infantil</a>
+					<a href="{% url 'generos' 'não-ficção' %}">Não ficção</a>
+					<a href="{% url 'generos' 'romance' %}">Romance</a>
+					<a href="{% url 'generos' 'suspense' %}">Suspense</a>
+					<a href="{% url 'generos' 'tecnologia' %}">Tecnologia</a>
+					<a href="{% url 'generos' 'outros' %}">Outros</a>
 				</div>
 				<div class="dropdown dropdown-categorias-mobile">
 					<button id="dropdown-voltar"><i class="fas fa-chevron-left"></i></button>
@@ -101,11 +101,11 @@
 					<a href="{% url 'generos' 'ficção' %}">Ficção</a>
 					<a href="{% url 'generos' 'hq' %}">HQ</a>
 					<a href="{% url 'generos' 'infantil' %}">Infantil</a>
-					<a href="{% url 'generos' 'literatura' %}">Literatura</a>
 					<a href="{% url 'generos' 'não-ficção' %}">Não ficção</a>
 					<a href="{% url 'generos' 'romance' %}">Romance</a>
 					<a href="{% url 'generos' 'suspense' %}">Suspense</a>
-					<a href="{% url 'generos' 'terror' %}">Terror</a>
+					<a href="{% url 'generos' 'tecnologia' %}">Tecnologia</a>
+					<a href="{% url 'generos' 'outros' %}">Outros</a>
 				</div>
 			</div>
 
