@@ -31,7 +31,7 @@ button {
 	margin-right: 70px;
 }
 
-.swiper-container {
+.swiper {
   width: 350px;
   height: 500px;
 }
@@ -275,7 +275,7 @@ input[type="text"], input[type="number"] {
 		margin-bottom: 30px;
 	}
 
-	.swiper-container {
+	.swiper {
 		max-width: 350px;
 		width: 100%;
 	}
