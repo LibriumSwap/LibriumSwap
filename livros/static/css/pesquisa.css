@@ -5,6 +5,9 @@ body {
 .resultados-conteudo {
 	display: flex;
 	width: 100%;
+	max-width: 1800px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .resultados-filtro {
@@ -165,7 +168,11 @@ body {
 	display: none;
 }
 
-@media screen and (max-width: 660px) {
+.x-filtro {
+	display: none;
+}
+
+@media screen and (max-width: 835px) {
 	.filtros {
 		display: flex;
 		align-items: center;
@@ -185,6 +192,10 @@ body {
 
 	.filtros i {
 		margin-right: 5px;
+	}
+
+	.x-filtro {
+		display: block;
 	}
 
 	.filtro-mobile {
