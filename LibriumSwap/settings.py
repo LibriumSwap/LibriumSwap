@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'index',
     'autenticacao',
     'livros',
+    'carrinho',
     'checkout',
     'django.contrib.admin',
     'django.contrib.auth',

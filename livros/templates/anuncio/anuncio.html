@@ -36,7 +36,7 @@
 			</div>
 
 			<h4>Anunciado por {{ anuncio.anunciante.username }}</h4>
-			<a href="#" class="btn btn-comprar">Comprar</a>
+			<a href="{% url 'checkout_info' anuncio.id %}" class="btn btn-comprar">Comprar</a>
 			<button class="btn btn-carrinho">Adicionar ao carrinho</button>
 		</div>
 	</div>

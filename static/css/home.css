@@ -9,8 +9,7 @@ body {
 
 .recentes {
 	display: grid;
-	justify-content: center;
-	align-items: center;
+	margin: auto;
 	max-width: 1610px;
 }
 
@@ -19,11 +18,17 @@ body {
 	align-items: center;
 	padding-right: 5%;
 	padding-left: 5%;
+	position: relative;
 }
 
-.recentes-header h1 {
-	border-left: 5px solid #A959DD;
-	padding-left: 10px;
+.recentes-header::after {
+	content: "";
+	height: 45px;
+	background: #A959DD;
+	width: 5px;
+	position: absolute;
+	left: 3%;
+	border-radius: 20px;
 }
 
 .recentes-header a {
@@ -37,13 +42,35 @@ body {
 	font-weight: bold;
 }
 
-.swiper-container {
+hr {
+	width: 80%;
+	border-color: rgba(255, 255, 255, 0.44);
+	margin-bottom: 30px;
+}
+
+.swiper {
 	width: 100%;
 	height: 500px;
 }
 
 .swiper-slide img {
-	height: 380px;
+	height: 100%;
+	width: 100%;
+}
+
+.swiper-slide h2 {
+	text-align: center;
+	background-color: #343434;
+	color: white;
+	width: 100%;
+	margin: 0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.swiper-slide p {
+	text-align: center;
+	font-size: 28px;
 }
 
 .swiper-button-prev::after, .swiper-button-next::after {
