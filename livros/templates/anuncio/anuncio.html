@@ -16,7 +16,7 @@
 		<div class="anuncio-info">
 			{% csrf_token %}
 			<h3>{{ anuncio.get_categoria_display }}</h3>
-			<h2>
+			<h2 data-id="{{ anuncio.id }}">
 				{{ anuncio.titulo }}
 				{% if favorito %}
 					<button id="favorito" class="bi bi-heart-fill" data-id="{{ anuncio.id }}"></button>

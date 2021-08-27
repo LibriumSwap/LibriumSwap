@@ -12,6 +12,12 @@
 	<div class="conteudo">
 		<div class="carrinho">
 			<h1>Carrinho</h1>
+			{% for anuncio in carrinho %}
+				<div class="favorito">
+					<img src="{{ anuncio.imagens.first.imagem.url }}">
+					<h2>{{ anuncio.titulo }}</h2>
+				</div>
+			{% endfor %}
 		</div>
 	</div>
 {% endblock %}
