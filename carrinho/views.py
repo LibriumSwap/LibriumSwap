@@ -6,7 +6,6 @@ from django.shortcuts import get_object_or_404
 from livros.models import LivroAnuncio
 
 def carrinho(request):
-	print(request.session.get('carrinho'))
 	anuncios = []
 	if request.session.get('carrinho'):
 		for anuncio_id in request.session['carrinho']:
@@ -28,3 +27,14 @@ def adicionar_ao_carrinho(request):
 	request.session.modified = True
 
 	return JsonResponse({"success": "adicionado"})
+
+def remover_do_carrinho(request):
+	data = json.loads(request.body)
+	anuncio_id = data.get('anuncio_id')
+
+	carrinho = request.session.get('carrinho')
+	if anuncio_id in carrinho:
+		request.session.get('carrinho').remove(anuncio_id)
+	request.session.modified = True
+
+	return JsonResponse({"success": "removido"})

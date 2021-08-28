@@ -12,12 +12,26 @@
 	<div class="conteudo">
 		<div class="carrinho">
 			<h1>Carrinho</h1>
+			<hr>
 			{% for anuncio in carrinho %}
-				<div class="favorito">
-					<img src="{{ anuncio.imagens.first.imagem.url }}">
-					<h2>{{ anuncio.titulo }}</h2>
+			<div class="anuncio{{ anuncio.id }}">
+				<div class="anuncio">
+					{% csrf_token %}
+					<a href="{% url 'anuncio_livro' anuncio.id %}"><img src="{{ anuncio.imagens.first.imagem.url }}"></a>
+					<div class="anuncio-info">
+						<a href="{% url 'anuncio_livro' anuncio.id%}"><h2>{{ anuncio.titulo }}</h2></a>
+						<p>{{ anuncio.autor }}</p>
+						<h4>Comprar agora</h4>
+						<button class="remover" data-id="{{ anuncio.id }}">Excluir <i class="bi bi-trash"></i></button>
+					</div>
+					<h2>R${{ anuncio.preco }}</h2>
 				</div>
+				<hr>
+			</div>
 			{% endfor %}
 		</div>
+		<button class="comprar-carrinho">Comprar do carrinho</button>
 	</div>
+
+	<script type="text/javascript" src="{% static 'js/carrinho.js' %}"></script>
 {% endblock %}
