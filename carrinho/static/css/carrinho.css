@@ -14,6 +14,13 @@ body {
 	width: 100%;
 }
 
+.anuncio-conteudo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
 .anuncio img {
 	width: 200px;
 	margin-right: 20px;
@@ -65,4 +72,28 @@ hr {
 	border-radius: 5px;
 	border: none;
 	outline: none;
+}
+
+@media screen and (max-width: 660px) {
+	.anuncio img {
+		width: 100%;
+		height: auto;
+	}
+
+	.anuncio-conteudo {
+		display: block;
+	}
+
+	.anuncio-info {
+		margin-left: 20px;
+	}
+
+	.anuncio h2 {
+		font-size: 1.2em;
+	}
+
+	.anuncio .preco {
+		margin-top: 20px;
+		margin-left: 20px;
+	}
 }

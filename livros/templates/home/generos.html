@@ -6,10 +6,36 @@
 
 
 {% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/categorias.css' %}">
 {% endblock %}
 
 {% block body %}
-	{% for anuncio in anuncios %}
-		{{ anuncio.detalhes.gênero }}
-	{% endfor %}
+	<div class="conteudo">
+		<h1>{{ gênero|capfirst }}</h1>
+		<hr>
+		<div class="anuncios">
+			{% for anuncio in anuncios %}
+				<div class="anuncio">
+					<a href="{% url 'anuncio_livro' anuncio.id %}"><img src="{{ anuncio.imagens.first.imagem.url }}"></a>
+					<h3>{{ anuncio.get_categoria_display }}</h3>
+					<a href="{% url 'anuncio_livro' anuncio.id %}"><h2>{{ anuncio.titulo }}</h2></a>
+					<p>por {{ anuncio.autor }}</p>
+					<div class="anuncio-avaliacao">
+						<i class="bi bi-star-fill"></i>
+						<i class="bi bi-star-fill"></i>
+						<i class="bi bi-star-fill"></i>
+						<i class="bi bi-star-fill"></i>
+						<i class="bi bi-star-fill"></i>
+						<p>100 avaliações</p>
+					</div>
+					{% if anuncio.categoria != "T" %}
+						<div class="anuncio-preco">
+							<p>R$</p>
+							<h2>{{ anuncio.preco }}</h2>
+						</div>
+					{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}

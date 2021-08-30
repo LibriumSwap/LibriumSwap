@@ -18,13 +18,15 @@
 				<div class="anuncio">
 					{% csrf_token %}
 					<a href="{% url 'anuncio_livro' anuncio.id %}"><img src="{{ anuncio.imagens.first.imagem.url }}"></a>
-					<div class="anuncio-info">
-						<a href="{% url 'anuncio_livro' anuncio.id%}"><h2>{{ anuncio.titulo }}</h2></a>
-						<p>{{ anuncio.autor }}</p>
-						<h4>Comprar agora</h4>
-						<button class="remover" data-id="{{ anuncio.id }}">Excluir <i class="bi bi-trash"></i></button>
+					<div class="anuncio-conteudo">
+						<div class="anuncio-info">
+							<a href="{% url 'anuncio_livro' anuncio.id%}"><h2>{{ anuncio.titulo }}</h2></a>
+							<p>{{ anuncio.autor }}</p>
+							<h4>Comprar agora</h4>
+							<button class="remover" data-id="{{ anuncio.id }}">Excluir <i class="bi bi-trash"></i></button>
+						</div>
+						<h2 class="preco">R${{ anuncio.preco }}</h2>
 					</div>
-					<h2>R${{ anuncio.preco }}</h2>
 				</div>
 				<hr>
 			</div>
