@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -133,6 +134,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
+env = environ.Env()
+env.read_env(str(BASE_DIR / ".env"))
 
 # AUTH SETTINGS
 AUTH_USER_MODEL = 'autenticacao.User'
@@ -141,11 +144,15 @@ AUTHENTICATION_BACKENDS = ['autenticacao.backends.EmailBackend']
 # EMAIL SETTINGS
 EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'contato@libriumswap.live'
-EMAIL_HOST_PASSWORD = 'eocyghasqpft85242003'
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # MEDIA SETTINGS
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# MERCADO PAGO
+MERCADO_PAGO_PUBLIC_KEY = env("MERCADO_PAGO_PUBLIC_KEY")
+MERCADO_PAGO_ACCESS_TOKEN = env("MERCADO_PAGO_ACCESS_TOKEN")

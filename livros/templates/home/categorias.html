@@ -1,3 +1,15 @@
 {% extends 'home/layout.html' %}
 
 {% load static %}
+
+{% block title %}Anúncios | {{ categoria|capfirst }}{% endblock %}
+
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+	{% for anuncio in anuncios %}
+		{{ anuncio.detalhes }}
+	{% endfor %}
+{% endblock %}

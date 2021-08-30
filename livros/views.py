@@ -145,8 +145,17 @@ def favoritos(request):
 
 
 def generos(request, generos):
-	return render(request, "home/generos.html", {})
+	anuncios = LivroAnuncio.objects.filter(detalhes__gênero__icontains=generos.lower())
+	return render(request, "home/generos.html", {
+		"gênero": generos,
+		"anuncios": anuncios
+		})
 
 
 def categorias(request, categorias):
-	return render(request, "home/categorias.html", {})
+	anuncios = LivroAnuncio.objects.filter(categoria=categorias[0].upper())
+
+	return render(request, "home/categorias.html", {
+		"categoria": categorias,
+		"anuncios": anuncios
+		})
