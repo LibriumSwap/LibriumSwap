@@ -18,9 +18,9 @@ function efeitosInput () {
 }
 
 function cep () {
-  cep = document.querySelector('.cep')
+  cep = document.getElementById('#cep')
 
-  inputs = document.querySelectorAll('input')
+  inputs = document.querySelectorAll('.input-regiao')
 
   inputs.forEach(input => {
     input.addEventListener("focusin", function () {
@@ -30,16 +30,16 @@ function cep () {
         })
         .then(response => response.json())
         .then(result => {
-          document.querySelector('input[name=estado]').focus()
+          document.querySelector('input[name=estado]').classList.add("has-content")
           document.querySelector('input[name=estado]').value = result.uf
 
-          document.querySelector('input[name=cidade]').focus()
+          document.querySelector('input[name=cidade]').classList.add("has-content")
           document.querySelector('input[name=cidade]').value = result.localidade
 
-          document.querySelector('input[name=bairro]').focus()
+          document.querySelector('input[name=bairro]').classList.add("has-content")
           document.querySelector('input[name=bairro]').value = result.bairro
 
-          document.querySelector('input[name=rua]').focus()
+          document.querySelector('input[name=rua]').classList.add("has-content")
           document.querySelector('input[name=rua]').value = result.logradouro
         })
       }

@@ -5,6 +5,8 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from io import BytesIO
 from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile
@@ -65,6 +67,7 @@ def nova_imagem(imagem):
 	imagem_model.save()
 	return imagem_model
 
+@login_required
 def novo_anuncio(request):
 	if request.method == "POST":
 		form = NovoAnuncioForm(request.POST, request.FILES)
@@ -114,15 +117,15 @@ def novo_anuncio(request):
 			"form": NovoAnuncioForm(),
 			})
 
-
+@require_POST
 def favorito(request):
-	user = get_object_or_404(User, username=request.user.username)
+	data = json.loads(request.body)
+	id_anuncio = data.get('id')
 
-	if request.method == "POST":
-		data = json.loads(request.body)
-		id_anuncio = data.get('id')
+	anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)
 
-		anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)
+	if request.user.is_authenticated:
+		user = get_object_or_404(User, username=request.user.username)
 
 		if User.objects.filter(username=request.user.username, favoritos=anuncio):
 			user.favoritos.remove(anuncio)
@@ -135,7 +138,10 @@ def favorito(request):
 			user.save()
 
 			return JsonResponse({'success': 'adicionado'})
-		
+	else:
+		return JsonResponse({'error': 'login'})
+
+@login_required	
 def favoritos(request):
 	user = User.objects.get(username=request.user.username)
 

@@ -26,29 +26,31 @@
 					<input type="text" name="q">
 					<button type="submit"><i class="bi bi-search"></i></button>
 				</form>
+				{% if request.user.is_authenticated %}
 				<div class="menu">
-					<i class="bi bi-person"></i>
-					<div class="menu-usuario">
-						<button>{{ request.user.username }}</button>
-						<i id="arrow-usuario" class="bi bi-caret-down-fill" style="font-size: 12px;"></i>
-						<div class="dropdown-usuario">
-							<a>Modo escuro <button>a</button></a>
-							<a href="{% url 'favoritos' %}">Favoritos</a>
-							<a href="#">Anúncios</a>
-							<a href="#">Notificações</a>
-							<a href="#">Compras</a>
-							<a href="#">Segurança</a>
-							<a href="#">Privacidade</a>
-							<a href="#">Configurações</a>
-							<a disabled style="color: white;">Curioso</a>
-							<a href="{% url 'logout' %}">Sair</a>
+						<i class="bi bi-person"></i>
+						<div class="menu-usuario">
+							<button>{{ request.user.username }}</button>
+							<i id="arrow-usuario" class="bi bi-caret-down-fill" style="font-size: 12px;"></i>
+							<div class="dropdown-usuario">
+								<a>Modo escuro <button>a</button></a>
+								<a href="{% url 'favoritos' %}">Favoritos</a>
+								<a href="#">Anúncios</a>
+								<a href="#">Notificações</a>
+								<a href="#">Compras</a>
+								<a href="#">Segurança</a>
+								<a href="#">Privacidade</a>
+								<a href="#">Configurações</a>
+								<a disabled style="color: white;">Curioso</a>
+								<a href="{% url 'logout' %}">Sair</a>
+							</div>
 						</div>
-					</div>
 					<div class="btn-icones">
 						<a href="#"><i class="bi bi-chat"></i></a>
 						<a href="{% url 'carrinho' %}"><i class="bi bi-bag"></i></a>
 					</div>
 				</div>
+				{% endif %}
 				<div class="menu-btn">
 					<div class="menu-btn__burger"></div>
 				</div>

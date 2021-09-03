@@ -14,7 +14,7 @@
 			<h1>Checkout</h1>
 			{% csrf_token %}
 			<div class="col-3 input-effect">
-		    	{{ form.nome_user }}
+		    	{{ form.nome }}
 		        <label>Nome</label>
 		        <span class="focus-border">
 		        	<i></i>
@@ -89,15 +89,17 @@
 		</form>
 		<div class="checkout-produtos">
 			<h3>Detalhes da compra</h3>
-			<div class="produto">
-				<img src="{{ anuncio.imagens.first.imagem.url }}" width="50px">
-				<p>1x {{ anuncio.titulo }}</p>
-				<p class="preco">R${{ anuncio.preco }}</p>
-			</div>
+			{% for anuncio in anuncios %}
+				<div class="produto">
+					<img src="{{ anuncio.imagens.first.imagem.url }}" width="50px">
+					<p>1x {{ anuncio.titulo }}</p>
+					<p class="preco">R${{ anuncio.preco }}</p>
+				</div>
+			{% endfor %}
 			<hr>
 			<div class="produto-preco">
 				<b>Total:</b>
-				<b class="preco">R$150</b>
+				<b class="preco">R${{ total.preco__sum }}</b>
 			</div>
 		</div>
 	</div>

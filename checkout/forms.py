@@ -1,20 +1,21 @@
 from django import forms
-from autenticacao.models import EnderecoUser
-from django.forms import TextInput
+from django.forms import TextInput, NumberInput
+
+from .models import Pedido
 
 class CheckoutInfo(forms.ModelForm):
 	class Meta:
-		model = EnderecoUser
-		fields = "__all__"
+		model = Pedido
+		exclude = ['user', 'anuncio']
 		widgets = {
-			'nome_user': TextInput(attrs={'class': 'effect-19'}),
-			'cpf': TextInput(attrs={'class': 'effect-19', 'type': 'number'}),
-			'contato': TextInput(attrs={'class': 'effect-19', 'type': 'number'}),
-			'cep': TextInput(attrs={'class': 'effect-19 cep', 'type': 'number'}),
-			'estado': TextInput(attrs={'class': 'effect-19'}),
-			'cidade': TextInput(attrs={'class': 'effect-19'}),
-			'bairro': TextInput(attrs={'class': 'effect-19'}),
-			'rua': TextInput(attrs={'class': 'effect-19'}),
+			'nome': TextInput(attrs={'class': 'effect-19'}),
+			'cpf': NumberInput(attrs={'class': 'effect-19', 'type': 'number'}),
+			'contato': NumberInput(attrs={'class': 'effect-19', 'type': 'number'}),
+			'cep': NumberInput(attrs={'class': 'effect-19 cep', 'type': 'number'}),
+			'estado': TextInput(attrs={'class': 'effect-19 input-regiao'}),
+			'cidade': TextInput(attrs={'class': 'effect-19 input-regiao'}),
+			'bairro': TextInput(attrs={'class': 'effect-19 input-regiao'}),
+			'rua': TextInput(attrs={'class': 'effect-19 input-regiao'}),
 			'complemento': TextInput(attrs={'class': 'effect-19'}),
 			'numero': TextInput(attrs={'class': 'effect-19', 'type': 'number'}),
 		}

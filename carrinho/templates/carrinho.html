@@ -32,7 +32,8 @@
 			</div>
 			{% endfor %}
 		</div>
-		<button class="comprar-carrinho">Comprar do carrinho</button>
+		<h2 id="carrinho-total">Total: R${{ total.preco__sum }}</h2>
+		<a href="{% url 'checkout_carrinho' %}" class="comprar-carrinho">Comprar do carrinho</a>
 	</div>
 
 	<script type="text/javascript" src="{% static 'js/carrinho.js' %}"></script>
