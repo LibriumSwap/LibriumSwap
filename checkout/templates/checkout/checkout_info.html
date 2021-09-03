@@ -14,57 +14,77 @@
 			<h1>Checkout</h1>
 			{% csrf_token %}
 			<div class="col-3 input-effect">
-	        	{{ form.nome_user }}
-	            <label>Nome completo</label>
-	            <span class="focus-border"></span>
-	        </div>
+		    	{{ form.nome_user }}
+		        <label>Nome</label>
+		        <span class="focus-border">
+		        	<i></i>
+		        </span>
+		    </div>
 			<div class="col-3 input-effect">
-	        	{{ form.cpf }}
-	            <label>CPF</label>
-	            <span class="focus-border"></span>
-	        </div>
+		    	{{ form.cpf }}
+		        <label>CPF</label>
+		        <span class="focus-border">
+		        	<i></i>
+		        </span>
+		    </div>
 			<div class="col-3 input-effect">
-	        	{{ form.contato }}
-	            <label>Telefone</label>
-	            <span class="focus-border"></span>
-	        </div>
+		    	{{ form.contato }}
+		        <label>Telefone celular</label>
+		        <span class="focus-border">
+		        	<i></i>
+		        </span>
+		    </div>
 	        <div class="regiao">
 	        	<div class="col-3 input-effect">
-		        	{{ form.cep }}
-		            <label>CEP</label>
-		            <span class="focus-border"></span>
-		        </div>
+			    	{{ form.cep }}
+			        <label>CEP</label>
+			        <span class="focus-border">
+			        	<i></i>
+			        </span>
+			    </div>
 		        <div class="col-3 input-effect">
-		        	{{ form.estado }}
-		            <label>Estado</label>
-		            <span class="focus-border"></span>
-		        </div>
+			    	{{ form.estado }}
+			        <label>Estado</label>
+			        <span class="focus-border">
+			        	<i></i>
+			        </span>
+			    </div>
 		        <div class="col-3 input-effect">
-		        	{{ form.cidade }}
-		            <label>Cidade</label>
-		            <span class="focus-border"></span>
-		        </div>
+			    	{{ form.cidade }}
+			        <label>Cidade</label>
+			        <span class="focus-border">
+			        	<i></i>
+			        </span>
+			    </div>
 	        </div>
 	        <div class="col-3 input-effect">
-	        	{{ form.bairro }}
-	            <label>Bairro</label>
-	            <span class="focus-border"></span>
-	        </div>
+		    	{{ form.bairro }}
+		        <label>Bairro</label>
+		        <span class="focus-border">
+		        	<i></i>
+		        </span>
+		    </div>
 	        <div class="col-3 input-effect">
-	        	{{ form.rua }}
-	            <label>Rua</label>
-	            <span class="focus-border"></span>
-	        </div>
+		    	{{ form.rua }}
+		        <label>Rua</label>
+		        <span class="focus-border">
+		        	<i></i>
+		        </span>
+		    </div>
 	        <div class="col-3 input-effect">
-	        	{{ form.complemento }}
-	            <label>Complemento</label>
-	            <span class="focus-border"></span>
-	        </div>
-	         <div class="col-3 input-effect">
-	        	{{ form.numero }}
-	            <label>Número</label>
-	            <span class="focus-border"></span>
-	        </div>
+		    	{{ form.complemento }}
+		        <label>Complemento</label>
+		        <span class="focus-border">
+		        	<i></i>
+		        </span>
+		    </div>
+	        <div class="col-3 input-effect">
+		    	{{ form.numero }}
+		        <label>Número</label>
+		        <span class="focus-border">
+		        	<i></i>
+		        </span>
+		    </div>
 	        <button type="submit">Ir para pagamento</button>
 		</form>
 		<div class="checkout-produtos">
