@@ -1,0 +1,142 @@
+body {
+	color: #343434;
+}
+
+.conteudo {
+	display: flex;
+	padding: 5%;
+	padding-top: 1%;
+}
+
+.checkout-info h1 {
+	margin-bottom: 50px;
+}
+
+.checkout-info {
+	display: grid;
+	margin-right: 30px;
+	width: 50%;
+}
+
+.checkout-info button {
+	padding: 15px;
+	width: 50%;
+	background-color: #A959DD;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+}
+
+.regiao {
+	display: flex;
+}
+
+.regiao .col-3 {
+	margin-right: 15px;
+}
+
+.checkout-produtos {
+	width: 50%;
+	margin-top: 60px;
+}
+
+.produto-preco {
+	display: flex;
+}
+
+.checkout-produtos .preco {
+	margin-left: auto;
+}
+
+.checkout-produtos img {
+	margin-right: 15px;
+}
+
+.checkout-produtos hr {
+	border-color: rgba(255, 255, 255, 0.44);
+	margin-bottom: 25px;
+}
+
+.produto {
+	display: flex;
+}
+
+
+.checkout-info input[type="text"], .checkout-info input[type="number"] {
+	font: 15px/24px "Inter", "Inter", sans-serif; 
+	color: #343434; width: 100%; 
+	box-sizing: border-box; 
+	letter-spacing: 1px;
+	width: 100%;
+}
+
+:focus {
+	outline: none;
+}
+
+.col-3{
+	position: relative;
+	margin-bottom: 30px;
+}
+
+.effect-1 {
+	border: 0; 
+	padding: 7px 0; 
+	border-bottom: 1px solid #ccc;
+}
+
+.effect-1 ~ .focus-border {
+	position: absolute; 
+	bottom: 0; left: 0; 
+	width: 0; height: 2px; 
+	background-color: #A959DD; 
+	transition: 0.4s;
+}
+
+.effect-1:focus ~ .focus-border {
+	width: 100%; 
+	transition: 0.4s;
+}
+
+.effect-16 {
+	border: 0; 
+	padding: 4px 0; 
+	border-bottom: 1px solid rgba(52, 52, 52, 0.5); 
+	background-color: transparent;
+}
+
+.effect-16 ~ .focus-border {
+	position: absolute; 
+	bottom: 0; 
+	left: 0; 
+	width: 0; 
+	height: 2px; 
+	background-color: #A959DD; 
+	transition: 0.4s;
+}
+
+.effect-16:focus ~ .focus-border,
+.has-content.effect-16 ~ .focus-border {
+	width: 100%; 
+	transition: 0.4s;
+}
+
+.effect-16 ~ label {
+	position: absolute; 
+	left: 0; 
+	width: 100%; 
+	top: 9px; 
+	color: rgba(52, 52, 52, 0.5); 
+	transition: 0.3s; 
+	z-index: -1; 
+	letter-spacing: 0.5px;
+}
+
+.effect-16:focus ~ label, .has-content.effect-16 ~ label{
+	top: -16px; 
+	font-size: 12px; 
+	color: #A959DD; 
+	transition: 0.3s;
+}

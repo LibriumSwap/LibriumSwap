@@ -15,6 +15,7 @@ class EnderecoUser(models.Model):
 	cep = models.CharField(max_length=8)
 	estado = models.CharField(max_length=64)
 	cidade = models.CharField(max_length=64)
+	bairro = models.CharField(max_length=64)
 	rua = models.CharField(max_length=128)
 	complemento = models.CharField(max_length=128)
 	numero = models.CharField(max_length=10)
