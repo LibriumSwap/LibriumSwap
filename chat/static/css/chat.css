@@ -90,11 +90,14 @@ body{
 }
 
 .contact-container{
-  padding-bottom: 5px;
+  padding-bottom: 15px;
   padding-top: 5px;
   margin-left: 10px;
-
   display: flex;
+}
+
+.contact:hover{
+  background: black;
 }
 
 .nome{
@@ -154,7 +157,7 @@ body{
 .messages li {
   width: 100%;
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .reply{
@@ -185,5 +188,7 @@ body{
 }
 
 .chat-message-input{
-  width: 95%;
+  width: 90%;
+  padding-bottom: 6px;
+  padding-top: 6px;
 }
