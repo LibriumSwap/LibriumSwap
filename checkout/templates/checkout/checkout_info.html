@@ -5,7 +5,105 @@
 {% block title %}Pagamento{% endblock %}
 
 {% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/checkout_info.css' %}">
 {% endblock %}
 
 {% block body %}
+	<div class="conteudo">
+		<form class="checkout-info">
+			<h1>Checkout</h1>
+			{% csrf_token %}
+			<div class="col-3 input-effect">
+		    	{{ form.nome }}
+		        <label>Nome</label>
+		        <span class="focus-border">
+		        	<i></i>
+		        </span>
+		    </div>
+			<div class="col-3 input-effect">
+		    	{{ form.cpf }}
+		        <label>CPF</label>
+		        <span class="focus-border">
+		        	<i></i>
+		        </span>
+		    </div>
+			<div class="col-3 input-effect">
+		    	{{ form.contato }}
+		        <label>Telefone celular</label>
+		        <span class="focus-border">
+		        	<i></i>
+		        </span>
+		    </div>
+	        <div class="regiao">
+	        	<div class="col-3 input-effect">
+			    	{{ form.cep }}
+			        <label>CEP</label>
+			        <span class="focus-border">
+			        	<i></i>
+			        </span>
+			    </div>
+		        <div class="col-3 input-effect">
+			    	{{ form.estado }}
+			        <label>Estado</label>
+			        <span class="focus-border">
+			        	<i></i>
+			        </span>
+			    </div>
+		        <div class="col-3 input-effect">
+			    	{{ form.cidade }}
+			        <label>Cidade</label>
+			        <span class="focus-border">
+			        	<i></i>
+			        </span>
+			    </div>
+	        </div>
+	        <div class="col-3 input-effect">
+		    	{{ form.bairro }}
+		        <label>Bairro</label>
+		        <span class="focus-border">
+		        	<i></i>
+		        </span>
+		    </div>
+	        <div class="col-3 input-effect">
+		    	{{ form.rua }}
+		        <label>Rua</label>
+		        <span class="focus-border">
+		        	<i></i>
+		        </span>
+		    </div>
+	        <div class="col-3 input-effect">
+		    	{{ form.complemento }}
+		        <label>Complemento</label>
+		        <span class="focus-border">
+		        	<i></i>
+		        </span>
+		    </div>
+	        <div class="col-3 input-effect">
+		    	{{ form.numero }}
+		        <label>Número</label>
+		        <span class="focus-border">
+		        	<i></i>
+		        </span>
+		    </div>
+	        <button type="submit">Ir para pagamento</button>
+		</form>
+		<div class="checkout-produtos">
+			<h3>Detalhes da compra</h3>
+			{% for anuncio in anuncios %}
+				<div class="produto">
+					<img src="{{ anuncio.imagens.first.imagem.url }}" width="50px">
+					<p>1x {{ anuncio.titulo }}</p>
+					<p class="preco">R${{ anuncio.preco }}</p>
+				</div>
+			{% endfor %}
+			<hr>
+			<div class="produto-preco">
+				<b>Total:</b>
+				<b class="preco">R${{ total.preco__sum }}</b>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="{% static 'js/checkout_info.js' %}"></script>
 {% endblock %}

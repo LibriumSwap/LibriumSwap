@@ -61,6 +61,11 @@ hr {
 	border-color: rgba(255, 255, 255, 0.44);
 }
 
+#carrinho-total {
+	width: 100%;
+	text-align: center;
+}
+
 .comprar-carrinho {
 	width: 200px;
 	padding: 20px;
@@ -70,8 +75,8 @@ hr {
 	font-weight: bold;
 	color: #fff;
 	border-radius: 5px;
-	border: none;
-	outline: none;
+	text-align: center;
+	text-decoration: none;
 }
 
 @media screen and (max-width: 660px) {
