@@ -1,0 +1,145 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'js/chat.js' %}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+	<div class="sidepanel">
+		<div class="profile">
+			<img src="http://emilcarlsson.se/assets/mikeross.png">
+			<p>Name</p>
+			<div class="dropdown-status-options">
+				<ul>
+					<li>Online</li>
+					<li>Offline</li>
+				</ul>
+			</div>
+		</div>
+		<div class="search">
+			<input class="input-search" type="text" name="contact-name">
+			<button class="search-btn" type="submit"><i class="bi bi-search"></i></button>
+		</div>
+		<div class="contacts">
+			<div class="contact">
+				<div class="contact-container">
+					<img src="http://emilcarlsson.se/assets/harveyspecter.png">
+					<div class="wrap">
+						<p class="nome">Name</p>
+						<p class="message">Preview Message</p>
+					</div>
+				</div>
+			</div>
+			<div class="contact">
+				<div class="contact-container">
+					<img src="http://emilcarlsson.se/assets/harveyspecter.png">
+					<div class="wrap">
+						<p class="nome">Name</p>
+						<p class="message">Preview Message</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bottom-bar">
+			
+		</div>
+	</div>
+	<div class="content">
+		<div class="contact-profile">
+			<img src="http://emilcarlsson.se/assets/harveyspecter.png">
+			<p>{{ username }}</p>
+		</div>
+		<div class="messages">
+			<ul class="chat-log">
+				{% comment %}<li class="sent">
+					<img src="http://emilcarlsson.se/assets/harveyspecter.png">
+					<p>Hello, how are you?</p>
+				</li>
+				<li class="reply">
+					<img src="http://emilcarlsson.se/assets/harveyspecter.png">
+					<p>I'm fine, thanks!</p>
+				</li>{% endcomment %}
+			</ul>
+		</div>
+		<div class="message-input">
+			<input class="chat-message-input" type="text" placeholder="Write your message...">
+			<button class="chat-message-submit"type="submit">Enviar</button>
+		</div>
+	</div>
+
+</div>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/chat.css' %}">
+<script src="{% static 'js/reconnecting-websocket.js'%}"></script>
+<script>
+	var username = {{ username }};
+    const chatSocket = new ReconnectingWebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/chat/'
+    );
+
+    chatSocket.onopen = function(e){
+    	fetchMessages();
+    }
+
+    function fetchMessages(){
+    	chatSocket.send(JSON.stringify({'command': 'fetch_messages'}))
+    }
+
+    chatSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        if(data['command'] == 'messages'){
+        	for(let i=0; i<data['messages'].length; i++){
+        		createMessage(data['messages'][i]);
+        	}
+        }
+        if(data['command'] == 'new_message'){
+        	createMessage(data['message']);
+        }
+    };
+    function createMessage(data){
+        var author = data['author'];
+        var msgListTag = document.createElement('li');
+        var pTag = document.createElement('p');
+        var imgTag = document.createElement('img');
+        pTag.textContent = data.content;
+        imgTag.src = 'http://emilcarlsson.se/assets/harveyspecter.png';
+        if (author==username){
+        	msgListTag.className = 'sent';
+        	msgListTag.appendChild(imgTag);
+        	msgListTag.appendChild(pTag);
+        }
+        else{
+        	msgListTag.className = 'reply';
+        	msgListTag.appendChild(pTag);
+        	msgListTag.appendChild(imgTag);
+        }
+        document.querySelector('.chat-log').appendChild(msgListTag);
+    }
+
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    document.querySelector('.chat-message-input').focus();
+    document.querySelector('.chat-message-input').onkeyup = function(e) {
+        if (e.keyCode === 13) {  // enter, return
+            document.querySelector('.chat-message-submit').click();
+        }
+    };
+
+    document.querySelector('.chat-message-submit').onclick = function(e) {
+        const messageInputDom = document.querySelector('.chat-message-input');
+        const message = messageInputDom.value;
+        chatSocket.send(JSON.stringify({
+            'message': message,
+            'command': 'new_message',
+            'from': username
+        }));
+        messageInputDom.value = '';
+    };
+</script>
+{% endblock %}
