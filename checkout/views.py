@@ -4,22 +4,41 @@ from django.shortcuts import get_object_or_404
 from django.db.models import Sum
 
 from livros.models import LivroAnuncio
+from autenticacao.models import User
 from .forms import CheckoutInfo
 
 @login_required
 def checkout(request, anuncio_id):
-	form = CheckoutInfo()
-	anuncios = []
-	anuncio = get_object_or_404(LivroAnuncio, id=anuncio_id)
-	total = {'preco__sum': anuncio.preco}
+	if request.method == "GET":
+		form = CheckoutInfo()
+		anuncios = []
+		anuncio = get_object_or_404(LivroAnuncio, id=anuncio_id)
+		total = {'preco__sum': anuncio.preco}
 
-	anuncios.append(anuncio)
+		anuncios.append(anuncio)
 
-	return render(request, "checkout/checkout_info.html", {
-		"form": form,
-		"anuncios": anuncios,
-		"total": total
-		})
+		return render(request, "checkout/checkout_info.html", {
+			"form": form,
+			"anuncios": anuncios,
+			"total": total,
+			"url": "checkout",
+			"id": anuncios[0].id
+			})
+
+	if request.method == "POST":
+		form = CheckoutInfo(request.POST)
+		anuncio = get_object_or_404(LivroAnuncio, id=anuncio_id)
+		user = get_object_or_404(User, username=request.user.username)
+
+		if form.is_valid():
+			pedido = form.save()
+			pedido.anuncio.add(anuncio)
+			pedido.save()
+
+			user.pedidos.add(pedido)
+			user.save()
+
+			return HttpResponse("<h1>Pedido feito</h1>")
 
 @login_required
 def checkout_carrinho(request):
@@ -32,5 +51,15 @@ def checkout_carrinho(request):
 	return render(request, "checkout/checkout_info.html", {
 		"form": form,
 		"anuncios": anuncios,
-		"total": total
+		"total": total,
+		"url": "checkout_carrinho"
 		})
+
+	if request.method == "POST":
+		form = CheckoutInfo(request.POST)
+
+		if form.is_valid():
+			pedido = form.save()
+
+			return HttpResponse("<h1>Pedido feito</h1>")
+			

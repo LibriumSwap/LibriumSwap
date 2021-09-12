@@ -10,7 +10,7 @@
 
 {% block body %}
 	<div class="conteudo">
-		<form class="checkout-info">
+		<form class="checkout-info" {% if url == "checkout" %}action="{% url 'checkout' id %}"{% elif url == "checkout_carrinho" %}action="{% url 'checkout_carrinho' %}"{% endif %} method="post">
 			<h1>Checkout</h1>
 			{% csrf_token %}
 			<div class="col-3 input-effect">

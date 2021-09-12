@@ -37,7 +37,7 @@
 
 			<h4>Anunciado por {{ anuncio.anunciante.username }}</h4>
 			<h2>R$ {{ anuncio.preco }}</h2>
-			<a href="{% url 'checkout_info' anuncio.id %}" class="btn btn-comprar">Comprar</a>
+			<a href="{% url 'checkout' anuncio.id %}" class="btn btn-comprar">Comprar</a>
 			<button class="btn btn-carrinho">Adicionar ao carrinho</button>
 		</div>
 	</div>

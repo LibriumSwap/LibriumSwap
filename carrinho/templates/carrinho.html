@@ -22,7 +22,7 @@
 						<div class="anuncio-info">
 							<a href="{% url 'anuncio_livro' anuncio.id%}"><h2>{{ anuncio.titulo }}</h2></a>
 							<p>{{ anuncio.autor }}</p>
-							<h4>Comprar agora</h4>
+							<a href="{% url 'checkout' anuncio.id %}" id="comprar">Comprar agora</a><br>
 							<button class="remover" data-id="{{ anuncio.id }}">Excluir <i class="bi bi-trash"></i></button>
 						</div>
 						<h2 class="preco">R${{ anuncio.preco }}</h2>

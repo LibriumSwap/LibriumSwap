@@ -18,7 +18,7 @@ function efeitosInput () {
 }
 
 function cep () {
-  cep = document.getElementById('#cep')
+  cep = document.querySelector('.cep')
 
   inputs = document.querySelectorAll('.input-regiao')
 
