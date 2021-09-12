@@ -1,0 +1,194 @@
+body{
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.nav-2{
+  display: none;
+}
+
+/* DROPDOWN STATUS */
+.dropdown-status-options{
+  display: none;
+}
+
+
+.container p{
+  margin: 0;
+}
+.container{
+  display: flex;
+  width: 100%;
+  height: 92vh;
+}
+
+.sidepanel{
+  background: #A959DD;
+  color: white;
+  width: 25%;
+}
+
+.profile{
+  margin-left: 30px;
+  margin-top: 50px;
+
+  display: flex;
+  align-items: center;
+}
+
+.profile img{
+  width: 60px;
+  margin-right: 10px;
+
+  border-radius: 50%;
+  height: auto;
+  float: left;
+  cursor: pointer;
+}
+
+.search{
+  margin-top: 30px; 
+  margin-left: 10px;
+  height: 40px;
+
+
+  width: 95%;
+  display: flex;
+  background: white;
+  background: black;
+  border-radius: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-btn{
+  color: white;
+  border-radius: 50%;
+  background: black;
+  float: right;
+  margin-left: 5px;
+  border: none;
+  padding: 0;
+}
+
+.input-search{
+  width: 90%;
+  float: left;
+  padding: 0;
+  border: none;
+  color: white;
+  font-size: 14px;
+  background: none;
+}
+
+
+
+.contacts{
+  margin-top: 20px;
+  display: grid;
+}
+
+.contact-container{
+  padding-bottom: 15px;
+  padding-top: 5px;
+  margin-left: 10px;
+  display: flex;
+}
+
+.contact:hover{
+  background: black;
+}
+
+.nome{
+  padding-top: 7px;
+}
+
+.message{
+  padding-top: 5px;
+}
+
+.contact img{
+  width: 60px;
+  margin-right: 10px;
+
+  border-radius: 50%;
+  height: auto;
+  float: left;
+  cursor: pointer;
+}
+
+
+.content{
+  background: white;
+  color: black;
+  width: 75%;
+}
+
+.contact-profile{
+  display: flex;
+  background: #A959DD;
+  color: white;
+}
+
+.contact-profile img{
+  width: 60px;
+  margin-right: 10px;
+  border-radius: 50%;
+  height: auto;
+  float: left;
+  cursor: pointer;
+}
+
+.contact-profile p{
+  padding-top: 20px;
+}
+
+/* Messages chat */
+
+.messages{
+  height: auto;
+  min-height: calc(100% - 93px);
+  max-height: calc(100% - 93px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.messages li {
+  width: 100%;
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.reply{
+  margin-left: 80%;
+}
+
+.messages p{
+  width: 100px;
+  padding: 10px 20px;
+  border: 1px solid;
+  border-radius: 10px;
+  background: black;
+  color: white;
+}
+
+
+.messages img{
+  width: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+  height: auto;
+  float: left;
+  cursor: pointer;
+}
+
+.message-input{
+  width: 100%;
+}
+
+.chat-message-input{
+  width: 90%;
+  padding-bottom: 6px;
+  padding-top: 6px;
+}
