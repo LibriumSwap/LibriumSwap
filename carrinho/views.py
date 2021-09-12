@@ -14,10 +14,13 @@ def carrinho(request):
 		anuncios = LivroAnuncio.objects.filter(id__in=[anuncio_id for anuncio_id in request.session['carrinho']])
 		total = anuncios.aggregate(Sum('preco'))
 
-	return render(request, "carrinho.html", {
-		"carrinho": anuncios,
-		"total": total
-		})
+		return render(request, "carrinho.html", {
+			"carrinho": anuncios,
+			"total": total
+			})
+
+	else:
+		return render(request, "carrinho.html")
 
 def adicionar_ao_carrinho(request):
 	if request.user.is_authenticated:
