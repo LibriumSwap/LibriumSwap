@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'carrinho',
     'checkout',
     'chat',
+    'pagamento',
     'channels',
     'django.contrib.admin',
     'django.contrib.auth',
