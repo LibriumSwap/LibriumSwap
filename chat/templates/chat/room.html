@@ -1,0 +1,92 @@
+{% extends 'chat/chat.html' %}
+{% load static %}
+
+{% block rightbar %}
+<div class="content">
+		<div class="contact-profile">
+			<img src="http://emilcarlsson.se/assets/harveyspecter.png">
+			<p>Contact Name</p>
+		</div>
+		<div class="messages">
+			<ul class="chat-log">
+				{% comment %}<li class="sent">
+					<img src="http://emilcarlsson.se/assets/harveyspecter.png">
+					<p>Hello, how are you?</p>
+				</li>
+				<li class="reply">
+					<img src="http://emilcarlsson.se/assets/harveyspecter.png">
+					<p>I'm fine, thanks!</p>
+				</li>{% endcomment %}
+			</ul>
+		</div>
+		<div class="message-input">
+			<input class="chat-message-input" type="text" placeholder="Write your message...">
+			<button class="chat-message-submit"type="submit">Enviar</button>
+		</div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/reconnecting-websocket.js'%}"></script>
+<script>
+	var other_username = "{{ other_username }}";
+	var username = {{ username }};
+	const chatSocket = new ReconnectingWebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws'
+        + window.location.pathname
+    );
+    chatSocket.onopen = function(e){
+    	console.log("Connection is opened");
+    }
+
+    chatSocket.onmessage = function(e){
+    	var author = e['author'];
+    	console.log(author);
+        var msgListTag = document.createElement('li');
+        var pTag = document.createElement('p');
+        var imgTag = document.createElement('img');
+        pTag.textContent = e.content;
+        imgTag.src = 'http://emilcarlsson.se/assets/harveyspecter.png';
+        if (author==username){
+        	msgListTag.className = 'sent';
+        	msgListTag.appendChild(imgTag);
+        	msgListTag.appendChild(pTag);
+        }
+        else{
+        	msgListTag.className = 'reply';
+        	msgListTag.appendChild(pTag);
+        	msgListTag.appendChild(imgTag);
+        }
+        document.querySelector('.chat-log').appendChild(msgListTag);
+    }
+
+    chatSocket.onclose = function(e){
+    	console.log("Connection is closed");
+    }
+
+    chatSocket.onerror = function(e){
+    	console.error('Chat socket closed unexpectedly');
+    }
+
+    document.querySelector('.chat-message-input').focus();
+    document.querySelector('.chat-message-input').onkeyup = function(e) {
+        if (e.keyCode === 13) {  // enter, return
+            document.querySelector('.chat-message-submit').click();
+        }
+    };
+
+    document.querySelector('.chat-message-submit').onclick = function(e) {
+        const messageInputDom = document.querySelector('.chat-message-input');
+        const message = messageInputDom.value;
+        chatSocket.send(JSON.stringify({
+            'message': message,
+            'command': 'new_message',
+            'from': username,
+        }));
+        messageInputDom.value = '';
+    };
+
+</script>
+{% endblock %}
