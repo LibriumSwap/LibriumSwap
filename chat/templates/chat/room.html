@@ -31,6 +31,7 @@
 <script>
 	var other_username = "{{ other_username }}";
 	var username = {{ username }};
+    console.log(username);
 	const chatSocket = new ReconnectingWebSocket(
         'ws://'
         + window.location.host
@@ -42,20 +43,20 @@
     }
 
     chatSocket.onmessage = function(e){
-    	var author = e['author'];
-    	console.log(author);
+        var data = JSON.parse(e.data)
+    	var author = data.author;
         var msgListTag = document.createElement('li');
         var pTag = document.createElement('p');
         var imgTag = document.createElement('img');
-        pTag.textContent = e.content;
+        pTag.textContent = data.message.content;
         imgTag.src = 'http://emilcarlsson.se/assets/harveyspecter.png';
         if (author==username){
-        	msgListTag.className = 'sent';
-        	msgListTag.appendChild(imgTag);
-        	msgListTag.appendChild(pTag);
+            msgListTag.className = 'reply';
+            msgListTag.appendChild(imgTag);
+            msgListTag.appendChild(pTag);
         }
         else{
-        	msgListTag.className = 'reply';
+        	msgListTag.className = 'sent';
         	msgListTag.appendChild(pTag);
         	msgListTag.appendChild(imgTag);
         }
