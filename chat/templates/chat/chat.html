@@ -23,24 +23,19 @@
 			<button class="search-btn" type="submit"><i class="bi bi-search"></i></button>
 		</div>
 		<div class="contacts">
-			<div class="contact">
-				<a href="{% url 'room' 'dudujunior' %}"><div class="contact-container">
-					<img src="http://emilcarlsson.se/assets/harveyspecter.png">
-					<div class="wrap">
-						<p class="nome">dudujunior</p>
-						<p class="message">Preview Message</p>
-					</div>
-				</div></a>
-			</div>
-			<div class="contact">
-				<div class="contact-container">
-					<img src="http://emilcarlsson.se/assets/harveyspecter.png">
-					<div class="wrap">
-						<p class="nome">Name</p>
-						<p class="message">Preview Message</p>
-					</div>
+			{% for query in querys %}
+				{% for contact in query.contacts.all %}
+				<div class="contact">
+					<a href="{% url 'room' contact %}"><div class="contact-container">
+						<img src="http://emilcarlsson.se/assets/harveyspecter.png">
+						<div class="wrap">
+							<p class="name">{{ contact }}</p>
+							<p class="message">Preview Message</p>
+						</div>
+					</div></a>
 				</div>
-			</div>
+				{% endfor %}
+			{% endfor %}
 		</div>
 		<div class="bottom-bar">
 			

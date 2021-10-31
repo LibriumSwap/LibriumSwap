@@ -4,7 +4,7 @@ import json
 from django.db.models import Count
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
-from .models import Thread, Message
+from .models import Thread, Message, Contact
 
 User = get_user_model()
 class ChatConsumer(WebsocketConsumer):
@@ -12,9 +12,11 @@ class ChatConsumer(WebsocketConsumer):
         username = self.scope['user']
         other_username = self.scope['url_route']['kwargs']['other_username']
         other_user = User.objects.get(username=other_username)
+        self.create_contact(username, other_user)
         thread_type = Thread.objects.filter(thread_type='private')
         thread_obj = self.get_or_create_private_thread(username, other_user)
         self.room_group_name = f'private_thread_{thread_obj.id}'
+
         print(self.room_group_name)
         #self.room_group_name = f'private_thread_'
         # Join room group
@@ -40,7 +42,24 @@ class ChatConsumer(WebsocketConsumer):
         )
 
     def send_message(self, message):
+        create_contact(username=self.scope['user'], other_username=self.scope['url_route']['kwargs']['other_username'])
         self.send(text_data=json.dumps(message))
+
+    def create_contact(self, username, other_username):
+        user = User.objects.get(username=username)
+        contact_name = User.objects.get(username=other_username)
+        contacts = Contact.objects.all()
+        if(user == contact_name):
+            print("1")
+        else:
+            user_name = User.objects.filter(username=username)
+            otheruser_name = User.objects.filter(username=other_username)
+            if(contacts.filter(user__in=user_name, contacts__in=otheruser_name).exists()):
+                print("2")
+            else:
+                print("3")
+                contact = Contact.objects.create(user=user)
+                contact.contacts.add(contact_name)
 
     def chat_message(self, data):
         message = data['message']
@@ -60,7 +79,6 @@ class ChatConsumer(WebsocketConsumer):
         threads = threads.filter(users__in=[user1, user2]).distinct()
 
         threads = threads.annotate(u_count=Count('users')).filter(u_count=2)
-        print(threads.exists())
         if threads.exists():
             return threads.first()
         else:
@@ -80,7 +98,6 @@ class ChatConsumer(WebsocketConsumer):
 
     def new_message(self, data):
         author = data['from']
-        print(author)
         author_user = User.objects.filter(username=author)[0]
         message = Message.objects.create(author=author_user, content=data['message'])
         content = {

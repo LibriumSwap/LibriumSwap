@@ -32,4 +32,7 @@ class Message(models.Model):
         return Message.objects.order_by('-timestamp').all()[:20]
 
 class Contact(models.Model):
-    contact = models.ManyToManyField('autenticacao.User')
+    user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
+    contacts = models.ManyToManyField('autenticacao.User')
+
+    #image = models.ImageField(height_field="30", width_field="30", upload_to='images/contacts')
