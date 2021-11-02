@@ -19,20 +19,19 @@ class Thread(models.Model):
             return f'{self.users.first()} and {self.users.last()}'
         return f'{self.name}'
 
-
 class Message(models.Model):
     author = models.ForeignKey(User, related_name='author_messages', on_delete=models.CASCADE)
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+    thread = models.ForeignKey(Thread, related_name="thread_messages", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.author.username
 
-    def last_20_messages():
-        return Message.objects.order_by('-timestamp').all()[:20]
+
 
 class Contact(models.Model):
     user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
     contacts = models.ManyToManyField('autenticacao.User')
-
-    #image = models.ImageField(height_field="30", width_field="30", upload_to='images/contacts')
+    message_preview = models.TextField(blank=True)
+    contact_image = models.ImageField(upload_to='images/contacts', default="images/contacts/user.png")

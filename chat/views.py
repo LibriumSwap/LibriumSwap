@@ -10,11 +10,12 @@ import json
 def chatView(request):
 	username = User.objects.get(username=request.user.username)
 	if(Contact.objects.filter(user=username)):
-			querys = Contact.objects.filter(user=username)
-			return render(request, 'chat/chat.html', {
-				'username': mark_safe(json.dumps(request.user.username)),
-				'querys': querys,
-				})
+		querys = Contact.objects.filter(user=username)
+
+		return render(request, 'chat/chat.html', {
+			'username': mark_safe(json.dumps(request.user.username)),
+			'querys': querys,
+			})
 	else:
 		return render(request, 'chat/chat.html', {
 			'username': mark_safe(json.dumps(request.user.username)),
@@ -23,6 +24,7 @@ def chatView(request):
 @login_required
 def roomView(request, other_username):
 	username = User.objects.get(username=request.user.username)
+	otherusername = User.objects.get(username=other_username)
 	if(other_username == request.user.username):
 		return redirect('/chat/')
 	else:
@@ -39,3 +41,4 @@ def roomView(request, other_username):
 				'username': mark_safe(json.dumps(request.user.username)),
 				'other_username': other_username,
 				})
+

@@ -3,18 +3,18 @@
 
 {% block rightbar %}
 <div class="content">
-		<div class="contact-profile">
+		<!--<div class="contact-profile">
 			<img src="http://emilcarlsson.se/assets/harveyspecter.png">
 			<p>Contact Name</p>
-		</div>
+		</div>-->
 		<div class="messages">
 			<ul class="chat-log">
 				{% comment %}<li class="sent">
-					<img src="http://emilcarlsson.se/assets/harveyspecter.png">
+					<img src="#">
 					<p>Hello, how are you?</p>
 				</li>
 				<li class="reply">
-					<img src="http://emilcarlsson.se/assets/harveyspecter.png">
+					<img src="#">
 					<p>I'm fine, thanks!</p>
 				</li>{% endcomment %}
 			</ul>
@@ -38,28 +38,19 @@
         + window.location.pathname
     );
     chatSocket.onopen = function(e){
-    	console.log("Connection is opened");
+    	fetchMessages();
     }
 
     chatSocket.onmessage = function(e){
         var data = JSON.parse(e.data)
-    	var author = data.author;
-        var msgListTag = document.createElement('li');
-        var pTag = document.createElement('p');
-        var imgTag = document.createElement('img');
-        pTag.textContent = data.message.content;
-        imgTag.src = 'http://emilcarlsson.se/assets/harveyspecter.png';
-        if (author==username){
-            msgListTag.className = 'reply';
-            msgListTag.appendChild(imgTag);
-            msgListTag.appendChild(pTag);
+        if(data['command'] === 'messages'){
+            for (let i = 0; i < data['messages'].length; i++) {
+                createMessage(data['messages'][i]);
+            }
         }
-        else{
-        	msgListTag.className = 'sent';
-        	msgListTag.appendChild(pTag);
-        	msgListTag.appendChild(imgTag);
+        else if (data['command'] === 'new_message' ){
+            createMessage(data['message']);
         }
-        document.querySelector('.chat-log').appendChild(msgListTag);
     }
 
     chatSocket.onclose = function(e){
@@ -88,6 +79,30 @@
         messageInputDom.value = '';
 
     };
+
+    function fetchMessages(){
+        chatSocket.send(JSON.stringify({'command': 'fetch_messages'}));
+    }
+
+    function createMessage(data){
+        var author = data.author;
+        var msgListTag = document.createElement('li');
+        var pTag = document.createElement('p');
+        var imgTag = document.createElement('img');
+        pTag.textContent = data.content;
+        imgTag.src = 'http://emilcarlsson.se/assets/harveyspecter.png';
+        if (author==username){
+            msgListTag.className = 'reply';
+            msgListTag.appendChild(imgTag);
+            msgListTag.appendChild(pTag);
+        }
+        else{
+            msgListTag.className = 'sent';
+            msgListTag.appendChild(pTag);
+            msgListTag.appendChild(imgTag);
+        }
+        document.querySelector('.chat-log').appendChild(msgListTag);
+    }
 
 </script>
 {% endblock %}

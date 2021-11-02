@@ -9,8 +9,8 @@
 <div class="container">
 	<div class="sidepanel">
 		<div class="profile">
-			<img src="http://emilcarlsson.se/assets/mikeross.png">
-			<p>{{ username }}</p>
+			<img src="{{ request.user.profile_image.url }}">
+			<p>{{ request.user.username }}</p>
 			<div class="dropdown-status-options">
 				<ul>
 					<li>Online</li>
@@ -23,14 +23,14 @@
 			<button class="search-btn" type="submit"><i class="bi bi-search"></i></button>
 		</div>
 		<div class="contacts">
-			{% for query in querys %}
-				{% for contact in query.contacts.all %}
+			{% for contacts in querys %}
+				{% for contact in contacts.contacts.all %}
 				<div class="contact">
 					<a href="{% url 'room' contact %}"><div class="contact-container">
-						<img src="http://emilcarlsson.se/assets/harveyspecter.png">
+						<img src="{{ contacts.contact_image.url }}">
 						<div class="wrap">
 							<p class="name">{{ contact }}</p>
-							<p class="message">Preview Message</p>
+							<p class="message">{{ contacts.message_preview }}</p>
 						</div>
 					</div></a>
 				</div>
