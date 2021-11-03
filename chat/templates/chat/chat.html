@@ -45,9 +45,10 @@
 							<img src="{{ contacts.contact_image.url }}">
 							<div class="wrap">
 								<p class="name">{{ contact }}</p>
-								{% for thread in threads %}
-								<p class="message">Message preview<!--{{ thread.message_preview }}--></p>
-								{% endfor %}
+								<p class="message">Message preview</p>
+								<!--{% for thread in threads %}
+								<p class="message">{{ thread.message_preview }}</p>
+								{% endfor %}-->
 							</div>
 						</div></a>
 					</div>
