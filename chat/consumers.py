@@ -60,7 +60,7 @@ class ChatConsumer(WebsocketConsumer):
         other_username = self.scope['url_route']['kwargs']['other_username']
         other_user = User.objects.get(username=other_username)
 
-        threads = self.get_thread(username, other_user)
+        threads = self.get_current_thread(username, other_user)
         thread_obj = threads.get(thread_type="private")
         thread_id = thread_obj.id  
         message = Message.objects.filter(thread_id=thread_id) #get messages from a specific thread
@@ -81,7 +81,7 @@ class ChatConsumer(WebsocketConsumer):
         other_username = self.scope['url_route']['kwargs']['other_username']
         other_user = User.objects.get(username=other_username)
 
-        threads = self.get_thread(username, other_user) # filter threads
+        threads = self.get_current_thread(username, other_user) # filter threads
         thread_obj = threads.get(thread_type="private") # get thread specific object
 
         message = Message.objects.create(author=author_user, content=data['message'], thread=thread_obj)
@@ -151,7 +151,7 @@ class ChatConsumer(WebsocketConsumer):
             thread.users.add(user2)
             return thread
 
-    def get_thread(self, user1, user2):
+    def get_current_thread(self, user1, user2):
         threads = Thread.objects.filter(thread_type='private')
         threads = threads.filter(users__in=[user1]).filter(users__in=[user2])
         return threads
@@ -169,6 +169,7 @@ class ChatConsumer(WebsocketConsumer):
             message = messages.order_by('-timestamp').reverse().last()
             content = message.content
 
-            contact = Contact.objects.get(user=username, contacts__in=[other_user])
-            contact.message_preview = content
-            contact.save()
+            thread = self.get_current_thread(username, other_user)
+            thread_obj = thread.get(thread_type='private')
+            thread_obj.message_preview = content
+            thread_obj.save()
