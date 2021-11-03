@@ -12,14 +12,14 @@
 			<img src="{{ request.user.profile_image.url }}">
 			<p>{{ request.user.username }}</p>
 		</div>
-		{% for contact_name_obj in contact_name_query %}
-			{% for contact_name in contact_name_obj.contacts.all %}
 			<div class="contact-bar">
-				<img src="{{ request.user.profile_image.url }}">
-				<p>{{ contact_name }}</p>
+				{% for contact_name_obj in contact_name_query %}
+					{% for contact_name in contact_name_obj.contacts.all %}
+					<img src="{{ request.user.profile_image.url }}">
+					<p>{{ contact_name }}</p>
+					{% endfor %}
+				{% endfor %}
 			</div>
-			{% endfor %}
-		{% endfor %}
 	</div>
 	<div class="container-panel">
 		<div class="sidepanel">
@@ -55,6 +55,7 @@
 				{% endfor %}
 			</div>
 		</div>
+		<div class="content"><style type="text/css">.content{background: url("{% static 'images/fundo.png' %}"); background-size: 50%;}</style>
 
 
 

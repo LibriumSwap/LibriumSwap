@@ -2,12 +2,11 @@
 {% load static %}
 
 {% block rightbar %}
-<div class="content">
 		<!--<div class="contact-profile">
 			<img src="http://emilcarlsson.se/assets/harveyspecter.png">
 			<p>Contact Name</p>
 		</div>-->
-		<div class="messages"><style type="text/css">.messages{background: url("{% static 'images/fundo.png '%}"); background-size: 50%;}</style>
+		<div class="messages"><style type="text/css">.content{background: none;}.messages{background: url("{% static 'images/fundo.png '%}"); background-size: 50%;}</style>
 			<ul class="chat-log">
 				{% comment %}<li class="sent">
 					<p>Hello, how are you?</p>
@@ -21,7 +20,6 @@
 			<input class="chat-message-input" type="text" placeholder="Write your message...">
 			<button class="chat-message-submit"type="submit"><img src="{% static 'images/send.png' %}"></i></button>
 		</div>
-</div>
 {% endblock %}
 
 {% block js %}

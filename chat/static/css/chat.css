@@ -139,7 +139,6 @@ body{
 
 
 .content{
-  background: white;
   color: black;
   width: 75%;
   height: 100%;
@@ -226,4 +225,9 @@ body{
 
 .chat-message-submit img{
   filter: invert(100%);
+}
+
+.background{
+  width: 100%;
+  height: 100%;
 }

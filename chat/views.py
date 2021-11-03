@@ -11,10 +11,13 @@ def chatView(request):
 	username = User.objects.get(username=request.user.username)
 	if(Contact.objects.filter(user=username)):
 		contacts_query = Contact.objects.filter(user=username)
+		#threads_query = Thread.objects.filter(thread_type="private")
+		#threads = threads_query.filter(users__in=[username]).filter(users__in=[otherusername])
 
 		return render(request, 'chat/chat.html', {
 			'username': mark_safe(json.dumps(request.user.username)),
 			'contacts_query': contacts_query,
+
 			})
 	else:
 		return render(request, 'chat/chat.html', {
