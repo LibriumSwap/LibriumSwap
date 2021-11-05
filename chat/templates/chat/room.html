@@ -2,28 +2,24 @@
 {% load static %}
 
 {% block rightbar %}
-<div class="content">
 		<!--<div class="contact-profile">
 			<img src="http://emilcarlsson.se/assets/harveyspecter.png">
 			<p>Contact Name</p>
 		</div>-->
-		<div class="messages">
+		<div class="messages"><style type="text/css">.content{background: none;}.messages{background: url("{% static 'images/fundo.png '%}"); background-size: 50%;}</style>
 			<ul class="chat-log">
 				{% comment %}<li class="sent">
-					<img src="#">
 					<p>Hello, how are you?</p>
 				</li>
-				<li class="reply">
-					<img src="#">
+				<li class="reply">>
 					<p>I'm fine, thanks!</p>
 				</li>{% endcomment %}
 			</ul>
 		</div>
 		<div class="message-input">
 			<input class="chat-message-input" type="text" placeholder="Write your message...">
-			<button class="chat-message-submit"type="submit">Enviar</button>
+			<button class="chat-message-submit"type="submit"><img src="{% static 'images/send.png' %}"></i></button>
 		</div>
-</div>
 {% endblock %}
 
 {% block js %}
@@ -39,6 +35,7 @@
     );
     chatSocket.onopen = function(e){
     	fetchMessages();
+        getOtherUser();
     }
 
     chatSocket.onmessage = function(e){
@@ -70,14 +67,16 @@
 
     document.querySelector('.chat-message-submit').onclick = function(e) {
         const messageInputDom = document.querySelector('.chat-message-input');
-        const message = messageInputDom.value;
-        chatSocket.send(JSON.stringify({
-            'message': message,
-            'command': 'new_message',
-            'from': username,
-        }));
-        messageInputDom.value = '';
-
+        if (messageInputDom.value != ''){
+            const message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'command': 'new_message',
+                'from': username,
+            }));
+            messageInputDom.value = '';
+            console.log(messageInputDom);
+        }
     };
 
     function fetchMessages(){
@@ -88,20 +87,21 @@
         var author = data.author;
         var msgListTag = document.createElement('li');
         var pTag = document.createElement('p');
-        var imgTag = document.createElement('img');
         pTag.textContent = data.content;
-        imgTag.src = 'http://emilcarlsson.se/assets/harveyspecter.png';
         if (author==username){
             msgListTag.className = 'reply';
-            msgListTag.appendChild(imgTag);
             msgListTag.appendChild(pTag);
         }
         else{
             msgListTag.className = 'sent';
             msgListTag.appendChild(pTag);
-            msgListTag.appendChild(imgTag);
         }
+
         document.querySelector('.chat-log').appendChild(msgListTag);
+    }
+
+    function getOtherUser(){
+        var name = document.getElementsByClassName('name');
     }
 
 </script>

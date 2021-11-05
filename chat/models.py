@@ -11,6 +11,7 @@ class Thread(models.Model):
         )
     name = models.CharField(max_length=50, null=True, blank=True)
     thread_type = models.CharField(max_length=15, choices=THREAD_TYPE, default='private')
+    message_preview = models.TextField(blank=True)
     users = models.ManyToManyField('autenticacao.User')
 
 
@@ -33,5 +34,4 @@ class Message(models.Model):
 class Contact(models.Model):
     user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
     contacts = models.ManyToManyField('autenticacao.User')
-    message_preview = models.TextField(blank=True)
     contact_image = models.ImageField(upload_to='images/contacts', default="images/contacts/user.png")

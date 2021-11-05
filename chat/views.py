@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.utils.safestring import mark_safe
 from django.shortcuts import render, redirect
-from .models import Contact
+from .models import Contact, Thread
 from autenticacao.models import User
 import json
 
@@ -10,11 +10,14 @@ import json
 def chatView(request):
 	username = User.objects.get(username=request.user.username)
 	if(Contact.objects.filter(user=username)):
-		querys = Contact.objects.filter(user=username)
+		contacts_query = Contact.objects.filter(user=username)
+		#threads_query = Thread.objects.filter(thread_type="private")
+		#threads = threads_query.filter(users__in=[username]).filter(users__in=[otherusername])
 
 		return render(request, 'chat/chat.html', {
 			'username': mark_safe(json.dumps(request.user.username)),
-			'querys': querys,
+			'contacts_query': contacts_query,
+
 			})
 	else:
 		return render(request, 'chat/chat.html', {
@@ -29,16 +32,22 @@ def roomView(request, other_username):
 		return redirect('/chat/')
 	else:
 		if(Contact.objects.filter(user=username)):
-			querys = Contact.objects.filter(user=username)
+			contacts_query = Contact.objects.filter(user=username)
+			threads_query = Thread.objects.filter(thread_type="private")
+			threads = threads_query.filter(users__in=[username]).filter(users__in=[otherusername])
+			contact_name_query = Contact.objects.filter(user=username, contacts__in=[otherusername])
 
 			return render(request, 'chat/room.html', {
 				'username': mark_safe(json.dumps(request.user.username)),
 				'other_username': other_username,
-				'querys': querys,
+				'contacts_query': contacts_query,
+				'threads': threads,
+				'contact_name_query': contact_name_query,
 				})
 		else:
 			return render(request, 'chat/room.html', {
 				'username': mark_safe(json.dumps(request.user.username)),
 				'other_username': other_username,
 				})
+
 
