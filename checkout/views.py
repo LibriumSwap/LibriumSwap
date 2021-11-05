@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.db.models import Sum
@@ -31,14 +33,15 @@ def checkout(request, anuncio_id):
 		user = get_object_or_404(User, username=request.user.username)
 
 		if form.is_valid():
-			pedido = form.save()
+			pedido = form.save(commit=False)
+			pedido.user = user
+			pedido.save()
 			pedido.anuncio.add(anuncio)
 			pedido.save()
 
-			user.pedidos.add(pedido)
-			user.save()
+			request.session['pedido'] = pedido.id
 
-			return HttpResponse("<h1>Pedido feito</h1>")
+			return HttpResponseRedirect(reverse("pagamento"))
 
 @login_required
 def checkout_carrinho(request):
