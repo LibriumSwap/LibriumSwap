@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   efeitosInput()
   cep()
+  maskCPF()
+  maskCEP()
 })
 
 function efeitosInput () {
@@ -44,5 +46,17 @@ function cep () {
         })
       }
     })
+  })
+}
+
+function maskCPF () {
+  var maskCPF = IMask(document.getElementById('cpf_mask'), {
+      mask: '000.000.000-00'
+  })
+}
+
+function maskCEP () {
+  var maskCEP = IMask(document.getElementById('cep_mask'), {
+      mask: '00000-000'
   })
 }

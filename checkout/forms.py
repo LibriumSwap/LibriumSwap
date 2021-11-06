@@ -9,9 +9,9 @@ class CheckoutInfo(forms.ModelForm):
 		exclude = ['user', 'anuncio']
 		widgets = {
 			'nome': TextInput(attrs={'class': 'effect-19'}),
-			'cpf': NumberInput(attrs={'class': 'effect-19', 'type': 'number'}),
+			'cpf': TextInput(attrs={'class': 'effect-19', 'id': "cpf_mask"}),
 			'contato': NumberInput(attrs={'class': 'effect-19', 'type': 'number'}),
-			'cep': NumberInput(attrs={'class': 'effect-19 cep', 'type': 'number'}),
+			'cep': TextInput(attrs={'class': 'effect-19 cep', 'id': "cep_mask"}),
 			'estado': TextInput(attrs={'class': 'effect-19 input-regiao'}),
 			'cidade': TextInput(attrs={'class': 'effect-19 input-regiao'}),
 			'bairro': TextInput(attrs={'class': 'effect-19 input-regiao'}),
