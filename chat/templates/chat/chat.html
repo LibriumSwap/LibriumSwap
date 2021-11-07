@@ -13,11 +13,9 @@
 			<p>{{ request.user.username }}</p>
 		</div>
 			<div class="contact-bar">
-				{% for contact_name_obj in contact_name_query %}
-					{% for contact_name in contact_name_obj.contacts.all %}
-					<img src="{{ request.user.profile_image.url }}">
-					<p>{{ contact_name }}</p>
-					{% endfor %}
+				{% for selected_contact_detail in selected_contact_details %}
+				<img class="top-bar-contact-img" src="{{ selected_contact_detail.profile_image.url }}">
+				<p class="top-bar-contact-name">{{ selected_contact_detail.username }}</p>
 				{% endfor %}
 			</div>
 	</div>
@@ -38,25 +36,23 @@
 				<button class="search-btn" type="submit"><i class="bi bi-search"></i></button>
 			</div>
 			<div class="contacts">
-				{% for contacts in contacts_query %}
-					{% for contact in contacts.contacts.all %}
-					<div class="contact">
-						<a href="{% url 'room' contact %}"><div class="contact-container">
-							<img src="{{ contacts.contact_image.url }}">
+				{% for contact_detail in contacts_details %}
+				<div class="contact">
+					<a href="{% url 'room' contact_detail.0 %}">
+						<div class="contact-container">
+							<img src="{{ contact_detail.1 }}">
 							<div class="wrap">
-								<p class="name">{{ contact }}</p>
-								<p class="message">Message preview</p>
-								<!--{% for thread in threads %}
-								<p class="message">{{ thread.message_preview }}</p>
-								{% endfor %}-->
+								<p class="contact-name">{{ contact_detail.0 }}</p>
+								<p class="message_preview">{{ contact_detail.2 }}</p>
 							</div>
-						</div></a>
-					</div>
-					{% endfor %}
+						</div>
+					</a>
+				</div>
 				{% endfor %}
 			</div>
 		</div>
 		<div class="content"><style type="text/css">.content{background: url("{% static 'images/fundo.png' %}"); background-size: 50%;}</style>
+
 
 
 
