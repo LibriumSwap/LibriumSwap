@@ -18,3 +18,4 @@ class Pedido(models.Model):
 	rua = models.CharField(max_length=128)
 	complemento = models.CharField(max_length=128, blank=True)
 	numero = models.CharField(max_length=10)
+	pago = models.BooleanField(default=False)

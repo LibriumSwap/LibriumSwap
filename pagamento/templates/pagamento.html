@@ -10,71 +10,79 @@
 
 {% block body %}
 	<div class="conteudo">
-		<h1>{{ pedido.anuncio.first.titulo }}</h1>
-		<form id="form-checkout" method="POST">
+		<form class="checkout-info" method="post">
+			<h1>Pagamento</h1>
+			{% csrf_token %}
 			<div class="col-3 input-effect">
-		    	<input class="effect-19" type="text" name="cardNumber" id="form-checkout__cardNumber" />
+		    	{{ form.num_cartao }}
 		        <label>Número do cartão</label>
 		        <span class="focus-border">
 		        	<i></i>
 		        </span>
 		    </div>
-		    <div class="data">
-			    <div class="col-3 input-effect">
-			    	<input class="effect-19" type="text" name="cardExpirationMonth" id="form-checkout__cardExpirationMonth" />
-			        <label>Mês de vencimento</label>
-			        <span class="focus-border">
-			        	<i></i>
-			        </span>
-			    </div>
-			    <div class="col-3 input-effect">
-			    	<input class="effect-19" type="text" name="cardExpirationYear" id="form-checkout__cardExpirationYear" />
-			        <label>Ano de vencimento</label>
-			        <span class="focus-border">
-			        	<i></i>
-			        </span>
-			    </div>
-			    <div class="col-3 input-effect">
-			    	<input class="effect-19" type="text" name="securityCode" id="form-checkout__securityCode" />
+			<div class="col-3 input-effect">
+		    	{{ form.mes_validade }}
+		        <label>Mês de validade</label>
+		        <span class="focus-border">
+		        	<i></i>
+		        </span>
+		    </div>
+			<div class="col-3 input-effect">
+		    	{{ form.ano_validade }}
+		        <label>Ano de validade</label>
+		        <span class="focus-border">
+		        	<i></i>
+		        </span>
+		    </div>
+	        <div class="regiao">
+	        	<div class="col-3 input-effect">
+			    	{{ form.cod_seguranca }}
 			        <label>Código de segurança</label>
 			        <span class="focus-border">
 			        	<i></i>
 			        </span>
 			    </div>
-			</div>
-		    <div class="col-3 input-effect">
-		    	<input class="effect-19" type="text" name="cardholderName" id="form-checkout__cardholderName"/>
-		        <label>Titular do cartão</label>
+		        <div class="col-3 input-effect">
+			    	{{ form.titular }}
+			        <label>Titular do cartão</label>
+			        <span class="focus-border">
+			        	<i></i>
+			        </span>
+			    </div>
+	        </div>
+	        <div class="col-3 input-effect">
+		    	{{ form.email }}
+		        <label>Email</label>
 		        <span class="focus-border">
 		        	<i></i>
 		        </span>
 		    </div>
-		    <div class="col-3 input-effect">
-		    	<input class="effect-19" type="email" name="cardholderEmail" id="form-checkout__cardholderEmail"/>
-		        <label>E-mail</label>
+	        <div class="col-3 input-effect">
+		    	{{ form.cpf }}
+		        <label>CPF</label>
 		        <span class="focus-border">
 		        	<i></i>
 		        </span>
 		    </div>
-
-			
-			<select name="issuer" id="form-checkout__issuer"></select>
-			<select name="identificationType" id="form-checkout__identificationType"></select>
-			<div class="col-3 input-effect">
-		    	<input class="effect-19" type="text" name="identificationNumber" id="form-checkout__identificationNumber"/>
-		        <label>Número do documento</label>
-		        <span class="focus-border">
-		        	<i></i>
-		        </span>
-		    </div>
-			<select name="installments" id="form-checkout__installments"></select>
-			<button type="submit" id="form-checkout__submit">Pagar</button>
+	        <button type="submit">Ir para pagamento</button>
 		</form>
-
-		<script src="https://unpkg.com/imask"></script>
-		<script src="https://sdk.mercadopago.com/js/v2"></script>
-		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-		<script type="text/javascript" src="{% static 'js/pagamento.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/efeito.js' %}"></script>
+		<div class="checkout-produtos">
+			<h3>Detalhes da compra</h3>
+			{% for anuncio in anuncios %}
+				<div class="produto">
+					<img src="{{ anuncio.imagens.first.imagem.url }}" width="50px">
+					<p>1x {{ anuncio.titulo }}</p>
+					<p class="preco">R${{ anuncio.preco }}</p>
+				</div>
+			{% endfor %}
+			<hr>
+			<div class="produto-preco">
+				<b>Total:</b>
+				<b class="preco">R${{ total.preco__sum }}</b>
+			</div>
+		</div>
 	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="{% static 'js/efeito.js' %}"></script>
 {% endblock %}

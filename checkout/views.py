@@ -51,18 +51,26 @@ def checkout_carrinho(request):
 		anuncios = LivroAnuncio.objects.filter(id__in=[anuncio_id for anuncio_id in request.session['carrinho']])
 		total = anuncios.aggregate(Sum('preco'))
 
-	return render(request, "checkout/checkout_info.html", {
-		"form": form,
-		"anuncios": anuncios,
-		"total": total,
-		"url": "checkout_carrinho"
-		})
+	if request.method == "GET":
+		return render(request, "checkout/checkout_info.html", {
+			"form": form,
+			"anuncios": anuncios,
+			"total": total,
+			"url": "checkout_carrinho"
+			})
 
 	if request.method == "POST":
+		user = get_object_or_404(User, username=request.user.username)
 		form = CheckoutInfo(request.POST)
 
 		if form.is_valid():
-			pedido = form.save()
+			pedido = form.save(commit=False)
+			pedido.user = user
+			pedido.save()
+			pedido.anuncio.add(*anuncios)
+			pedido.save()
 
-			return HttpResponse("<h1>Pedido feito</h1>")
+			request.session['pedido'] = pedido.id
+
+			return HttpResponseRedirect(reverse("pagamento"))
 			

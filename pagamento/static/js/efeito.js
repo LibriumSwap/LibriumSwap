@@ -15,7 +15,3 @@ function efeitosInput () {
     })
   });
 }
-
-var maskCPF = IMask(document.getElementById('form-checkout__cardExpirationMonth'), {
-    mask: '00/00'
-})

@@ -1,14 +1,62 @@
+body {
+	color: #343434;
+}
+
 .conteudo {
+	display: flex;
 	padding: 5%;
 	padding-top: 1%;
 }
 
-form {
-	display: grid;
+.checkout-info h1 {
+	margin-bottom: 50px;
 }
 
-.data {
+.checkout-info {
+	display: grid;
+	margin-right: 30px;
+	width: 50%;
+}
+
+.checkout-info button {
+	padding: 15px;
+	width: 50%;
+	background-color: #A959DD;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.checkout-produtos {
+	width: 50%;
+	margin-top: 90px;
+	background-color: rgba(0, 0, 0, 0.03);
+	padding: 30px;
+}
+
+.produto-preco {
 	display: flex;
+}
+
+.checkout-produtos .preco {
+	margin-left: auto;
+}
+
+.checkout-produtos img {
+	margin-right: 15px;
+}
+
+.checkout-produtos hr {
+	border-color: rgba(255, 255, 255, 0.44);
+	margin-bottom: 25px;
+}
+
+.produto {
+	display: flex;
+	margin-bottom: 10px;
 }
 
 input[type="text"], input[type="number"], input[type="email"] {
