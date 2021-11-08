@@ -1,0 +1,31 @@
+{% extends "home/layout.html" %}
+
+{% load static %}
+
+{% block title %}Meus anúncios{% endblock %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/anuncios.css' %}">
+{% endblock %}
+
+{% block body %}
+	<h1>Meus anúncios</h1>
+	<hr>
+	<div class="anuncios">
+		{% for anuncio in anuncios %}
+			<div class="anuncio">
+				<a href="{% url 'anuncio_livro' anuncio.id %}"><img src="{{ anuncio.imagens.first.imagem.url }}" width="120px"></a>
+				<div class="anuncio-texto">
+					<div class="anuncio-info">
+						<a href="{% url 'anuncio_livro' anuncio.id %}"><h2>{{ anuncio.titulo }}</h2></a>
+						<p>{{ anuncio.autor }}</p>
+					</div>
+					{% if anuncio.preco %}
+						<h2 id="preco">R$ {{ anuncio.preco }}</h2>
+					{% endif %}
+				</div>
+			</div>
+			<hr>
+		{% endfor %}
+	</div>
+{% endblock %}

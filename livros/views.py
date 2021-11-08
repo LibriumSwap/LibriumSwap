@@ -117,6 +117,14 @@ def novo_anuncio(request):
 			"form": NovoAnuncioForm(),
 			})
 
+def anuncios_feitos(request):
+	user = get_object_or_404(User, username=request.user.username)
+	anuncios = LivroAnuncio.objects.filter(anunciante=user)
+	
+	return render(request, "anuncio/anuncios.html", {
+		"anuncios": anuncios
+		})
+
 @require_POST
 def favorito(request):
 	data = json.loads(request.body)
