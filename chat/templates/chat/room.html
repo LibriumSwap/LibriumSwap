@@ -1,41 +1,37 @@
+
 {% extends 'chat/chat.html' %}
 {% load static %}
 
 {% block rightbar %}
-		<!--<div class="contact-profile">
-			<img src="http://emilcarlsson.se/assets/harveyspecter.png">
-			<p>Contact Name</p>
-		</div>-->
-		<div class="messages"><style type="text/css">.content{background: none;}.messages{background: url("{% static 'images/fundo.png '%}"); background-size: 50%;}</style>
-			<ul class="chat-log">
-				{% comment %}<li class="sent">
-					<p>Hello, how are you?</p>
-				</li>
-				<li class="reply">>
-					<p>I'm fine, thanks!</p>
-				</li>{% endcomment %}
-			</ul>
-		</div>
-		<div class="message-input">
-			<input class="chat-message-input" type="text" placeholder="Write your message...">
-			<button class="chat-message-submit"type="submit"><img src="{% static 'images/send.png' %}"></i></button>
-		</div>
+        <div class="messages"><style type="text/css">.content{background: none;}.messages{background: url("{% static 'images/fundo.png' %}"); background-size: 50%;}</style>
+            <ul class="chat-log">
+                {% comment %}<li class="sent">
+                    <p>Hello, how are you?</p>
+                </li>
+                <li class="reply">>
+                    <p>I'm fine, thanks!</p>
+                </li>{% endcomment %}
+            </ul>
+        </div>
+        <div class="message-input">
+            <input class="chat-message-input" type="text" placeholder="Write your message...">
+            <button class="chat-message-submit"type="submit"><img src="{% static 'images/send.png' %}"></i></button>
+        </div>
 {% endblock %}
 
 {% block js %}
 <script src="{% static 'js/reconnecting-websocket.js'%}"></script>
 <script>
-	var other_username = "{{ other_username }}";
-	var username = {{ username }};
-	const chatSocket = new ReconnectingWebSocket(
+    var other_username = "{{ other_username }}";
+    var username = {{ username }};
+    const chatSocket = new ReconnectingWebSocket(
         'ws://'
         + window.location.host
         + '/ws'
         + window.location.pathname
     );
     chatSocket.onopen = function(e){
-    	fetchMessages();
-        getOtherUser();
+        fetchMessages();
     }
 
     chatSocket.onmessage = function(e){
@@ -48,14 +44,18 @@
         else if (data['command'] === 'new_message' ){
             createMessage(data['message']);
         }
+
+        else if(data['command'] === 'new_contact'){
+            newContact(data['contact']);
+        }
     }
 
     chatSocket.onclose = function(e){
-    	console.log("Connection is closed");
+        console.log("Connection is closed");
     }
 
     chatSocket.onerror = function(e){
-    	console.error('Chat socket closed unexpectedly');
+        console.error('Chat socket closed unexpectedly');
     }
 
     document.querySelector('.chat-message-input').focus();
@@ -74,14 +74,14 @@
                 'command': 'new_message',
                 'from': username,
             }));
-            messageInputDom.value = '';
-            console.log(messageInputDom);
+            messageInputDom.value = ''; 
         }
     };
 
     function fetchMessages(){
         chatSocket.send(JSON.stringify({'command': 'fetch_messages'}));
     }
+
 
     function createMessage(data){
         var author = data.author;
@@ -100,8 +100,50 @@
         document.querySelector('.chat-log').appendChild(msgListTag);
     }
 
-    function getOtherUser(){
-        var name = document.getElementsByClassName('name');
+    function newContact(data){
+        var img_url = "#";
+        var div_contact = document.createElement('div');
+        div_contact.className = "contact";
+        var a_link = document.createElement('a');
+        var div_contact_container = document.createElement('div');
+        div_contact_container.className = "contact-container";
+        var img_contact_image = document.createElement('img');
+        var div_wrap = document.createElement('div');
+        div_wrap.className = "wrap";
+        var pTag_contact_name = document.createElement('p');
+        pTag_contact_name.className = "contact-name";
+
+        a_link.href = window.location.pathname;
+
+        pTag_contact_name.textContent = data.contact_name;
+        img_contact_image.src = data.contact_image;
+
+
+        div_contact.appendChild(a_link);
+        a_link.appendChild(div_contact_container);
+        div_contact_container.appendChild(img_contact_image);
+        div_contact_container.appendChild(div_wrap);
+        div_wrap.appendChild(pTag_contact_name);
+
+        div_contact_bar = document.querySelector('.contact-bar');
+
+
+        if(div_contact_bar.children.length > 0){
+            document.querySelector('.top-bar-contact-name').innerHTML = pTag_contact_name.textContent;
+            document.querySelector('.top-bar-contact-img').src = img_contact_image.src;
+
+
+        }
+        else{
+            pTag_top_bar_contact_name = document.createElement('p');
+            img_top_bar_contact_image = document.createElement('img');
+            pTag_top_bar_contact_name.textContent = pTag_contact_name.textContent
+            img_top_bar_contact_image.src = img_contact_image.src
+            document.querySelector('.contact-bar').appendChild(img_top_bar_contact_image);
+            document.querySelector('.contact-bar').appendChild(pTag_top_bar_contact_name);
+        }
+
+        document.querySelector('.contacts').appendChild(div_contact);
     }
 
 </script>

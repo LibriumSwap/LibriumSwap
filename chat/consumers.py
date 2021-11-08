@@ -9,14 +9,13 @@ from .models import Thread, Message, Contact
 User = get_user_model()
 class ChatConsumer(WebsocketConsumer):
     def connect(self):
-        username = self.scope['user']
+        user = self.scope['user']
+        username = User.objects.get(username=user)
         other_username = self.scope['url_route']['kwargs']['other_username']
         other_user = User.objects.get(username=other_username)
-        self.create_contact(username, other_user) # create contact
         thread_type = Thread.objects.filter(thread_type='private') # filter all threads
         thread_obj = self.get_or_create_private_thread(username, other_user) # get or create a thread
         self.room_group_name = f'private_thread_{thread_obj.id}'
-
         print(self.room_group_name)
         # Join room group
         async_to_sync(self.channel_layer.group_add)(
@@ -25,6 +24,7 @@ class ChatConsumer(WebsocketConsumer):
         )
 
         self.accept()
+        self.new_contact(username, other_user) # create contact
 
     def receive(self, text_data):
         data = json.loads(text_data)
@@ -56,15 +56,14 @@ class ChatConsumer(WebsocketConsumer):
         )
 
     def fetch_messages(self, data):
-        username = self.scope['user']
+        user = self.scope['user']
         other_username = self.scope['url_route']['kwargs']['other_username']
         other_user = User.objects.get(username=other_username)
 
-        threads = self.get_current_thread(username, other_user)
+        threads = self.get_current_thread(user, other_user)
         thread_obj = threads.get(thread_type="private")
         thread_id = thread_obj.id  
         message = Message.objects.filter(thread_id=thread_id) #get messages from a specific thread
-
         messages = self.last_10_messages(message) # fetch messages
         content = {
             'command': 'messages',
@@ -77,11 +76,11 @@ class ChatConsumer(WebsocketConsumer):
         author = data['from']
         author_user = User.objects.filter(username=author)[0]
 
-        username = self.scope['user']
+        user = self.scope['user']
         other_username = self.scope['url_route']['kwargs']['other_username']
         other_user = User.objects.get(username=other_username)
 
-        threads = self.get_current_thread(username, other_user) # filter threads
+        threads = self.get_current_thread(user, other_user) # filter threads
         thread_obj = threads.get(thread_type="private") # get thread specific object
 
         message = Message.objects.create(author=author_user, content=data['message'], thread=thread_obj)
@@ -94,14 +93,10 @@ class ChatConsumer(WebsocketConsumer):
         #get preview message
         thread_obj = threads.get(thread_type="private")
         thread_id = thread_obj.id 
-        self.get_preview_message(username, other_user, thread_id) 
+        self.save_preview_message(user, other_user, thread_id) 
 
         return self.send_chat_message(content)
 
-    commands = {
-        'fetch_messages': fetch_messages,
-        'new_message': new_message,
-    }
 
     def messages_to_jsn(self, messages):
         result = []
@@ -116,26 +111,6 @@ class ChatConsumer(WebsocketConsumer):
             'timestamp': str(message.timestamp)
         }
 
-
-    def create_contact(self, username, other_username):
-        user = User.objects.get(username=username)
-
-        contact_name = User.objects.get(username=other_username)
-        contacts = Contact.objects.all()
-        if(user == contact_name):
-            print("1")
-        else:
-            user_name = User.objects.filter(username=username)
-            otheruser_name = User.objects.filter(username=other_username)
-            if(contacts.filter(user__in=user_name, contacts__in=otheruser_name).exists()):
-                print("2")
-            else:
-                print("3")
-                for username in user_name:
-                    continue
-                contact_image = username.profile_image
-                contact = Contact.objects.create(user=user)
-                contact.contacts.add(contact_name)
 
     def get_or_create_private_thread(self, user1, user2):
         threads = Thread.objects.filter(thread_type='private')
@@ -163,7 +138,7 @@ class ChatConsumer(WebsocketConsumer):
 
         return reverse_message_list
 
-    def get_preview_message(self, username, other_user, thread_id):
+    def save_preview_message(self, username, other_user, thread_id):
         messages = Message.objects.filter(thread_id=thread_id)
         if messages.exists():
             message = messages.order_by('-timestamp').reverse().last()
@@ -173,3 +148,44 @@ class ChatConsumer(WebsocketConsumer):
             thread_obj = thread.get(thread_type='private')
             thread_obj.message_preview = content
             thread_obj.save()
+
+    def update_contact_photo(self, username, other_username):
+        print("teste")
+
+    #Contact
+
+    def new_contact(self, username, other_username):
+        contact_name = User.objects.get(username=other_username)
+        contacts = Contact.objects.all()
+        if(username == contact_name):
+            print("1")
+        else:
+            username_filter = User.objects.filter(username=username)
+            otheruser_filter = User.objects.filter(username=other_username)
+            if(contacts.filter(user__in=username_filter, contacts__in=otheruser_filter).exists()):
+                print("2")
+            else:
+                print("3")
+                for otheruser in otheruser_filter:
+                    continue
+                otheruser_image = otheruser.profile_image
+                contact = Contact.objects.create(user=username)
+                contact.contacts.add(contact_name)
+                content = {
+                    'command': 'new_contact',
+                    'contact': self.contact_to_json(contact, otheruser_image)
+                }
+
+
+                self.send(text_data=json.dumps(content))
+
+    def contact_to_json(self, contact, otheruser_image):
+        return {
+            'contact_name': contact.contacts.first().username,
+            'contact_image': otheruser_image.url,
+        }
+
+    commands = {
+        'fetch_messages': fetch_messages,
+        'new_message': new_message,
+    }

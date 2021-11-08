@@ -34,4 +34,3 @@ class Message(models.Model):
 class Contact(models.Model):
     user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
     contacts = models.ManyToManyField('autenticacao.User')
-    contact_image = models.ImageField(upload_to='images/contacts', default="images/contacts/user.png")
