@@ -120,10 +120,13 @@ def novo_anuncio(request):
 def anuncios_feitos(request):
 	user = get_object_or_404(User, username=request.user.username)
 	anuncios = LivroAnuncio.objects.filter(anunciante=user)
-	
+
 	return render(request, "anuncio/anuncios.html", {
 		"anuncios": anuncios
 		})
+
+def compras(request):
+	pass
 
 @require_POST
 def favorito(request):
