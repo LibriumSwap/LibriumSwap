@@ -126,7 +126,7 @@ def anuncios_feitos(request):
 		})
 
 def compras(request):
-	pass
+	return render(request, "anuncio/compras.html", {})
 
 @require_POST
 def favorito(request):
