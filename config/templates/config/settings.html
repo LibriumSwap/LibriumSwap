@@ -1,2 +1,12 @@
-{% extends 'config/base.html' %}
+{% extends 'home/layout.html' %}
 {% load static %}
+
+{% block head%}<link rel="stylesheet" type="text/css" href="{% static 'css/config.css' %}">{% endblock %}
+{% block body %}
+<form method="POST">
+	{%csrf_token%}
+	{{form.profile_image}}
+	<button type="submit">Enviar</button>
+</form>
+
+{% endblock %}
