@@ -2,6 +2,7 @@ from django import forms
 from django.forms import TextInput
 
 from .models import Pagamento
+from checkout.models import Pedido
 
 class PagamentoForm(forms.ModelForm):
 	class Meta:

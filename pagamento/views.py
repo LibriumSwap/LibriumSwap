@@ -21,9 +21,11 @@ def pagamento(request):
 			pagamento = PagamentoForm(request.POST)
 
 			if pagamento.is_valid():
-				pagamento.save(commit=False)
-				pagamento.pedido = pedido
-				pagamento.save()
+				pagamento_object = pagamento.save()
+
+				pagamento_object.pedido = pedido
+				pagamento_object.pedido.pago = True
+				pagamento_object.save()
 
 				return redirect("compras")
 			else:

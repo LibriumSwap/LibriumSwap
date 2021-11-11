@@ -10,9 +10,12 @@ from django.views.decorators.http import require_POST
 from io import BytesIO
 from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile
+
 from .forms import NovoAnuncioForm
 from .models import Livro, LivroAnuncio, LivroAnuncioImagem
 from autenticacao.models import User
+from checkout.models import Pedido
+from pagamento.models import Pagamento
 
 def anuncio(request, id_anuncio):
 	anuncio = LivroAnuncio.objects.get(id=id_anuncio)
@@ -126,7 +129,11 @@ def anuncios_feitos(request):
 		})
 
 def compras(request):
-	return render(request, "anuncio/compras.html", {})
+	user = get_object_or_404(User, username=request.user.username)
+	compras = Pagamento.objects.filter(pedido__in=Pedido.objects.filter(user=user, pago=True))
+	return render(request, "anuncio/compras.html", {
+		"compras": compras
+		})
 
 @require_POST
 def favorito(request):
