@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'chat',
     'pagamento',
     'channels',
+    'config',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -165,9 +166,6 @@ EMAIL_USE_TLS = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# MERCADO PAGO
-MERCADO_PAGO_PUBLIC_KEY = env("MERCADO_PAGO_PUBLIC_KEY")
-MERCADO_PAGO_ACCESS_TOKEN = env("MERCADO_PAGO_ACCESS_TOKEN")
 
 LOGIN_URL = "/login/"
 
