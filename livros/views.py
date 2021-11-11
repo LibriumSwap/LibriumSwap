@@ -135,6 +135,14 @@ def compras(request):
 		"compras": compras
 		})
 
+def compra(request, id_compra):
+	user = get_object_or_404(User, username=request.user.username)
+	compra = Pagamento.objects.filter(id=id_compra, pedido__in=Pedido.objects.filter(user=user))
+
+	return render(request, "anuncio/compra.html", {
+		"compra": compra
+		})
+
 @require_POST
 def favorito(request):
 	data = json.loads(request.body)
