@@ -7,7 +7,7 @@ from checkout.models import Pedido
 class PagamentoForm(forms.ModelForm):
 	class Meta:
 		model = Pagamento
-		exclude = ['pedido']
+		exclude = ['pedido', 'total', 'data_pagamento']
 		widgets = {
 			'num_cartao': TextInput(attrs={'class': 'effect-19'}),
 			'mes_validade': TextInput(attrs={'class': 'effect-19'}),

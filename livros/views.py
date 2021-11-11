@@ -131,6 +131,7 @@ def anuncios_feitos(request):
 def compras(request):
 	user = get_object_or_404(User, username=request.user.username)
 	compras = Pagamento.objects.filter(pedido__in=Pedido.objects.filter(user=user, pago=True))
+	print(compras.first().pedido)
 	return render(request, "anuncio/compras.html", {
 		"compras": compras
 		})

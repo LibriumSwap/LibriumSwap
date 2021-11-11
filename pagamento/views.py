@@ -24,6 +24,8 @@ def pagamento(request):
 				pagamento_object = pagamento.save()
 
 				pagamento_object.pedido = pedido
+				total = pagamento_object.pedido.anuncio.aggregate(Sum('preco'))
+				pagamento_object.total = total.get('preco__sum')
 				pagamento_object.pedido.pago = True
 				pagamento_object.save()
 
