@@ -14,7 +14,6 @@
 	<div class="compras">
 		{% for compra in compras %}
 			<div class="compra">
-				{{ compra.total }}
 				<a href="{% url 'anuncio_livro' compra.id %}"><img src="{{ compra.imagens.first.imagem.url }}" width="120px"></a>
 				<div class="compra-texto">
 					<div class="compra-info">
