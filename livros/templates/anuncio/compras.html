@@ -12,16 +12,16 @@
 	<h1>Minhas compras</h1>
 	<hr>
 	<div class="compras">
-		{% for anuncio in compras %}
-			<div class="anuncio">
-				<a href="{% url 'anuncio_livro' anuncio.id %}"><img src="{{ anuncio.imagens.first.imagem.url }}" width="120px"></a>
-				<div class="anuncio-texto">
-					<div class="anuncio-info">
-						<a href="{% url 'anuncio_livro' anuncio.id %}"><h2>{{ anuncio.titulo }}</h2></a>
-						<p>{{ anuncio.autor }}</p>
+		{% for compra in compras %}
+			<div class="compra">
+				<a href="{% url 'anuncio_livro' compra.id %}"><img src="{{ compra.imagens.first.imagem.url }}" width="120px"></a>
+				<div class="compra-texto">
+					<div class="compra-info">
+						<a href="{% url 'anuncio_livro' compra.id %}"><h2>{{ compra.titulo }}</h2></a>
+						<p>{{ compra.autor }}</p>
 					</div>
-					{% if anuncio.preco %}
-						<h2 id="preco">R$ {{ anuncio.preco }}</h2>
+					{% if compra.preco %}
+						<h2 id="preco">R$ {{ compra.preco }}</h2>
 					{% endif %}
 				</div>
 			</div>

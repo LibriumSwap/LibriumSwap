@@ -6,4 +6,4 @@ channels
 channels-redis
 django-environ
 pillow
-mercadopago
+django-localflavor

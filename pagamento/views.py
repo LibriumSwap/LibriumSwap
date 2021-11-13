@@ -21,9 +21,14 @@ def pagamento(request):
 			pagamento = PagamentoForm(request.POST)
 
 			if pagamento.is_valid():
-				pagamento.save(commit=False)
-				pagamento.pedido = pedido
-				pagamento.save()
+				pagamento_object = pagamento.save()
+
+				pagamento_object.pedido = pedido
+				total = pagamento_object.pedido.anuncio.aggregate(Sum('preco'))
+				pagamento_object.total = total.get('preco__sum')
+				pagamento_object.pedido.pago = True
+				pagamento_object.pedido.save()
+				pagamento_object.save()
 
 				return redirect("compras")
 			else:
