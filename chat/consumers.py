@@ -152,8 +152,8 @@ class ChatConsumer(WebsocketConsumer):
     def update_contact_photo(self, username, other_username):
         print("teste")
 
-    #Contact
-
+    
+    #Create contact
     def new_contact(self, username, other_username):
         contact_name = User.objects.get(username=other_username)
         contacts = Contact.objects.all()

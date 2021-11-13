@@ -101,7 +101,6 @@
     }
 
     function newContact(data){
-        var img_url = "#";
         var div_contact = document.createElement('div');
         div_contact.className = "contact";
         var a_link = document.createElement('a');
@@ -131,8 +130,6 @@
         if(div_contact_bar.children.length > 0){
             document.querySelector('.top-bar-contact-name').innerHTML = pTag_contact_name.textContent;
             document.querySelector('.top-bar-contact-img').src = img_contact_image.src;
-
-
         }
         else{
             pTag_top_bar_contact_name = document.createElement('p');
