@@ -13,16 +13,19 @@
 	<hr>
 	<div class="compras">
 		{% for compra in compras %}
+			
 			<div class="compra">
-				<a href="{% url 'anuncio_livro' compra.id %}"><img src="{{ compra.imagens.first.imagem.url }}" width="120px"></a>
-				<div class="compra-texto">
-					<div class="compra-info">
-						<a href="{% url 'anuncio_livro' compra.id %}"><h2>{{ compra.titulo }}</h2></a>
-						<p>{{ compra.autor }}</p>
-					</div>
-					{% if compra.preco %}
-						<h2 id="preco">R$ {{ compra.preco }}</h2>
-					{% endif %}
+				<h3>{{ compra.data_pagamento.date }}</h3>
+				<div class="anuncio">
+					<ul>
+					{% for anuncio in compra.pedido.anuncio.all %}
+						<li class="livro">
+							<img src="{{ anuncio.imagens.first.imagem.url }}">
+							<h4>{{ anuncio.titulo }}</h4>
+							<h4 id="preco">R${{ anuncio.preco }}</h4>
+						</li>
+					{% endfor %}
+				</ul>
 				</div>
 			</div>
 			<hr>

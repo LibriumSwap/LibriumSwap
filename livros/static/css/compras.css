@@ -17,30 +17,23 @@ hr {
 	width: 100%;
 }
 
-.anuncio {
-	display: flex;
-	align-items: center;
+.compra {
 	padding-left: 5%;
 	padding-right: 5%;
 }
 
-.anuncio-texto {
-	margin-left: 15px;
+.livro {
 	display: flex;
-	width: 100%;
+	align-items: center;
+	margin-bottom: 10px;
 }
 
-a {
-	color: #343434;
-	text-decoration: none;
+.livro img {
+	width: 60px;
+	margin-right: 10px;
 }
 
-#preco {
+.livro #preco {
 	margin-left: auto;
-}
-
-@media screen and (max-width: 660px) {
-	.anuncio-texto {
-		display: block;
-	}
+	margin-right: 50px;
 }
