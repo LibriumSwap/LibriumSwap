@@ -32,6 +32,10 @@ body {
 	width: 100%;
 }
 
+#anuncio-preco {
+  margin-bottom: 15px;
+}
+
 .anuncio-info p {
 	margin-top: 0;
 }
@@ -74,6 +78,10 @@ body {
 .btn-carrinho {
 	background-color: white;
 	color: #820AD1;
+}
+
+.btn-carrinho i {
+  display: none;
 }
 
 .anuncio-sinopse, .anuncio-detalhes {

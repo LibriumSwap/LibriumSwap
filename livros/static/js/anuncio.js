@@ -45,6 +45,9 @@ function adicionarAoCarrinho () {
 		.then(result => {
 			if (result.error == 'login') {
 				window.location.href = "/login/"
+			} else {
+				btnAdicionarAoCarrinho.querySelector('span').innerText = "Adicionado "
+				btnAdicionarAoCarrinho.querySelector('i').style.display = "inline-block"
 			}
 		})
 	}

@@ -123,9 +123,9 @@
 			</div>
 
 			<h4>Anunciado por {{ anuncio.anunciante.username }} <a href="{% url 'room' anuncio.anunciante.username %}"><i class="bi bi-pencil-square"></i></a></h4>
-			<h2>R$ {{ anuncio.preco }}</h2>
+			<h2 id="anuncio-preco">R$ {{ anuncio.preco }}</h2>
 			<a href="{% url 'checkout' anuncio.id %}" class="btn btn-comprar">Comprar</a>
-			<button class="btn btn-carrinho">Adicionar ao carrinho</button>
+			<button class="btn btn-carrinho"><span>Adicionar ao carrinho</span><i class="bi bi-check-circle-fill"></i></button>
 		</div>
 	</div>
 	<div class="anuncio-sinopse">
