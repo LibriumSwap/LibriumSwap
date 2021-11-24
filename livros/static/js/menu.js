@@ -104,7 +104,7 @@ function voltarMenu () {
   })
 }
 
-function pertoDeMim() {
+function pertoDeMim () {
   botaoPertoDeMim = document.querySelector('#perto-de-mim')
 
   botaoPertoDeMim.addEventListener('click', () => {
