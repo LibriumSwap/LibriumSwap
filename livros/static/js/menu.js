@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   menuGeneros()
   menuCategorias()
   voltarMenu()
+  pertoDeMim()
 })
 
 function responsiveMenu () {
@@ -99,6 +100,21 @@ function voltarMenu () {
       dropdownGenerosMobile.style.display = 'none'
       dropdownCategoriasMobile.style.display = 'none'
       dropdownUsuarioMobile.style.display = 'grid'
+    })
+  })
+}
+
+function pertoDeMim() {
+  botaoPertoDeMim = document.querySelector('#perto-de-mim')
+
+  botaoPertoDeMim.addEventListener('click', () => {
+    fetch("http://ip-api.com/json/", {
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(result => {
+      string = `?q=&localizacao=${result.regionName.toLowerCase()}`
+      window.location.href = `/livro/pesquisa/${string}`
     })
   })
 }

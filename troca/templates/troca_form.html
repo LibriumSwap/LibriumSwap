@@ -8,7 +8,7 @@
 
 {% block body %}
 	<h1>Nova troca</h1>
-	<form action="{% url 'novo_anuncio' %}" enctype="multipart/form-data" method="post" onsubmit="anunciar();">
+	<form action="{% url 'troca' anuncio_id %}" enctype="multipart/form-data" method="post" onsubmit="anunciar();">
 		{% csrf_token %}
 		<div class="div-1">
 			<div class="imagens">

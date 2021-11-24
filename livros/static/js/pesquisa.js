@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	ordenar()
 	precoFiltro()
 	generoFiltro()
+	localizacaoFiltro()
 	filtrarMobile()
 	ordenarMobile()
 })
@@ -105,6 +106,23 @@ function generoFiltro () {
 			string = urlParametros('genero')
 
 			string += `genero=${genero.innerText.toLowerCase()}`
+
+			window.location.href = `/livro/pesquisa/${string}`
+		}
+	})
+}
+
+function localizacaoFiltro () {
+	localizacoes = document.querySelectorAll('.filtro-localizacao')
+
+	localizacoes.forEach(localizacao => {
+		localizacao.onclick = function () {
+			string = urlParametros('estado')
+
+			str = localizacao.innerText.toLowerCase()
+			parsed = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+			string += `estado=${parsed}`
 
 			window.location.href = `/livro/pesquisa/${string}`
 		}
