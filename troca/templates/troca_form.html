@@ -1,0 +1,39 @@
+{% extends 'home/layout.html' %}
+
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/novo_anuncio_form.css' %}">
+{% endblock %}
+
+{% block body %}
+	<h1>Nova troca</h1>
+	<form action="{% url 'novo_anuncio' %}" enctype="multipart/form-data" method="post" onsubmit="anunciar();">
+		{% csrf_token %}
+		<div class="div-1">
+			<div class="imagens">
+				<h2>Imagem do livro</h2>
+				<div class="swiper-slide imagem-troca">{{ form.imagem }} <label for="id_imagem" id="imagem"><i class="bi bi-camera-fill"></i></label></div>
+			</div>
+			<div class="livro-info">
+				<div class="col-3 input-effect">
+		        	{{ form.titulo }}
+		            <label>Título</label>
+		            <span class="focus-border"></span>
+		        </div>
+    			<div class="col-3 input-effect">
+		        	{{ form.autor }}
+		            <label>Autor(a)</label>
+		            <span class="focus-border"></span>
+		        </div>
+    			</div>
+			</div>
+		</div>
+		<div class="inputs-3">
+			<button type="submit" class="draw meet">Solicitar troca</button>
+		</div>
+	</form>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script src="{% static 'js/novo_anuncio_form.js' %}"></script>
+{% endblock %}

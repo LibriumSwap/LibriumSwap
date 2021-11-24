@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'checkout',
     'chat',
     'pagamento',
+    'troca',
     'channels',
     'config',
     'django.contrib.admin',
