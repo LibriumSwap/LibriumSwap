@@ -1,0 +1,43 @@
+{% extends 'home/layout.html' %}
+
+{% load static %}
+
+{% block title %}Trocas{% endblock %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/trocas_solicitadas.css' %}">
+{% endblock %}
+
+{% block body %}
+	<div class="titulo">
+		<a href="#" class="trocas_recebidas"><h1 class="ativado">Trocas solicitadas</h1></a>
+		<a href="#" class="trocas_solicitadas"><h1>Trocas recebidas</h1></a>
+	</div>
+	<hr>
+	<div class="trocas">
+		{% for troca in trocas_solicitadas %}
+			<div class="troca">
+				<div class="livro_user">
+					<img src="{{ troca.imagem.url }}" width="120px">
+					<div class="troca-texto">
+						<div class="troca-info">
+							<h3>{{ troca.titulo }}</h3>
+							<p>{{ troca.autor }}</p>
+						</div>
+					</div>
+				</div>
+				<i class="bi bi-arrow-left-right"></i>
+				<div class="livro_anuncio">
+					<a href="{% url 'anuncio_livro' troca.anuncio.id %}"><img src="{{ troca.anuncio.imagens.first.imagem.url }}" width="120px"></a>
+					<div class="troca-texto">
+						<div class="troca-info">
+							<a href="{% url 'anuncio_livro' troca.anuncio.id %}"><h3>{{ troca.anuncio.titulo }}</h3></a>
+							<p>{{ troca.anuncio.autor }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr>
+		{% endfor %}
+	</div>
+{% endblock %}

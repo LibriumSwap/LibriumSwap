@@ -1,0 +1,59 @@
+body {
+	color: #343434;
+}
+
+.titulo {
+	display: flex;
+	justify-content: center;
+}
+
+.titulo h1 {
+	color: rgba(0, 0, 0, 0.44);
+}
+
+.trocas_recebidas {
+	margin-right: 20px;
+}
+
+.ativado {
+	color: #820AD1 !important;
+}
+
+hr {
+	width: 80%;
+	border-color: rgba(255, 255, 255, 0.44);
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
+
+.trocas {
+	width: 100%;
+}
+
+.troca {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.livro_user, .livro_anuncio {
+	max-width: 10%;
+}
+
+a {
+	color: #343434;
+	text-decoration: none;
+}
+
+.troca i {
+	font-size: 30px;
+	color: #820AD1;
+}
+
+@media screen and (max-width: 660px) {
+	.troca-text {
+		display: block;
+	}
+}
