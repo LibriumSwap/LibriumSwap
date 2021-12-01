@@ -35,7 +35,9 @@ def trocas_solicitadas(request):
 
 def trocas_recebidas(request):
 	user = User.objects.get(username=request.user.username)
-	anuncios_feitos = LivroAnuncio.objects.get(user=user)
+	anuncios_feitos = LivroAnuncio.objects.filter(user=user)
 	trocas_recebidas = LivroTroca.objects.filter(anuncio__in=anuncios_feitos)
 
-	print(trocas_recebidas)
+	return render(request, "trocas_recebidas.html", {
+		"trocas_recebidas": trocas_recebidas
+		})

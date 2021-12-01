@@ -10,12 +10,12 @@
 
 {% block body %}
 	<div class="titulo">
-		<a href="#" class="trocas_recebidas"><h1 class="ativado">Trocas solicitadas</h1></a>
-		<a href="{% url 'trocas_recebidas' %}" class="trocas_solicitadas"><h1>Trocas recebidas</h1></a>
+		<a href="{% url 'trocas_solicitadas' %}" class="trocas_recebidas"><h1 class="">Trocas solicitadas</h1></a>
+		<a href="#" class="trocas_solicitadas ativado"><h1 class="ativado">Trocas recebidas</h1></a>
 	</div>
 	<hr>
 	<div class="trocas">
-		{% for troca in trocas_solicitadas %}
+		{% for troca in trocas_recebidas %}
 			<div class="troca">
 				<div class="livro_user">
 					<img src="{{ troca.imagem.url }}" width="120px">
