@@ -10,6 +10,9 @@ User = get_user_model()
 
 def troca(request, anuncio_id):
 	if request.method == "POST":
+		if LivroAnuncio.objects.get(id=anuncio_id, anunciante=User.objects.get(username=request.user.username)):
+			return redirect("home")
+
 		form = LivroTrocaForm(request.POST, request.FILES)
 		if form.is_valid():
 			livro_troca = form.save(commit=False)
@@ -35,10 +38,20 @@ def trocas_solicitadas(request):
 
 def trocas_recebidas(request):
 	user = User.objects.get(username=request.user.username)
-	trocas_recebidas = LivroTroca.objects.filter(anuncio__in=LivroAnuncio.objects.filter(user=user))
+	trocas_recebidas = LivroTroca.objects.filter(anuncio__in=LivroAnuncio.objects.filter(anunciante=user))
 
 	print(trocas_recebidas)
 
 	return render(request, "trocas_recebidas.html", {
 		"trocas_recebidas": trocas_recebidas
 		})
+
+def aceitar_troca(request):
+	if request.user.is_authenticated:
+		data = json.loads(request.body)
+		troca_id = data.get('troca_id')
+
+		user = User.objects.get(username=request.user.username)
+		troca = LivroTroca.objects.get(id=troca_id, anuncio__user=user)
+
+		print(troca)

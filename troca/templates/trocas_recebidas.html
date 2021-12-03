@@ -17,16 +17,6 @@
 	<div class="trocas">
 		{% for troca in trocas_recebidas %}
 			<div class="troca">
-				<div class="livro_user">
-					<img src="{{ troca.imagem.url }}" width="120px">
-					<div class="troca-texto">
-						<div class="troca-info">
-							<h3>{{ troca.titulo }}</h3>
-							<p>{{ troca.autor }}</p>
-						</div>
-					</div>
-				</div>
-				<i class="bi bi-arrow-left-right"></i>
 				<div class="livro_anuncio">
 					<a href="{% url 'anuncio_livro' troca.anuncio.id %}"><img src="{{ troca.anuncio.imagens.first.imagem.url }}" width="120px"></a>
 					<div class="troca-texto">
@@ -36,15 +26,24 @@
 						</div>
 					</div>
 				</div>
-				{% if troca.troca_aceita == True %}
-					<p>Troca aceita</p>
-				{% elif troca.troca_aceita == False %}
-					<p>Troca recusada</p>
-				{% elif troca.troca_aceita == null %}
-					<p>Troca pendente</p>
-				{% endif %}
+				<i class="bi bi-arrow-left-right"></i>
+				<div class="livro_user">
+					<img src="{{ troca.imagem.url }}" width="120px">
+					<div class="troca-texto">
+						<div class="troca-info">
+							<h3>{{ troca.titulo }}</h3>
+							<p>{{ troca.autor }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="troca-resultado">
+				<button class="aceitar">Aceitar</button>
+				<button class="recusar">Recusar</button>
 			</div>
 			<hr>
 		{% endfor %}
 	</div>
+
+	<script type="text/javascript" src="{% static 'js/troca.js' %}"></script>
 {% endblock %}

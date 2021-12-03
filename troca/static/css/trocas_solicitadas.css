@@ -67,6 +67,30 @@ a {
 	border-radius: 5px;
 }
 
+.troca-resultado {
+	display: flex;
+	justify-content: center;
+}
+
+.troca-resultado button {
+	margin-right: 10px;
+	cursor: pointer;
+	padding: 8px 30px;
+	border-radius: 5px;
+}
+
+.troca-resultado .aceitar {
+	color: #155724;
+	background-color: #d4edda;
+	border: 1px solid #c3e6cb;
+}
+
+.troca-resultado .recusar {
+	color: #721c24;
+	background-color: #f8d7da;
+	border: 1px solid #f5c6cb;
+}
+
 @media screen and (max-width: 660px) {
 	.troca-text {
 		display: block;

@@ -19,15 +19,17 @@ from pagamento.models import Pagamento
 
 def anuncio(request, id_anuncio):
 	anuncio = LivroAnuncio.objects.get(id=id_anuncio)
+	context = {
+		"anuncio": anuncio
+		}
 
 	if User.objects.filter(username=request.user.username, favoritos=anuncio):
-		return render(request, "anuncio/anuncio.html", {
-		"anuncio": anuncio,
-		"favorito": True
-		})
-	return render(request, "anuncio/anuncio.html", {
-		"anuncio": anuncio
-		})
+		context['favorito']  = True
+
+	if anuncio.anunciante.username == request.user.username:
+		context['anunciante'] = True
+
+	return render(request, "anuncio/anuncio.html", context)
 
 
 def pesquisa(request):
