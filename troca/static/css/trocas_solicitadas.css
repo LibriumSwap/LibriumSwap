@@ -52,6 +52,21 @@ a {
 	color: #820AD1;
 }
 
+.situacao-troca {
+	display: flex;
+	justify-content: center;
+}
+
+.troca-pendente {
+	color: #383d41;
+	background-color: #e2e3e5;
+	border: 1px solid #d6d8db;
+	width: 200px;
+	text-align: center;
+	padding: 10px 20px;
+	border-radius: 5px;
+}
+
 @media screen and (max-width: 660px) {
 	.troca-text {
 		display: block;

@@ -6,7 +6,7 @@ from .models import LivroTroca
 class LivroTrocaForm(forms.ModelForm):
 	class Meta:
 		model = LivroTroca
-		exclude = ['anuncio', 'user']
+		exclude = ['anuncio', 'user', 'troca_aceita']
 		widgets = {
 			'titulo': TextInput(attrs={'class': 'effect-16'}),
 			'autor': TextInput(attrs={'class': 'effect-16'}),

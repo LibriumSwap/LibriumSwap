@@ -37,6 +37,15 @@
 					</div>
 				</div>
 			</div>
+			<div class="situacao-troca">
+				{% if troca.troca_aceita == True %}
+					<p class="troca-aceita">Troca aceita</p>
+				{% elif troca.troca_aceita == False %}
+					<p class="troca-recusada">Troca recusada</p>
+				{% elif troca.troca_aceita == null %}
+					<p class="troca-pendente">Troca pendente</p>
+				{% endif %}
+			</div>
 			<hr>
 		{% endfor %}
 	</div>
