@@ -1,0 +1,10 @@
+.my-account{
+	display: flex;
+}
+.my-info{
+	display: flex;
+}
+.my-info-container{
+	display: flex;
+	flex-direction: column;
+}

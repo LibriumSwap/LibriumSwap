@@ -148,10 +148,6 @@ class ChatConsumer(WebsocketConsumer):
             thread_obj = thread.get(thread_type='private')
             thread_obj.message_preview = content
             thread_obj.save()
-
-    def update_contact_photo(self, username, other_username):
-        print("teste")
-
     
     #Create contact
     def new_contact(self, username, other_username):

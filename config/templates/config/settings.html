@@ -1,12 +1,63 @@
-{% extends 'home/layout.html' %}
+{% extends 'config/config.html' %}
 {% load static %}
 
-{% block head%}<link rel="stylesheet" type="text/css" href="{% static 'css/config.css' %}">{% endblock %}
 {% block body %}
-<form method="POST">
-	{%csrf_token%}
-	{{form.profile_image}}
-	<button type="submit">Enviar</button>
-</form>
 
+<div class="container">
+	<div class="settings-options">
+		<div class="my-account">
+			<button onclick="teste()">Minha conta</button>
+			<div class="my-account-options">
+				<div class="my-info">
+					<p>Meus dados</p>
+					<div class="my-info-container">
+						<form method="POST">
+							{%csrf_token%}
+							<div><img src="#">{{ form.profile_image }}</div>
+							<button type="submit">Enviar</button>
+						</form>
+						<p>email</p>
+						<p>apelido</p>
+						<p>data de nascimento</p>
+						<button type="submit">Salvar</button>
+						<div class="address-settings">
+							<h2>Endereço de entrega padrão</h2>
+							<p>Rua fulano de tal, 69</p>
+							<button type="submit">Editar</button>
+						</div>
+					</div>
+				</div>
+				<div class="payment">
+					<p>Pagamento</p>
+				</div>
+				<div class="payment">
+					<p>Notificações</p>
+				</div>
+				<div class="privacity">
+					<p>Privacidade</p>
+				</div>
+				<div class="security">
+					<p>Segurança</p>
+				</div>
+			</div>
+		</div>
+		<div class="settings">
+			<p>Configurações</p>
+		</div>
+	</div>
+</div>
+<link rel="stylesheet" type="text/css" href="{% static 'css/settings.css' %}">
+<script type="text/javascript">
+	console.log("sexo");
+
+	function teste(){
+		var x = document.getElementsByClassName("my-account-options")[0];
+		if( x.style.display === "none" ){
+			x.style.display = "block";
+		}
+		else{
+			x.style.display = "none";
+		}
+	}
+</script>
 {% endblock %}
