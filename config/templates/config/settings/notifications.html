@@ -1,0 +1,25 @@
+{% extends "config/settings.html"%}
+
+{% load static %}
+
+{% block right %}
+<div class="rightbox">
+		<div class="my-account-container">
+			<div class="notifications-fields">
+				<h1 class="h1-title">Title</h1>
+				<div class="message-container">
+					<p>New Message</p>
+					<img src="{% static 'images/mdi_email-outline.png' %}">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<link rel="stylesheet" type="text/css" href="{% static 'css/notifications.css' %}">
+<script type="text/javascript">
+		document.querySelector('.my-account-options').style.display = "block";
+		document.querySelector('.settings-options').style.display = "none";
+		document.querySelector('.middlebox').style.borderRight = "1px solid grey"
+</script>
+
+{% endblock %}

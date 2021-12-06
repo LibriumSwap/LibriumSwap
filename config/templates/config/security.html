@@ -1,4 +1,22 @@
-{% extends 'config/config.html' %}
+{% extends 'config/settings.html' %}
 {% load static %}
 
-{% block body %}eita{% endblock %}
+{% block right %}
+<div class="rightbox">
+		<div class="my-account-container">
+			<div class="security-field">
+				<div class="change-psswd-container">
+					<p>Mudar senha</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<link rel="stylesheet" type="text/css" href="{% static 'css/security.css' %}">
+
+<script type="text/javascript">
+	document.querySelector('.my-account-options').style.display = "block";
+	document.querySelector('.settings-options').style.display = "none";
+	document.querySelector('.middlebox').style.borderRight = "1px solid grey"
+</script>
+{% endblock %}

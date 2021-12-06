@@ -4,60 +4,74 @@
 {% block body %}
 
 <div class="container">
-	<div class="settings-options">
-		<div class="my-account">
-			<button onclick="teste()">Minha conta</button>
-			<div class="my-account-options">
-				<div class="my-info">
-					<p>Meus dados</p>
-					<div class="my-info-container">
-						<form method="POST">
-							{%csrf_token%}
-							<div><img src="#">{{ form.profile_image }}</div>
-							<button type="submit">Enviar</button>
-						</form>
-						<p>email</p>
-						<p>apelido</p>
-						<p>data de nascimento</p>
-						<button type="submit">Salvar</button>
-						<div class="address-settings">
-							<h2>Endereço de entrega padrão</h2>
-							<p>Rua fulano de tal, 69</p>
-							<button type="submit">Editar</button>
-						</div>
-					</div>
-				</div>
-				<div class="payment">
-					<p>Pagamento</p>
-				</div>
-				<div class="payment">
-					<p>Notificações</p>
-				</div>
-				<div class="privacity">
-					<p>Privacidade</p>
-				</div>
-				<div class="security">
-					<p>Segurança</p>
-				</div>
-			</div>
+	<div class="leftbox">
+		<p class="my-account">Minha conta</p>
+		<p class="settings">Configurações</p>
+	</div>
+	<div class="middlebox">
+		<div class="my-account-options">
+			<p class="my-info"><a href="{% url 'profile' %}">Meus dados</a></p>
+			<p class="payment"><a href="{% url 'payment' %}">Pagamento</a></p>
+			<p class="notifications"><a href="{% url 'notifications' %}">Notificações</a></p>
+			<p class="privacity"><a href="{% url 'privacity' %}">Privacidade</a></p>
+			<p class="security"><a href="{% url 'security' %}">Segurança</a></p>
 		</div>
-		<div class="settings">
-			<p>Configurações</p>
+		<div class="settings-options">
+			<p class="theme"><a href="#">Tema</a></p>
 		</div>
 	</div>
+	{% block right %}
+	{% endblock %}
 </div>
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/settings.css' %}">
 <script type="text/javascript">
-	console.log("sexo");
 
-	function teste(){
-		var x = document.getElementsByClassName("my-account-options")[0];
-		if( x.style.display === "none" ){
-			x.style.display = "block";
-		}
-		else{
-			x.style.display = "none";
-		}
+	document.addEventListener('DOMContentLoaded', () => {
+		click()
+	})
+
+	function click(){
+		pMyAccount = document.querySelector('.my-account')
+		pMyAccount.addEventListener('click', () => {
+			x = document.querySelector('.my-account-options')
+			if (x.style.display === "block"){
+				x.style.display = "none"
+				document.querySelector('.middlebox').style.borderRight = "none"
+				if(document.querySelector('.rightbox') != null){
+					document.querySelector('.rightbox').style.display = "none";
+				}
+			}
+			else{
+				x.style.display = "block"
+				document.querySelector('.settings-options').style.display = "none"
+				document.querySelector('.middlebox').style.borderRight = "1px solid grey"
+				if(document.querySelector('.rightbox') != null){
+					document.querySelector('.rightbox').style.display = "none";
+
+				}
+			}
+		})
+
+		pSettings = document.querySelector('.settings')
+		pSettings.addEventListener('click', () => {
+			y = document.querySelector('.settings-options')
+			if (y.style.display === "block"){
+				y.style.display = "none"
+				document.querySelector('.middlebox').style.borderRight = "none"
+				if(document.querySelector('.rightbox') != null){
+					document.querySelector('.rightbox').style.display = "none";
+				}
+			}
+			else{
+				y.style.display = "block"
+				document.querySelector('.my-account-options').style.display = "none"
+				document.querySelector('.middlebox').style.borderRight = "1px solid grey"
+				if(document.querySelector('.rightbox') != null){
+					document.querySelector('.rightbox').style.display = "none";
+				}
+			}
+		})
 	}
 </script>
 {% endblock %}

@@ -1,0 +1,136 @@
+{% extends "config/settings.html"%}
+
+{% load static %}
+
+{% block right %}
+<div class="rightbox">
+	<div class="my-account-container">
+		<div class="my-info-fields">
+			<form method="POST">
+				{% csrf_token %}
+				<div class="profile-image">
+					<div class="profile-image-container">
+						<img class="image" src="{{ username.profile_image.url }}">
+						<p>Eduardo dos Santos</p>
+					</div>
+					<div class="form-image">{{ config_form.profile_image }}</div>
+				</div>
+				<div class="email">
+					<p class="p-title">Email</p>
+					<p class="p-content">{{ username.email }}</p>
+				</div>
+				<div class="user">
+					<p class="p-title">Apelido</p>
+					<p class="p-content">{{ username }}</p>
+				</div>
+				<div class="date-of-birth">
+					<p class="p-title">Data de nascimento</p>
+					<p class="p-content">08/10/2003</p>
+				</div>
+				<div class="salvar">
+					<button class="btn-salvar" type="submit">Salvar</button>
+				</div>
+			</form>
+			<div class="address-title">
+				<h1>Endereço de entrega padrão</h1>
+				<div class="address">
+					<p>Rua Fulano de Tal, 69</p>
+					<button class="btn-edit-address">Editar</button>
+					<div class="modal">
+						<div class="modal-content">
+							<span class="close">&times;</span>
+							<div class="title">
+								<h2>Endereço de entrega padrão</h2>
+							</div>
+							<form class="form" method="POST">
+								{% csrf_token %}
+								<div class="street">
+									<p class="p-title">Rua</p>
+									<p class="p-content input">{{ address_form.rua }}</p>
+								</div>
+								<div class="number">
+									<p class="p-title">Número</p>
+									<p class="p-content input">{{ address_form.numero }}</p>
+								</div>
+								<div class="complement">
+									<p class="p-title">Complemento/Apto</p>
+									<p class="p-content input">{{ address_form.complemento }}</p>
+								</div>
+								<div class="cep">
+									<p class="p-title">CEP</p>
+									<p class="p-content input">{{ address_form.cep }}</p>
+								</div>
+								<div class="neighbor">
+									<p class="p-title">Bairro</p>
+									<p class="p-content input">{{ address_form.bairro }}</p>
+								</div>
+								<div class="city">
+									<p class="p-title">Cidade</p>
+									<p class="p-content input">{{ address_form.cidade }}</p>
+								</div>
+								<div class="state">
+									<p class="p-title">Estado</p>
+									<p class="p-content input">{{ address_form.estado }}</p>
+								</div>
+								<div class="cellphone">
+									<p class="p-title">Telefone celular</p>
+									<p class="p-content input">{{ address_form.contato }}</p>
+								</div>
+								<div class="salvar">
+									<button class="btn-salvar" type="submit">Salvar</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+<script type="text/javascript">
+		document.querySelector('.my-account-options').style.display = "block";
+		document.querySelector('.settings-options').style.display = "none";
+		document.querySelector('.middlebox').style.borderRight = "1px solid grey"
+
+		document.addEventListener('DOMContentLoaded', () => {
+			formImage()
+			addressModal()
+			var modal = document.querySelector(".modal")
+			window.onclick = function(event) {
+				if (event.target == modal) {
+				modal.style.display = "none";
+			}
+}
+		})
+		
+		function formImage(){
+			pFormImage = document.querySelector('.image')
+			pFormImage.addEventListener('click', () => {
+				x = document.querySelector('.form-image')
+				if (x.style.display === "block"){
+					x.style.display = "none"
+				}
+				else{
+					x.style.display = "block"
+				}
+			})
+		}
+
+		function addressModal(){
+			var modal = document.querySelector(".modal")
+			btnEditAddress = document.querySelector('.btn-edit-address')
+			btnEditAddress.addEventListener('click', () => {
+				modal.style.display = "block"
+			})
+
+			span = document.querySelector('.close')
+			span.addEventListener('click', () => {
+				modal.style.display = "none"
+			})
+		}
+
+
+
+</script>
+{% endblock %}
