@@ -1,4 +1,6 @@
+import json
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 
 from .models import LivroTroca
 from livros.models import LivroAnuncio
@@ -52,6 +54,20 @@ def aceitar_troca(request):
 		troca_id = data.get('troca_id')
 
 		user = User.objects.get(username=request.user.username)
-		troca = LivroTroca.objects.get(id=troca_id, anuncio__user=user)
+		troca = LivroTroca.objects.get(id=troca_id, anuncio__anunciante=user)
+		#troca.troca_aceita = True
+		#troca.save()
+		
+		return JsonResponse({"success": "troca_aceita"})
 
-		print(troca)
+def recusar_troca(request):
+	if request.user.is_authenticated:
+		data = json.loads(request.body)
+		troca_id = data.get('troca_id')
+
+		user = User.objects.get(username=request.user.username)
+		troca = LivroTroca.objects.get(id=troca_id, anuncio__anunciante=user)
+		#troca.troca_aceita = False
+		#troca.save()
+		
+		return JsonResponse({"success": "troca_recusada"})

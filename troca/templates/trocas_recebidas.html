@@ -15,6 +15,7 @@
 	</div>
 	<hr>
 	<div class="trocas">
+		{% csrf_token %}
 		{% for troca in trocas_recebidas %}
 			<div class="troca">
 				<div class="livro_anuncio">
@@ -38,8 +39,14 @@
 				</div>
 			</div>
 			<div class="troca-resultado">
-				<button class="aceitar">Aceitar</button>
-				<button class="recusar">Recusar</button>
+				{% if troca.troca_aceita %}
+					<p class="troca-aceita">Troca aceita</p>
+				{% elif troca.troca_aceita == False %}
+					<p class="troca-recusada">Troca recusada</p>
+				{% elif troca.troca_aceita == None %}
+					<button class="aceitar" data-id="{{ troca.id }}">Aceitar</button>
+					<button class="recusar" data-id="{{ troca.id }}">Recusar</button>
+				{% endif %}
 			</div>
 			<hr>
 		{% endfor %}
