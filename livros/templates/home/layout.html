@@ -28,7 +28,7 @@
 				</form>
 				{% if request.user.is_authenticated %}
 				<div class="menu">
-						<i class="bi bi-person"></i>
+						<img id="icone-chat" src="{% static 'images/icone-user.svg' %}">
 						<div class="menu-usuario">
 							<button>{{ request.user.username }}</button>
 							<i id="arrow-usuario" class="bi bi-caret-down-fill" style="font-size: 12px;"></i>
@@ -47,8 +47,8 @@
 							</div>
 						</div>
 					<div class="btn-icones">
-						<a href="{% url 'chat' %}"><i class="bi bi-chat"></i></a>
-						<a href="{% url 'carrinho' %}"><i class="bi bi-bag"></i></a>
+						<a href="{% url 'chat' %}"><img id="icone-chat" src="{% static 'images/bi_chat-left.svg' %}"></a>
+						<a href="{% url 'carrinho' %}"><img src="{% static 'images/btn-icone.svg' %}"></i></a>
 					</div>
 				</div>
 				{% endif %}
@@ -120,7 +120,7 @@
 					<a href="{% url 'categorias' 'troca'%}">Troca</a>
 				</div>
 			</div>
-			<h4><a href="#" id="perto-de-mim">Perto de mim <i class="bi bi-geo-alt"></i></a></h4>
+			<h4><a href="#" id="perto-de-mim">Perto de mim <i class="bi bi-geo-alt-fill"></i></a></h4>
 			<h4><a href="{% url 'novo_anuncio' %}">Anunciar</a></h4>
 		</div>
 		{% block body %}

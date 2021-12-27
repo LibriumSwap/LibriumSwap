@@ -189,6 +189,10 @@ nav input, nav button, nav a {
 	color: #343434;
 }
 
+#icone-chat {
+	margin-bottom: 2px !important;
+}
+
 .nav-2 {
 	display: flex;
 	color: rgba(52, 52, 52, 0.8);
