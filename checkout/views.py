@@ -11,37 +11,41 @@ from .forms import CheckoutInfo
 
 @login_required
 def checkout(request, anuncio_id):
-	if request.method == "GET":
-		form = CheckoutInfo()
-		anuncios = []
-		anuncio = get_object_or_404(LivroAnuncio, id=anuncio_id)
-		total = {'preco__sum': anuncio.preco}
+	anuncio = get_object_or_404(LivroAnuncio, id=anuncio_id)
 
-		anuncios.append(anuncio)
+	if anuncio.anunciante == request.user:
+		return redirect('home')
 
-		return render(request, "checkout/checkout_info.html", {
-			"form": form,
-			"anuncios": anuncios,
-			"total": total,
-			"url": "checkout",
-			"id": anuncios[0].id
-			})
+	else:
+		if request.method == "GET":
+			form = CheckoutInfo()
+			anuncios = []
+			total = {'preco__sum': anuncio.preco}
 
-	if request.method == "POST":
-		form = CheckoutInfo(request.POST)
-		anuncio = get_object_or_404(LivroAnuncio, id=anuncio_id)
-		user = get_object_or_404(User, username=request.user.username)
+			anuncios.append(anuncio)
 
-		if form.is_valid():
-			pedido = form.save(commit=False)
-			pedido.user = user
-			pedido.save()
-			pedido.anuncio.add(anuncio)
-			pedido.save()
+			return render(request, "checkout/checkout_info.html", {
+				"form": form,
+				"anuncios": anuncios,
+				"total": total,
+				"url": "checkout",
+				"id": anuncios[0].id
+				})
 
-			request.session['pedido'] = pedido.id
+		if request.method == "POST":
+			form = CheckoutInfo(request.POST)
+			user = get_object_or_404(User, username=request.user.username)
 
-			return HttpResponseRedirect(reverse("pagamento"))
+			if form.is_valid():
+				pedido = form.save(commit=False)
+				pedido.user = user
+				pedido.save()
+				pedido.anuncio.add(anuncio)
+				pedido.save()
+
+				request.session['pedido'] = pedido.id
+
+				return HttpResponseRedirect(reverse("pagamento"))
 
 @login_required
 def checkout_carrinho(request):

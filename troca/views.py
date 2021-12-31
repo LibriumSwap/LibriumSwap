@@ -16,6 +16,7 @@ def troca(request, anuncio_id):
 			return redirect("home")
 
 		form = LivroTrocaForm(request.POST, request.FILES)
+		
 		if form.is_valid():
 			livro_troca = form.save(commit=False)
 			livro_troca.anuncio = LivroAnuncio.objects.get(id=anuncio_id)

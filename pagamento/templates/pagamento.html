@@ -10,63 +10,7 @@
 
 {% block body %}
 	<div class="conteudo">
-		<form class="checkout-info" method="post">
-			<h1>Pagamento</h1>
-			{% csrf_token %}
-			<div class="col-3 input-effect">
-		    	{{ form.num_cartao }}
-		        <label>Número do cartão</label>
-		        <span class="focus-border">
-		        	<i></i>
-		        </span>
-		    </div>
-			<div class="col-3 input-effect">
-		    	{{ form.mes_validade }}
-		        <label>Mês de validade</label>
-		        <span class="focus-border">
-		        	<i></i>
-		        </span>
-		    </div>
-			<div class="col-3 input-effect">
-		    	{{ form.ano_validade }}
-		        <label>Ano de validade</label>
-		        <span class="focus-border">
-		        	<i></i>
-		        </span>
-		    </div>
-	        <div class="regiao">
-	        	<div class="col-3 input-effect">
-			    	{{ form.cod_seguranca }}
-			        <label>Código de segurança</label>
-			        <span class="focus-border">
-			        	<i></i>
-			        </span>
-			    </div>
-		        <div class="col-3 input-effect">
-			    	{{ form.titular }}
-			        <label>Titular do cartão</label>
-			        <span class="focus-border">
-			        	<i></i>
-			        </span>
-			    </div>
-	        </div>
-	        <div class="col-3 input-effect">
-		    	{{ form.email }}
-		        <label>Email</label>
-		        <span class="focus-border">
-		        	<i></i>
-		        </span>
-		    </div>
-	        <div class="col-3 input-effect">
-		    	{{ form.cpf }}
-		        <label>CPF</label>
-		        <span class="focus-border">
-		        	<i></i>
-		        </span>
-		    </div>
-	        <button type="submit">Ir para pagamento</button>
-		</form>
-		<div class="checkout-produtos">
+		<div class="checkout-produtos" data-id={{ preference_id }}>
 			<h3>Detalhes da compra</h3>
 			{% for anuncio in anuncios %}
 				<div class="produto">
@@ -83,6 +27,30 @@
 		</div>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="{% static 'js/efeito.js' %}"></script>
+	<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+	<script>
+	// Adicione as credenciais do SDK
+	  const mp = new MercadoPago('TEST-595f9314-7363-4edc-92ba-cb0edfffa2f8', {
+	        locale: 'pt-BR'
+	  });
+
+	  let id = document.querySelector('.checkout-produtos').dataset.id
+
+	  // Inicialize o checkout
+	  mp.checkout({
+	      preference: {
+	          id: id
+	      },
+	      render: {
+	            container: '.checkout-produtos', // Indique o nome da class onde será exibido o botão de pagamento
+	            label: 'Ir para pagamento', // Muda o texto do botão de pagamento (opcional)
+	      },
+	      theme: {
+		        elementsColor: '#a959dd',
+		        headerColor: '#a959dd',
+		    }
+	});
+	</script>
+
 {% endblock %}
