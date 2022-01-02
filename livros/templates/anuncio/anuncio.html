@@ -124,11 +124,14 @@
 
 			{% if anunciante %}
 				<h4>Anunciado por você <a href="#"><i class="bi bi-pencil-square"></i></a></h4>
+				<div class="anuncio-btns">
+					<a href="{% url 'editar_anuncio' anuncio.id %}">Editar</a>
+					<a href="{% url 'pausar_anuncio' anuncio.id %}">Pausar</a>
+					<a href="{% url 'excluir_anuncio' anuncio.id %}">Excluir</a>
+				</div>
 			{% else %}
 				<h4>Anunciado por {{ anuncio.anunciante.username }} <a href="{% url 'room' anuncio.anunciante.username %}"><i class="bi bi-pencil-square"></i></a></h4>
-			{% endif %}
 
-			{% if not anunciante %}
 				{% if anuncio.preco %}
 					<h2 id="anuncio-preco">R$ {{ anuncio.preco }}</h2>
 					<a href="{% url 'checkout' anuncio.id %}" class="btn btn-comprar">Comprar</a>
@@ -136,7 +139,6 @@
 				{% else %}
 					<a href="{% url 'troca' anuncio.id %}" class="btn btn-comprar">Trocar</a>
 				{% endif %}
-			{% else %}
 			{% endif %}
 		</div>
 	</div>

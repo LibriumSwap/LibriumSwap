@@ -196,3 +196,21 @@ def categorias(request, categorias):
 		"categoria": categorias,
 		"anuncios": anuncios
 		})
+
+def editar_anuncio(request, id_anuncio):
+	anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)
+
+	if request.user == anuncio.anunciante:
+		print('ok')
+
+def pausar_anuncio(request, id_anuncio):
+	anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)
+
+	if request.user == anuncio.anunciante:
+		print('ok')
+
+def excluir_anuncio(request, id_anuncio):
+	anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)
+
+	if request.user == anuncio.anunciante:
+		print('ok')

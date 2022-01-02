@@ -16,7 +16,7 @@ body {
 }
 
 .anuncio-info h3 {
-	width: 100%;
+	width: auto;
 	text-align: center;
 	background-color: #343434;
 	color: white;
@@ -55,6 +55,38 @@ body {
 .anuncio-info h4 {
 	font-weight: normal;
 	text-align: center;
+}
+
+.anuncio-btns {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.anuncio-btns a {
+  text-decoration: none;
+  padding: 10px;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.anuncio-btns a:nth-child(1) {
+  background-color: #cce5ff;
+  color: #004085;
+  border: 1px solid #b8daff;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.anuncio-btns a:nth-child(2) {
+  background-color: #e2e3e5;
+  color: #383d41;
+  border: #d6d8db;
+}
+
+.anuncio-btns a:nth-child(3) {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 0px 5px 5px 0px;
 }
 
 .btn {
