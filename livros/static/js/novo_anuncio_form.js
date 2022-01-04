@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   efeitosInput()
   detalhes()
   excluirDetalhe()
+  preencherDetalhe()
 })
 
 function sliderImagens () {
@@ -71,6 +72,25 @@ function excluirDetalhe () {
   })
 }
 
+function preencherDetalhe () {
+  detalhes = document.querySelector('.detalhes').value
+  detalhes = JSON.parse(detalhes.replace(/'/g, '"'))
+
+  detalheInputs = document.querySelectorAll('.detalhe-input')
+
+  for(i=0; i < Object.keys(detalhes).length; i++){
+
+    detalheInput = detalheInputs[0].cloneNode(true)
+    detalheInput.children[0].children[0].children[0].value = Object.keys(detalhes)[i]
+    detalheInput.children[0].children[1].children[0].value = Object.values(detalhes)[i]
+    detalheInputsDiv = document.querySelector('.detalhe-inputs')
+    detalheInputsDiv.appendChild(detalheInput)
+  }
+
+  detalheInputs[0].remove()
+
+}
+
 function anunciar () {
   detalheInputs = document.querySelectorAll('.detalhe-input')
   detalhes = new Object()
@@ -82,8 +102,7 @@ function anunciar () {
   }
 
   detalhesTexto = document.querySelector('#id_detalhes')
-  detalhesTexto.value = JSON.stringify(detalhes)
-  console.log(detalhesTexto.value)
+  detalhesTexto.value = JSON.stringify(detalhes).replace(/'/g, '"')
   return true;
 }
 

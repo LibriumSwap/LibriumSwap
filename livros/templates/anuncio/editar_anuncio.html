@@ -14,7 +14,7 @@
 		{{ erro }}
 	{% endfor %}
 	<h1>Editar anúncio</h1>
-	<form action="{% url 'editar_anuncio' %}" enctype="multipart/form-data" method="post" onsubmit="anunciar();">
+	<form action="{% url 'editar_anuncio' id_anuncio %}" enctype="multipart/form-data" method="post" onsubmit="anunciar();">
 		{% csrf_token %}
 		<div class="div-1">
 			<div class="imagens">
@@ -82,6 +82,7 @@
 				<button type="button" id="btn-novo-detalhe" class="bi bi-plus"></button>
 			</div>
 			{{ form.detalhes }}
+			<input type="hidden" class="detalhes" value="{{ detalhes }}">
 			<button type="submit" class="draw meet">Salvar</button>
 		</div>
 	</form>

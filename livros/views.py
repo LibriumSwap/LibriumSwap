@@ -205,15 +205,16 @@ def editar_anuncio(request, id_anuncio):
 		'autor': anuncio.autor,
 		'categoria': anuncio.categoria,
 		'preco': anuncio.preco,
-		'sinopse': anuncio.sinopse,
-		'detalhes': anuncio.detalhes
+		'sinopse': anuncio.sinopse
 	}
 
 	form = EditarAnuncioForm(initial=data)
 
 	if request.user == anuncio.anunciante:
 		return render(request, "anuncio/editar_anuncio.html", {
-			"form": form
+			"form": form,
+			"id_anuncio": id_anuncio,
+			"detalhes": anuncio.detalhes
 			})
 
 def pausar_anuncio(request, id_anuncio):
