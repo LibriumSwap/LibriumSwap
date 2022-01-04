@@ -11,7 +11,7 @@ from io import BytesIO
 from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
-from .forms import NovoAnuncioForm
+from .forms import NovoAnuncioForm, EditarAnuncioForm
 from .models import Livro, LivroAnuncio, LivroAnuncioImagem
 from autenticacao.models import User
 from checkout.models import Pedido
@@ -200,8 +200,21 @@ def categorias(request, categorias):
 def editar_anuncio(request, id_anuncio):
 	anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)
 
+	data = {
+		'titulo': anuncio.titulo,
+		'autor': anuncio.autor,
+		'categoria': anuncio.categoria,
+		'preco': anuncio.preco,
+		'sinopse': anuncio.sinopse,
+		'detalhes': anuncio.detalhes
+	}
+
+	form = EditarAnuncioForm(initial=data)
+
 	if request.user == anuncio.anunciante:
-		print('ok')
+		return render(request, "anuncio/editar_anuncio.html", {
+			"form": form
+			})
 
 def pausar_anuncio(request, id_anuncio):
 	anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)

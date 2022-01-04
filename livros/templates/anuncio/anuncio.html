@@ -6,12 +6,24 @@
 
 {% block head %}
 	<link rel="stylesheet" type="text/css" href="{% static 'css/anuncio.css' %}">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 {% endblock %}
 
 {% block body %}
 	<div class="anuncio-apresentacao">
 		<div class="anuncio-imagens">
-			<img src="{{ anuncio.imagens.first.imagem.url }}" width="350px" height="auto">
+			<div class="swiper">
+				<div class="swiper-wrapper">
+					{% for imagem in anuncio.imagens.all %}
+						<div class="swiper-slide">
+							<img src="{{ imagem.imagem.url }}" width="100%" height="auto">
+						</div>
+					{% endfor %}
+				</div>
+				<div class="swiper-pagination"></div>
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
 		</div>
 		<div class="anuncio-info">
 			{% csrf_token %}
@@ -159,4 +171,6 @@
 	</div>
 
 	<script type="text/javascript" src="{% static 'js/anuncio.js' %}"></script>
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<script src="{% static 'js/slide_novo_anuncio.js' %}"></script>
 {% endblock %}

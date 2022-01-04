@@ -89,7 +89,6 @@ function anunciar () {
 
 function efeitosInput () {
   $(window).on('load', function(){
-    $(".col-3 input").val("");
     
     $(".input-effect input").focusout(function(){
       if($(this).val() != ""){
