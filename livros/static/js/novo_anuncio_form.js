@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   detalhes()
   excluirDetalhe()
   preencherDetalhe()
+  preencherImagens()
 })
 
 function sliderImagens () {
@@ -22,6 +23,22 @@ function sliderImagens () {
       label.style.background = "url(" + url + ") no-repeat center";
       label.style.backgroundSize = "auto 500px";
     })
+  })
+}
+
+function preencherImagens () {
+  imageInputs = document.querySelectorAll('.image-input')
+
+  imageInputs.forEach(imageInput => {
+    url = imageInput.labels[0].dataset.url
+    label = document.querySelector(`#${imageInput.name}`)
+    icon = label.querySelector('i')
+    if (icon) {
+      label.removeChild(icon)
+    }
+    label.style.backgroundColor = ""
+    label.style.background = "url(" + url + ") no-repeat center";
+    label.style.backgroundSize = "auto 500px";
   })
 }
 

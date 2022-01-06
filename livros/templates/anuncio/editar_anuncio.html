@@ -14,17 +14,17 @@
 		{{ erro }}
 	{% endfor %}
 	<h1>Editar anúncio</h1>
-	<form action="{% url 'editar_anuncio' id_anuncio %}" enctype="multipart/form-data" method="post" onsubmit="anunciar();">
+	<form action="{% url 'editar_anuncio' anuncio.id %}" enctype="multipart/form-data" method="post" onsubmit="anunciar();">
 		{% csrf_token %}
 		<div class="div-1">
 			<div class="imagens">
 				<h2>Imagem do livro</h2>
 				<div class="swiper">
 					<div class="swiper-wrapper">
-						<div class="swiper-slide">{{ form.imagem1 }} <label for="id_imagem1" id="imagem1"><i class="bi bi-camera-fill"></i></label></div>
-						<div class="swiper-slide">{{ form.imagem2 }} <label for="id_imagem2" id="imagem2"><i class="bi bi-camera-fill"></i></label></div>
-						<div class="swiper-slide">{{ form.imagem3 }} <label for="id_imagem3" id="imagem3"><i class="bi bi-camera-fill"></i></label></div>
-						<div class="swiper-slide">{{ form.imagem4 }} <label for="id_imagem4" id="imagem4"><i class="bi bi-camera-fill"></i></label></div>
+						<div class="swiper-slide">{{ form.imagem1 }} <label for="id_imagem1" id="imagem1" {% if data-url="{{ anuncio.imagens.all.0.imagem.url }}"><i class="bi bi-camera-fill"></i></label></div>
+						<div class="swiper-slide">{{ form.imagem2 }} <label for="id_imagem2" id="imagem2" data-url="{{ anuncio.imagens.all.1.imagem.url }}"><i class="bi bi-camera-fill"></i></label></div>
+						<div class="swiper-slide">{{ form.imagem3 }} <label for="id_imagem3" id="imagem3" data-url="{{ anuncio.imagens.all.2.imagem.url }}"><i class="bi bi-camera-fill"></i></label></div>
+						<div class="swiper-slide">{{ form.imagem4 }} <label for="id_imagem4" id="imagem4" data-url="{{ anuncio.imagens.all.3.imagem.url }}"><i class="bi bi-camera-fill"></i></label></div>
 					</div>
 					<div class="swiper-pagination"></div>
 					<div class="swiper-button-prev"></div>
@@ -82,7 +82,7 @@
 				<button type="button" id="btn-novo-detalhe" class="bi bi-plus"></button>
 			</div>
 			{{ form.detalhes }}
-			<input type="hidden" class="detalhes" value="{{ detalhes }}">
+			<input type="hidden" class="detalhes" value="{{ anuncio.detalhes }}">
 			<button type="submit" class="draw meet">Salvar</button>
 		</div>
 	</form>

@@ -213,8 +213,7 @@ def editar_anuncio(request, id_anuncio):
 	if request.user == anuncio.anunciante:
 		return render(request, "anuncio/editar_anuncio.html", {
 			"form": form,
-			"id_anuncio": id_anuncio,
-			"detalhes": anuncio.detalhes
+			"anuncio": anuncio
 			})
 
 def pausar_anuncio(request, id_anuncio):
