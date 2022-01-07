@@ -28,3 +28,4 @@ class LivroAnuncio(models.Model):
 
 class LivroAnuncioImagem(models.Model):
 	imagem = models.ImageField(upload_to='images/anuncios')
+	num = models.IntegerField()

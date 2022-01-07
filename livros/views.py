@@ -70,9 +70,7 @@ def nova_imagem(imagem):
 	thumb_io.seek(0)
 	inmemory_uploaded_file = InMemoryUploadedFile(thumb_io, "ImageField", "%s.jpeg" % imagem.name.split('.')[0], "image/jpeg", sys.getsizeof(thumb_io), None)
 
-	imagem_model = LivroAnuncioImagem(imagem=inmemory_uploaded_file)
-	imagem_model.save()
-	return imagem_model
+	return inmemory_uploaded_file
 
 @login_required
 def novo_anuncio(request):
@@ -84,8 +82,6 @@ def novo_anuncio(request):
 			titulo = form.cleaned_data["titulo"]
 			autor = form.cleaned_data["autor"]
 			categoria = form.cleaned_data["categoria"]
-			
-				
 			sinopse = form.cleaned_data["sinopse"]
 			detalhes = form.cleaned_data["detalhes"]
 
@@ -99,16 +95,19 @@ def novo_anuncio(request):
 				livro_anuncio.preco = preco
 			livro_anuncio.save()
 
-			# Comprimir imagem antes de salvar e adicionar em livro_anuncio
-			livro_anuncio.imagens.add(nova_imagem(form.cleaned_data["imagem1"]))
+			for i in range(1, 5):
+				if i == 1:
+					# Comprimir imagem antes de salvar e adicionar em livro_anuncio
+					imagem_model = LivroAnuncioImagem(imagem=nova_imagem(form.cleaned_data["imagem1"]), num=i)
+					imagem_model.save()
+					livro_anuncio.imagens.add(imagem_model)
 
-			# Se houver mais imagens fazer o mesmo da primeira
-			if form.cleaned_data["imagem2"]:
-				livro_anuncio.imagens.add(nova_imagem(form.cleaned_data["imagem2"]))
-			if form.cleaned_data["imagem3"]:
-				livro_anuncio.imagens.add(nova_imagem(form.cleaned_data["imagem2"]))
-			if form.cleaned_data["imagem4"]:
-				livro_anuncio.imagens.add(nova_imagem(form.cleaned_data["imagem4"]))
+				else:
+					# Se houver mais imagens fazer o mesmo da primeira
+					if form.cleaned_data[f"imagem{i}"]:
+						imagem_model = LivroAnuncioImagem(imagem=nova_imagem(form.cleaned_data[f"imagem{i}"]), num=i)
+						imagem_model.save()
+						livro_anuncio.imagens.add(imagem_model)
 
 			livro_anuncio.save()
 
@@ -198,23 +197,66 @@ def categorias(request, categorias):
 		})
 
 def editar_anuncio(request, id_anuncio):
-	anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)
+	if request.method == "POST":
+		form = EditarAnuncioForm(request.POST, request.FILES)
+		if form.is_valid():
 
-	data = {
-		'titulo': anuncio.titulo,
-		'autor': anuncio.autor,
-		'categoria': anuncio.categoria,
-		'preco': anuncio.preco,
-		'sinopse': anuncio.sinopse
-	}
+			user = get_object_or_404(User, username=request.user.username)
 
-	form = EditarAnuncioForm(initial=data)
+			livro_anuncio = LivroAnuncio.objects.get(id=id_anuncio)
 
-	if request.user == anuncio.anunciante:
-		return render(request, "anuncio/editar_anuncio.html", {
-			"form": form,
-			"anuncio": anuncio
-			})
+			livro_anuncio.titulo = form.cleaned_data["titulo"]
+			livro_anuncio.autor = form.cleaned_data["autor"]
+			livro_anuncio.categoria = form.cleaned_data["categoria"]
+			livro_anuncio.sinopse = form.cleaned_data["sinopse"]
+			livro_anuncio.detalhes = form.cleaned_data["detalhes"]
+
+			if form.cleaned_data["categoria"] != "T":
+				livro_anuncio.preco = form.cleaned_data["preco"]
+			livro_anuncio.save()
+
+			for i in range(1, 5):
+				if i == 1:
+					if form.cleaned_data[f"imagem{i}"]:
+						imagem1 = livro_anuncio.imagens.get(num=i)
+						imagem1.imagem = nova_imagem(form.cleaned_data[f"imagem{i}"])
+						imagem1.save()
+				else:
+					if form.cleaned_data[f"imagem{i}"]:
+						if livro_anuncio.imagens.filter(num=i):
+							imagem = livro_anuncio.imagens.get(num=i)
+							imagem.imagem = nova_imagem(form.cleaned_data[f"imagem{i}"])
+							imagem.save()
+
+						else:
+							imagem_model = LivroAnuncioImagem(imagem=nova_imagem(form.cleaned_data[f"imagem{i}"]), num=i)
+							imagem_model.save()
+							livro_anuncio.imagens.add(imagem_model)
+
+			livro_anuncio.save()
+
+			return HttpResponseRedirect(reverse('home'))
+		else:
+			print(form.errors)
+
+	if request.method == "GET":
+		anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)
+
+		data = {
+			'titulo': anuncio.titulo,
+			'autor': anuncio.autor,
+			'categoria': anuncio.categoria,
+			'preco': anuncio.preco,
+			'sinopse': anuncio.sinopse
+		}
+
+		form = EditarAnuncioForm(initial=data)
+
+		if request.user == anuncio.anunciante:
+			return render(request, "anuncio/editar_anuncio.html", {
+				"form": form,
+				"anuncio": anuncio
+				})
 
 def pausar_anuncio(request, id_anuncio):
 	anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)

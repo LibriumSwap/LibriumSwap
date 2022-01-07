@@ -31,14 +31,16 @@ function preencherImagens () {
 
   imageInputs.forEach(imageInput => {
     url = imageInput.labels[0].dataset.url
-    label = document.querySelector(`#${imageInput.name}`)
-    icon = label.querySelector('i')
-    if (icon) {
-      label.removeChild(icon)
+    if(url){
+      label = document.querySelector(`#${imageInput.name}`)
+      icon = label.querySelector('i')
+      if (icon) {
+        label.removeChild(icon)
+      }
+      label.style.backgroundColor = ""
+      label.style.background = "url(" + url + ") no-repeat center";
+      label.style.backgroundSize = "auto 500px";
     }
-    label.style.backgroundColor = ""
-    label.style.background = "url(" + url + ") no-repeat center";
-    label.style.backgroundSize = "auto 500px";
   })
 }
 
