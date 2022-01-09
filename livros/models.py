@@ -25,6 +25,7 @@ class LivroAnuncio(models.Model):
 	titulo = models.CharField(max_length=128)
 	autor = models.CharField(max_length=64)
 	sinopse = models.TextField()
+	anunciado = models.BooleanField(default=True)
 
 class LivroAnuncioImagem(models.Model):
 	imagem = models.ImageField(upload_to='images/anuncios')

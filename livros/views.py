@@ -179,14 +179,12 @@ def favoritos(request):
 		"favoritos": user.favoritos.all()
 		})
 
-
 def generos(request, generos):
 	anuncios = LivroAnuncio.objects.filter(detalhes__gênero__icontains=generos.lower())
 	return render(request, "home/generos.html", {
 		"gênero": generos,
 		"anuncios": anuncios
 		})
-
 
 def categorias(request, categorias):
 	anuncios = LivroAnuncio.objects.filter(categoria=categorias[0].upper())
@@ -262,7 +260,14 @@ def pausar_anuncio(request, id_anuncio):
 	anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)
 
 	if request.user == anuncio.anunciante:
-		print('ok')
+		if anuncio.anunciado == True:
+			anuncio.anunciado = False
+		else:
+			anuncio.anunciado = True
+			
+		anuncio.save()
+
+		return HttpResponseRedirect(reverse('anuncio_livro', args=id_anuncio))
 
 def excluir_anuncio(request, id_anuncio):
 	anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)
