@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+	obterFiltros()
+	excluirFiltro()
 	categoriaFiltro()
 	ordenarDropdown()
 	ordenar()
@@ -9,18 +11,58 @@ document.addEventListener('DOMContentLoaded', () => {
 	ordenarMobile()
 })
 
-function urlParametros (parametro_string) {
-	string = '?'
+function obterFiltros () {
 	pesquisa = window.location.search;
 	parametros = new URLSearchParams(pesquisa)
-			
-	for (parametro of parametros) {
-		if (parametro[0] != parametro_string) {
-			string += (`${parametro[0]}=${parametro[1]}&`)
-		}
-	}
 
-	return string
+	filtros_ativados_div = document.querySelector(".filtros-ativados")
+
+	parametros.forEach((valor, parametro) => {
+		button = document.createElement("button")
+		button.id = parametro
+		icon = document.createElement("i")
+		icon.className = "bi bi-x"
+
+		filtro = ""
+
+		valor_parse = valor.split(" ")
+
+		for (let i = 0; i < valor_parse.length; i++) {
+		    valor_parse[i] = valor_parse[i][0].toUpperCase() + valor_parse[i].substr(1);
+		}
+
+		if (parametro == "q") {
+		} 
+		else if (parametro == "preco_min") {
+			filtro = "Min: R$"+valor_parse.join(" ")
+		} 
+		else if (parametro == "preco_max") {
+			filtro = "Max: R$"+valor_parse.join(" ")
+		} else {
+			filtro = valor_parse.join(" ")
+		}
+
+		if (filtro != "") {
+			button.innerText = filtro
+			filtros_ativados_div.appendChild(button)
+			document.querySelector(`#${parametro}`).appendChild(icon)
+		}
+	})
+}
+
+function excluirFiltro () {
+	filtros_btn = document.querySelector(".filtros-ativados").querySelectorAll('button')
+	
+	filtros_btn.forEach(filtro_btn => {
+		filtro_btn.onclick = function () {
+			pesquisa = window.location.search;
+			parametros = new URLSearchParams(pesquisa)
+
+			parametros.delete(filtro_btn.id)
+
+			window.location.href = `/livro/pesquisa/?${parametros.toString()}`
+		}
+	})
 }
 
 function categoriaFiltro () {
@@ -31,14 +73,9 @@ function categoriaFiltro () {
 			pesquisa = window.location.search;
 			parametros = new URLSearchParams(pesquisa)
 
-			parametro_q = parametros.get('q')
-			categoria = categoriaBtn.innerText.toLowerCase()
+			parametros.set('categoria', categoriaBtn.innerText.toLowerCase())
 
-			string = urlParametros('categoria')
-
-			string += `categoria=${categoria}`
-
-			window.location.href = string
+			window.location.href = `/livro/pesquisa/?${parametros.toString()}`
 		}
 	})
 }
@@ -63,15 +100,12 @@ function ordenar () {
 		btnOrder.onclick = function () {
 			pesquisa = window.location.search;
 			parametros = new URLSearchParams(pesquisa)
-			parametros = parametros.entries()
-
-			string = urlParametros('order')
 
 			if (btnOrder.dataset.order) {
-				string += `order=${btnOrder.dataset.order}`
+				parametros.set('order', btnOrder.dataset.order)
 			}
 
-			window.location.href = `/livro/pesquisa/${string}`
+			window.location.href = `/livro/pesquisa/?${parametros.toString()}`
 		}
 	})
 }
@@ -83,18 +117,21 @@ function precoFiltro () {
 		min = document.getElementsByName('preco-min')[0]
 		max = document.getElementsByName('preco-max')[0]
 
-		string = urlParametros('preco_min')
-		string = urlParametros('preco_max')
+		pesquisa = window.location.search;
+		parametros = new URLSearchParams(pesquisa)
+
+		parametros.delete('preco_min')
+		parametros.delete('preco_max')
 
 		if (min.value) {
-			string += `preco_min=${min.value}`
+			parametros.set('preco_min', min.value)
 		}
 
 		if (max.value) {
-			string += `preco_max=${max.value}`
+			parametros.set('preco_max', max.value)
 		}
 
-		window.location.href = `/livro/pesquisa/${string}`
+		window.location.href = `/livro/pesquisa/?${parametros.toString()}`
 	}
 }
 
@@ -103,11 +140,12 @@ function generoFiltro () {
 
 	generos.forEach(genero => {
 		genero.onclick = function () {
-			string = urlParametros('genero')
+			pesquisa = window.location.search;
+			parametros = new URLSearchParams(pesquisa)
 
-			string += `genero=${genero.innerText.toLowerCase()}`
+			parametros.set('genero', genero.innerText.toLowerCase())
 
-			window.location.href = `/livro/pesquisa/${string}`
+			window.location.href = `/livro/pesquisa/?${parametros.toString()}`
 		}
 	})
 }
@@ -117,14 +155,12 @@ function localizacaoFiltro () {
 
 	localizacoes.forEach(localizacao => {
 		localizacao.onclick = function () {
-			string = urlParametros('estado')
+			pesquisa = window.location.search;
+			parametros = new URLSearchParams(pesquisa)
 
-			str = localizacao.innerText.toLowerCase()
-			parsed = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+			parametros.set('estado', localizacao.innerText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''))
 
-			string += `estado=${parsed}`
-
-			window.location.href = `/livro/pesquisa/${string}`
+			window.location.href = `/livro/pesquisa/?${parametros.toString()}`
 		}
 	})
 }

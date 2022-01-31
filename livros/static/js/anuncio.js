@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
 function favoritar () {
 	btnFavorito = document.querySelector('#favorito')
 
-	btnFavorito.addEventListener('click', () => {
+	btnFavorito.addEventListener('click', (event) => {
+		event.preventDefault();
 		csrf = document.getElementsByName('csrfmiddlewaretoken')
 
 		fetch(`/livro/favorito/`, {
@@ -18,7 +19,13 @@ function favoritar () {
 		})
 		.then(response => response.json())
 		.then(result => {
-			console.log(result)
+			if (result.success == "adicionado") {
+				btnFavorito.checked = true
+			}
+
+			if (result.success == "removido") {
+				btnFavorito.checked = false
+			}
 
 			if (result.error == 'login') {
 				window.location.href = "/login/"

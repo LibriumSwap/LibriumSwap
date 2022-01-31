@@ -12,7 +12,7 @@ from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 from .forms import NovoAnuncioForm, EditarAnuncioForm
-from .models import Livro, LivroAnuncio, LivroAnuncioImagem
+from .models import LivroAnuncio, LivroAnuncioImagem
 from autenticacao.models import User
 from checkout.models import Pedido
 from pagamento.models import Pagamento

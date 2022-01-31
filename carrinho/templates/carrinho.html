@@ -32,8 +32,12 @@
 			</div>
 			{% endfor %}
 		</div>
-		<h2 id="carrinho-total">Total: R${{ total.preco__sum }}</h2>
-		<a href="{% url 'checkout_carrinho' %}" class="comprar-carrinho">Comprar do carrinho</a>
+		{% if carrinho %}
+			<h2 id="carrinho-total">Total: R${{ total.preco__sum }}</h2>
+			<a href="{% url 'checkout_carrinho' %}" class="comprar-carrinho">Comprar do carrinho</a>
+		{% else %}
+			<p id="carrinho-total">Não há nenhum anúncio adicionado ao carrinho :(</p>
+		{% endif %}
 	</div>
 
 	<script type="text/javascript" src="{% static 'js/carrinho.js' %}"></script>
