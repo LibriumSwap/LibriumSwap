@@ -116,28 +116,34 @@
 				<ul>
 			</div>
 			<div class="resultados-anuncios">
-				{% for anuncio in resultados %}
-					<div class="anuncio">
-						<a href="{% url 'anuncio_livro' anuncio.id %}"><img src="{{ anuncio.imagens.first.imagem.url }}"></a>
-						<h3>{{ anuncio.get_categoria_display }}</h3>
-						<a href="{% url 'anuncio_livro' anuncio.id %}"><h2>{{ anuncio.titulo }}</h2></a>
-						<p>por {{ anuncio.autor }}</p>
-						<div class="anuncio-avaliacao">
-							<i class="bi bi-star-fill"></i>
-							<i class="bi bi-star-fill"></i>
-							<i class="bi bi-star-fill"></i>
-							<i class="bi bi-star-fill"></i>
-							<i class="bi bi-star-fill"></i>
-							<p>100 avaliações</p>
-						</div>
-						{% if anuncio.categoria != "T" %}
-							<div class="anuncio-preco">
-								<p>R$</p>
-								<h2>{{ anuncio.preco }}</h2>
+				{% if resultados %}
+					{% for anuncio in resultados %}
+						<div class="anuncio">
+							<a href="{% url 'anuncio_livro' anuncio.id %}"><img src="{{ anuncio.imagens.first.imagem.url }}"></a>
+							<h3>{{ anuncio.get_categoria_display }}</h3>
+							<a href="{% url 'anuncio_livro' anuncio.id %}"><h2>{{ anuncio.titulo }}</h2></a>
+							<p>por {{ anuncio.autor }}</p>
+							<div class="anuncio-avaliacao">
+								<i class="bi bi-star-fill"></i>
+								<i class="bi bi-star-fill"></i>
+								<i class="bi bi-star-fill"></i>
+								<i class="bi bi-star-fill"></i>
+								<i class="bi bi-star-fill"></i>
+								<p>100 avaliações</p>
 							</div>
-						{% endif %}
+							{% if anuncio.categoria != "T" %}
+								<div class="anuncio-preco">
+									<p>R$</p>
+									<h2>{{ anuncio.preco }}</h2>
+								</div>
+							{% endif %}
+						</div>
+					{% endfor %}
+				{% else %}
+					<div class="anuncio">
+						<p>Não há resultados para sua busca :(</p>
 					</div>
-				{% endfor %}
+				{% endif %}
 			</div>
 		</div>
 	</div>
