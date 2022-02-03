@@ -1,0 +1,13 @@
+.change-psswd-container{
+	display: flex;
+	border-bottom: 1px solid grey;
+}
+
+.change-psswd-container p{
+	cursor: pointer;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}

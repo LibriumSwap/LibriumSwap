@@ -41,6 +41,33 @@
 		<div class="swiper-button-next"></div>
 	</div>
 </div>
+<div class="autores-populares recentes">
+	<div class="autores-header recentes-header">
+		<h1>Autores populares</h1>
+		<a href="#">Ver todos</a>
+	</div>
+	<hr>
+	<div class="swiper">
+		<div class="swiper-wrapper">
+			{% for autor in autores_populares %}
+				<div class="swiper-slide">
+					<div>
+						<a href="#"><img src="{{ autor.imagem }}"></a>
+						<h2>{{ autor.autor }}</h2>
+					</div>
+				</div>
+			{% endfor %}
+			<div class="swiper-slide ver-mais">
+				<a href="#">
+					<p>Ver mais</p>
+					<i class="bi bi-arrow-right-circle"></i>
+				</a>
+			</div>
+		</div>
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-button-next"></div>
+	</div>
+</div>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="{% static 'js/home_slide.js' %}"></script>

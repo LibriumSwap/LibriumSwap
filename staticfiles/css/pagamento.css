@@ -1,0 +1,47 @@
+body {
+	color: #343434;
+}
+
+.conteudo {
+	display: flex;
+	justify-content: center;
+	padding: 5%;
+	padding-top: 1%;
+}
+
+.checkout-produtos {
+	width: 50%;
+	margin-top: 90px;
+	background-color: rgba(0, 0, 0, 0.03);
+	padding: 30px;
+}
+
+.produto-preco {
+	display: flex;
+}
+
+.checkout-produtos .preco {
+	margin-left: auto;
+}
+
+.checkout-produtos img {
+	margin-right: 15px;
+}
+
+.checkout-produtos hr {
+	border-color: rgba(255, 255, 255, 0.44);
+	margin-bottom: 25px;
+}
+
+.produto {
+	display: flex;
+	margin-bottom: 10px;
+}
+
+.mercadopago-button {
+	display: flex;
+	background-color: #a959dd !important;
+	font-weight: bold;
+	margin-top: 25px;
+	margin-left: auto;
+}

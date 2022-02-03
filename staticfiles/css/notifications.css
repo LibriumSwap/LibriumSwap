@@ -1,0 +1,9 @@
+.message-container{
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid grey;
+}
+
+.message-container img{
+	padding-left: 68%;
+}
