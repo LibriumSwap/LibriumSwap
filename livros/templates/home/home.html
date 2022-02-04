@@ -47,12 +47,12 @@
 		<a href="#">Ver todos</a>
 	</div>
 	<hr>
-	<div class="swiper">
+	<div class="swiper swiper2">
 		<div class="swiper-wrapper">
 			{% for autor in autores_populares %}
 				<div class="swiper-slide">
 					<div>
-						<a href="#"><img src="{{ autor.imagem }}"></a>
+						<a href="{% url 'livros_autor' autor.autor %}"><img src="{{ autor.imagem }}"></a>
 						<h2>{{ autor.autor }}</h2>
 					</div>
 				</div>

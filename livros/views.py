@@ -31,6 +31,12 @@ def anuncio(request, id_anuncio):
 
 	return render(request, "anuncio/anuncio.html", context)
 
+def livros_autor(request, autor):
+	anuncios = LivroAnuncio.objects.filter(autor=autor)
+
+	return render(request, "home/livros_autor.html", {
+		"anuncios": anuncios
+		})
 
 def pesquisa(request):
 	entrada = request.GET.get('q')
