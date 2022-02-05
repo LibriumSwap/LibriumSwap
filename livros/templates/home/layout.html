@@ -51,6 +51,8 @@
 						<a href="{% url 'carrinho' %}"><img src="{% static 'images/btn-icone.svg' %}"></i></a>
 					</div>
 				</div>
+				{% else %}
+					<a href="{% url 'login' %}" class="btn-login">Fazer login</a>
 				{% endif %}
 				<div class="menu-btn">
 					<div class="menu-btn__burger"></div>
