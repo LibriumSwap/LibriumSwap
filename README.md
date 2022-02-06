@@ -6,7 +6,7 @@ LibriumSwap é um website para venda e troca de livros físicos, visando em melh
 
 <br />
 
-<img align="left" alt="Homepage | LibriumSwap" src="https://raw.githubusercontent.com/LibriumSwap/LibriumSwap/main/presentation.jpg" />
+![Homepage LibriumSwap](https://raw.githubusercontent.com/LibriumSwap/LibriumSwap/main/presentation.jpg)
 
 
 <br />
