@@ -4,7 +4,7 @@
 ## Sobre o projeto
 LibriumSwap é um website para venda e troca de livros físicos, visando em melhorar a circulação de livros pelo Brasil.
 
-![LibriumSwap!](/https://github.com/LibriumSwap/LibriumSwap/blob/main/presentation.jpg "Homepage LibriumSwap")
+[<img align="left" alt="Homepage | LibriumSwap" src="https://raw.githubusercontent.com/LibriumSwap/LibriumSwap/main/presentation.jpg" />]
 
 
 ### Tecnologias
