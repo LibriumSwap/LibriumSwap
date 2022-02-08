@@ -20,7 +20,7 @@ LibriumSwap é um website para venda e troca de livros físicos, visando em melh
 - SQLite
 - HTML
 - CSS
-- Docker
+- ~~Docker~~
 
 ## Instalação 
 Siga os passos a seguir para instalar o projeto
