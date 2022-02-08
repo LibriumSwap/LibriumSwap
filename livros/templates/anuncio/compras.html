@@ -12,23 +12,26 @@
 	<h1>Minhas compras</h1>
 	<hr>
 	<div class="compras">
-		{% for compra in compras %}
-			
-			<div class="compra">
-				<h3>{{ compra.data_pagamento.date }}</h3>
-				<div class="anuncio">
-					<ul>
-					{% for anuncio in compra.pedido.anuncio.all %}
-						<li class="livro">
-							<img src="{{ anuncio.imagens.first.imagem.url }}">
-							<h4>{{ anuncio.titulo }}</h4>
-							<h4 id="preco">R${{ anuncio.preco }}</h4>
-						</li>
-					{% endfor %}
-				</ul>
+		{% if compras %}
+			{% for compra in compras %}
+				<div class="compra">
+					<h3>{{ compra.data_pagamento.date }}</h3>
+					<div class="anuncio">
+						<ul>
+						{% for anuncio in compra.pedido.anuncio.all %}
+							<li class="livro">
+								<img src="{{ anuncio.imagens.first.imagem.url }}">
+								<h4>{{ anuncio.titulo }}</h4>
+								<h4 id="preco">R${{ anuncio.preco }}</h4>
+							</li>
+						{% endfor %}
+					</ul>
+					</div>
 				</div>
-			</div>
-			<hr>
-		{% endfor %}
+				<hr>
+			{% endfor %}
+		{% else %}
+			<p style="text-align: center;">Você não realizou nenhum compra :(</p>
+		{% endif %}
 	</div>
 {% endblock %}
