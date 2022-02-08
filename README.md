@@ -56,6 +56,7 @@ python3 manage.py migrate
 Digite o comando:
 ~~~shell
 python3 manage.py runserver
+~~~
 
 <br />
 
