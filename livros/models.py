@@ -21,7 +21,14 @@ class LivroAnuncio(models.Model):
 	autor = models.CharField(max_length=64)
 	sinopse = models.TextField()
 	anunciado = models.BooleanField(default=True)
+	avaliacoes = models.ManyToManyField('AnuncioAvaliacao')
 
 class LivroAnuncioImagem(models.Model):
 	imagem = models.ImageField(upload_to='images/anuncios')
 	num = models.IntegerField()
+
+class AnuncioAvaliacao(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	nota = models.IntegerField()
+	comentario = models.CharField(max_length=256)
+	data = models.DateTimeField(auto_now_add=True)

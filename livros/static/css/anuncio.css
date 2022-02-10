@@ -128,7 +128,7 @@ body {
   display: none;
 }
 
-.anuncio-sinopse, .anuncio-detalhes {
+.anuncio-sinopse, .anuncio-detalhes , .anuncio-avaliacoes{
 	margin-top: 100px;
 	padding-right: 6%;
 	padding-left: 6%;
@@ -142,6 +142,15 @@ body {
 	width: 100%;
 	margin-left: 50px;
 	border-spacing: 10px;
+}
+
+.avaliacao {
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+
+.avaliacao i {
+  color: #820AD1;
 }
 
 label {

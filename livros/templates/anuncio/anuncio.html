@@ -169,6 +169,24 @@
 			{% endfor %}
 		</table>
 	</div>
+	{% if anuncio.avaliacoes %}
+		<div class="anuncio-avaliacoes">
+			<h1>Avaliações</h1>
+			{% for avaliacao in anuncio.avaliacoes.all %}
+			<div class="avaliacao">
+				<div class="nota">
+					{{ avaliacao.user }} -
+					<i class="bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
+				</div>
+				{{ avaliacao.comentario }}
+			</div>
+			{% endfor %}
+		</div>
+	{% endif %}
 
 	<script type="text/javascript" src="{% static 'js/anuncio.js' %}"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

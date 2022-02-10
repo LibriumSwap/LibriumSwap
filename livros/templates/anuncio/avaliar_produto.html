@@ -1,0 +1,30 @@
+{% extends "home/layout.html" %}
+
+{% load static %}
+
+{% block title %}Avaliar produto{% endblock %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/avaliar_produto.css' %}">
+{% endblock %}
+
+{% block body %}
+	<h1>Avaliar</h1>
+	<hr>
+	<div class="form">
+		<img src="{{ anuncio.imagens.first.imagem.url }}">
+		<form class="avaliacao" action="{% url 'avaliar_produto' anuncio.id %}" method="post">
+	    	{% csrf_token %}
+	    	<div class="notas">
+	    		<input type="radio" name="nota" value="5" id="5"><label for="5">☆</label>
+				<input type="radio" name="nota" value="4" id="4"><label for="4">☆</label>
+				<input type="radio" name="nota" value="3" id="3"><label for="3">☆</label>
+				<input type="radio" name="nota" value="2" id="2"><label for="2">☆</label>
+				<input type="radio" name="nota" value="1" id="1"><label for="1">☆</label>
+	    	</div>
+			<textarea name="comentario"></textarea>
+			<br>
+			<button id="avaliar-btn" type="submit">Avaliar</button>
+		</form>
+	</div>
+{% endblock %}

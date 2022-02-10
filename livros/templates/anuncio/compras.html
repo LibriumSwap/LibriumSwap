@@ -21,7 +21,11 @@
 						{% for anuncio in compra.pedido.anuncio.all %}
 							<li class="livro">
 								<img src="{{ anuncio.imagens.first.imagem.url }}">
-								<h4>{{ anuncio.titulo }}</h4>
+								<div>
+									<h3>{{ anuncio.titulo }}</h3>
+									{{ anuncio.avaliado }}
+									<a href="{% url 'avaliar_produto' anuncio.id %}">Avaliar produto</a>
+								</div>
 								<h4 id="preco">R${{ anuncio.preco }}</h4>
 							</li>
 						{% endfor %}

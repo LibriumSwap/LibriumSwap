@@ -11,8 +11,8 @@ from io import BytesIO
 from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
-from .forms import NovoAnuncioForm, EditarAnuncioForm
-from .models import LivroAnuncio, LivroAnuncioImagem
+from .forms import NovoAnuncioForm, EditarAnuncioForm, AvaliarProdutoForm
+from .models import LivroAnuncio, LivroAnuncioImagem, AnuncioAvaliacao
 from autenticacao.models import User
 from checkout.models import Pedido
 from pagamento.models import Pagamento
@@ -20,7 +20,7 @@ from pagamento.models import Pagamento
 def anuncio(request, id_anuncio):
 	anuncio = LivroAnuncio.objects.get(id=id_anuncio)
 	context = {
-		"anuncio": anuncio
+		"anuncio": anuncio,
 		}
 
 	if User.objects.filter(username=request.user.username, favoritos=anuncio):
@@ -141,8 +141,9 @@ def compras(request):
 	user = get_object_or_404(User, username=request.user.username)
 	compras = Pagamento.objects.filter(pedido__in=Pedido.objects.filter(user=user, pago=True)).order_by("-data_pagamento")
 
+
 	return render(request, "anuncio/compras.html", {
-		"compras": compras
+		"compras": compras,
 		})
 
 def compra(request, id_compra):
@@ -152,6 +153,32 @@ def compra(request, id_compra):
 	return render(request, "anuncio/compra.html", {
 		"compra": compra
 		})
+
+def avaliar_produto(request, id_anuncio):
+	anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)
+
+	if request.method == "GET":
+		return render(request, "anuncio/avaliar_produto.html", {
+			"anuncio": anuncio
+			})
+
+	if request.method == "POST":
+		form = AvaliarProdutoForm(request.POST)
+
+		if form.is_valid():
+			nota = form.cleaned_data["nota"]
+			comentario = form.cleaned_data["comentario"]
+			user = get_object_or_404(User, username=request.user.username)
+
+			avaliacao = AnuncioAvaliacao(nota=nota, comentario=comentario, user=user)
+			avaliacao.save()
+
+			anuncio.avaliacoes.add(avaliacao)
+			anuncio.save()
+
+			return HttpResponseRedirect(reverse('compras'))
+		else:
+			print(form.errors)
 
 @require_POST
 def favorito(request):
