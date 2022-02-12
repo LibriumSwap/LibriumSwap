@@ -19,6 +19,7 @@ from pagamento.models import Pagamento
 
 def anuncio(request, id_anuncio):
 	anuncio = LivroAnuncio.objects.get(id=id_anuncio)
+
 	context = {
 		"anuncio": anuncio,
 		}
@@ -242,6 +243,7 @@ def editar_anuncio(request, id_anuncio):
 			livro_anuncio.sinopse = form.cleaned_data["sinopse"]
 			livro_anuncio.detalhes = form.cleaned_data["detalhes"]
 
+			# Livros de todas as categorias exceto troca possuem preço
 			if form.cleaned_data["categoria"] != "T":
 				livro_anuncio.preco = form.cleaned_data["preco"]
 			livro_anuncio.save()

@@ -52,9 +52,15 @@ function adicionarAoCarrinho () {
 		.then(result => {
 			if (result.error == 'login') {
 				window.location.href = "/login/"
+			} else if (result.error == 'cheio') {
+				btnAdicionarAoCarrinho.querySelector('span').innerText = "Carrinho cheio "
+				btnAdicionarAoCarrinho.querySelector('.bi-x-circle-fill').style.display = "inline-block"
+			} else if (result.error == 'adicionado') {
+				btnAdicionarAoCarrinho.querySelector('span').innerText = "Já adicionado "
+				btnAdicionarAoCarrinho.querySelector('.bi-check-circle-fill').style.display = "inline-block"
 			} else {
 				btnAdicionarAoCarrinho.querySelector('span').innerText = "Adicionado "
-				btnAdicionarAoCarrinho.querySelector('i').style.display = "inline-block"
+				btnAdicionarAoCarrinho.querySelector('.bi-check-circle-fill').style.display = "inline-block"
 			}
 		})
 	}
