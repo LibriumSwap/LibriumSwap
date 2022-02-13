@@ -169,7 +169,7 @@
 			{% endfor %}
 		</table>
 	</div>
-	{% if anuncio.avaliacoes %}
+	{% if anuncio.avaliacoes.all %}
 		<div class="anuncio-avaliacoes">
 			<h1>Avaliações</h1>
 			{% for avaliacao in anuncio.avaliacoes.all %}
