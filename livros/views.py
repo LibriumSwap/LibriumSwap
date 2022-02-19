@@ -310,4 +310,8 @@ def excluir_anuncio(request, id_anuncio):
 	anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)
 
 	if request.user == anuncio.anunciante:
-		print('ok')
+		anuncio.delete()
+
+		return redirect('home')
+	else:
+		return redirect('home')
