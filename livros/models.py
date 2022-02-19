@@ -7,7 +7,6 @@ User = get_user_model()
 
 CATEGORIA_CHOICES = (
 	("V", "Venda"),
-	("A", "Aluguel"),
 	("T", "Troca")
 )
 

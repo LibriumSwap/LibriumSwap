@@ -2,7 +2,6 @@ from django import forms
 
 CATEGORIA_CHOICES = (
 	("V", "Venda"),
-	("A", "Aluguel"),
 	("T", "Troca")
 )
 

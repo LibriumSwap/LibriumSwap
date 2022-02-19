@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 	favoritar()
 	adicionarAoCarrinho()
+	nota()
 })
 
 function favoritar () {
@@ -63,5 +64,24 @@ function adicionarAoCarrinho () {
 				btnAdicionarAoCarrinho.querySelector('.bi-check-circle-fill').style.display = "inline-block"
 			}
 		})
+	}
+}
+
+function nota () {
+	icones = String("bi-star#").repeat(5).split("#")
+	icones.pop(icones[5])
+
+	avaliacoes_div = document.querySelector('.avaliacoes')
+
+	nota = parseInt(avaliacoes_div.dataset.nota)
+
+	for (let i=0; i < nota; i++) {
+		icones[i] = "bi-star-fill"
+	}
+
+	i_tags = avaliacoes_div.querySelectorAll('i')
+
+	for (let i=0; i < 5; i++) {
+		i_tags[i].classList.add(icones[i])
 	}
 }
