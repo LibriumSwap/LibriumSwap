@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
-from django.db.models import Q
+from django.db.models import Q, Avg
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from io import BytesIO
@@ -19,9 +19,11 @@ from pagamento.models import Pagamento
 
 def anuncio(request, id_anuncio):
 	anuncio = LivroAnuncio.objects.get(id=id_anuncio)
+	nota = anuncio.avaliacoes.all().aggregate(Avg('nota'))
 
 	context = {
 		"anuncio": anuncio,
+		"nota": nota,
 		}
 
 	if User.objects.filter(username=request.user.username, favoritos=anuncio):
