@@ -38,7 +38,8 @@ function favoritar () {
 function adicionarAoCarrinho () {
 	btnAdicionarAoCarrinho = document.querySelector('.btn-carrinho')
 
-	btnAdicionarAoCarrinho.onclick = function () {
+	if (btnAdicionarAoCarrinho) {
+		btnAdicionarAoCarrinho.onclick = function () {
 		id = document.querySelector('h2').dataset.id
 		csrf = document.getElementsByName('csrfmiddlewaretoken')
 
@@ -64,6 +65,7 @@ function adicionarAoCarrinho () {
 				btnAdicionarAoCarrinho.querySelector('.bi-check-circle-fill').style.display = "inline-block"
 			}
 		})
+	}
 	}
 }
 

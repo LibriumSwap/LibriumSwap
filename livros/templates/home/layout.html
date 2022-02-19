@@ -24,7 +24,7 @@
 				<a href="{% url 'home' %}"><img id="logomarca-mobile" src="{% static 'images/logomarca.png' %}"></a>
 				<form class="pesquisa" action="{% url 'pesquisa' %}" method="get">
 					<input type="text" name="q">
-					<button type="submit"><i class="bi bi-search"></i></button>
+					<button type="submit"><img src="{% static 'images/pesquisa.svg' %}"></button>
 				</form>
 				{% if request.user.is_authenticated %}
 				<div class="menu">
