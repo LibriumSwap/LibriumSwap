@@ -53,12 +53,11 @@ hr {
 	height: 500px;
 }
 
-.swiper2 .swiper-slide img {
+.swiper1 .swiper-slide img {
 	height: 350px;
 }
 
 .swiper-slide img {
-	height: 100%;
 	width: 100%;
 }
 
@@ -133,8 +132,49 @@ footer hr {
 }
 
 @media screen and (max-width: 768px) {
+	.recentes {
+		margin-top: 20px;
+	}
+
 	.recentes-header h1 {
 		font-size: 1.5em;
+	}
+
+	.recentes-header::after {
+		content: "";
+		height: 45px;
+		background: #A959DD;
+		width: 7px;
+		position: absolute;
+		left: 2%;
+		border-radius: 20px;
+	}
+
+	footer {
+		padding: 30px 5% 30px 5%;
+	}
+
+	.rodape-info {
+		display: block;
+	}
+
+	.rodape-sobre, .rodape-contato {
+		margin: 0;
+	}
+
+	.rodape-info p {
+		font-size: 12px;
+		margin: 0;
+		width: 100%;
+	}
+
+	.rodape-extra-info {
+		font-size: 12px;
+		text-align: center;
+	}
+
+	footer img {
+		display: none;
 	}
 }
 
