@@ -11,15 +11,15 @@ CATEGORIA_CHOICES = (
 )
 
 class LivroAnuncio(models.Model):
-	detalhes = models.JSONField(max_length=248, default=dict)
-	categoria = models.CharField(max_length=10, choices=CATEGORIA_CHOICES, blank=False, null=False)
 	anunciante = models.ForeignKey(User, on_delete=models.CASCADE)
-	preco = models.FloatField(max_length=64, blank=True, null=True)
-	imagens = models.ManyToManyField('LivroAnuncioImagem')
 	titulo = models.CharField(max_length=128)
 	autor = models.CharField(max_length=64)
+	categoria = models.CharField(max_length=10, choices=CATEGORIA_CHOICES, blank=False, null=False)
+	preco = models.FloatField(max_length=64, blank=True, null=True)
 	sinopse = models.TextField()
+	detalhes = models.JSONField(max_length=248, default=dict)
 	anunciado = models.BooleanField(default=True)
+	imagens = models.ManyToManyField('LivroAnuncioImagem')
 	avaliacoes = models.ManyToManyField('AnuncioAvaliacao')
 
 class LivroAnuncioImagem(models.Model):
