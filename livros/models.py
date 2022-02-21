@@ -17,7 +17,7 @@ class LivroAnuncio(models.Model):
 	categoria = models.CharField(max_length=10, choices=CATEGORIA_CHOICES, blank=False, null=False)
 	preco = models.FloatField(max_length=64, blank=True, null=True)
 	sinopse = models.TextField()
-	detalhes = models.JSONField(max_length=248, default=dict)
+	detalhes = models.JSONField(max_length=248, default=dict, null=True)
 	anunciado = models.BooleanField(default=True)
 	imagens = models.ManyToManyField('LivroAnuncioImagem')
 	avaliacoes = models.ManyToManyField('AnuncioAvaliacao')

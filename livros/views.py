@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.db.models import Q, Avg
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
+from django.core.paginator import Paginator
 from io import BytesIO
 from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile
@@ -68,10 +69,19 @@ def pesquisa(request):
 	if request.GET.get('genero'):
 		resultados = resultados.filter(detalhes__gênero=request.GET.get('genero'))
 
+	page_number = request.GET.get('page')
+	if not request.GET.get('page'):
+		page_number = 1
+
+	paginator= Paginator(resultados, 1)
+	page_obj = paginator.get_page(page_number)
+
 	return render(request, "anuncio/pesquisa.html", {
-		"resultados": resultados,
+		"page_obj": page_obj,
 		"n_resultados": resultados.count(),
-		"entrada": entrada
+		"entrada": entrada,
+		"pagina": page_number,
+		"paginas": paginator.num_pages
 		})
 
 def nova_imagem(imagem):

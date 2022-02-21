@@ -82,7 +82,7 @@
 			<div class="resultados-header">
 				<div class="resultados-info">
 					<p>{{ n_resultados }} resultados para "{{ entrada }}"</p>
-					Página 1 de 5
+					Página {{ pagina }} de {{ paginas }}
 				</div>
 				<div class="ordenar">
 					<b>Ordenar por </b>
@@ -115,8 +115,8 @@
 				<ul>
 			</div>
 			<div class="resultados-anuncios">
-				{% if resultados %}
-					{% for anuncio in resultados %}
+				{% if page_obj %}
+					{% for anuncio in page_obj %}
 						<div class="anuncio">
 							<a href="{% url 'anuncio_livro' anuncio.id %}"><img src="{{ anuncio.imagens.first.imagem.url }}"></a>
 							<h3>{{ anuncio.get_categoria_display }}</h3>
@@ -142,6 +142,41 @@
 					<div class="anuncio">
 						<p>Não há resultados para sua busca :(</p>
 					</div>
+				{% endif %}
+			</div>
+			<div class="paginacao">
+				{% if page_obj.has_previous %}
+				  <a class="anterior" href="?q={{ entrada }}&page={{ page_obj.previous_page_number }}"><i class="bi bi-caret-left-fill"></i> Anterior</a>
+
+				  <div class="paginas">
+				  {% if page_obj.number > 3 %}
+				    <a href="?q={{ entrada }}&page=1">1</a>
+				    {% if page_obj.number > 4 %}
+				      <span>...</span>
+				    {% endif %}
+				  {% endif %}
+				{% endif %}
+
+					{% for num in page_obj.paginator.page_range %}
+					  {% if page_obj.number == num %}
+					    <a class="pagina" href="?q={{ entrada }}&page={{ num }}">{{ num }}</a>
+					  {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+					    <a href="?q={{ entrada }}&page={{ num }}">{{ num }}</a>
+					  {% endif %}
+					{% endfor %}
+
+
+				{% if page_obj.has_next %}
+				  {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}
+				    <span>...</span>
+				    <a href="?q={{ entrada }}&page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+				  {% elif page_obj.number < page_obj.paginator.num_pages|add:'-2' %}
+				    <a href="?q={{ entrada }}&page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+				  {% endif %}
+
+				  </div>
+
+				  <a class="proxima" href="?q={{ entrada }}&page={{ page_obj.next_page_number }}">Próxima <i class="bi bi-caret-right-fill"></i></a>
 				{% endif %}
 			</div>
 		</div>
