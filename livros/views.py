@@ -234,7 +234,7 @@ def editar_anuncio(request, id_anuncio):
 
 		anuncio.save()
 
-		return redirect('home')
+		return redirect('anuncio_livro', id_anuncio=anuncio.id)
 
 	if request.method == "GET":
 		anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)
