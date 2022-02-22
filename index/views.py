@@ -19,14 +19,14 @@ def home(request):
 	autores_populares = LivroAnuncio.objects.values("autor").order_by("autor").annotate(the_count=Count("autor"))
 	autores_populares = autores_populares.order_by("-the_count")[:10]
 	for autor in autores_populares:
-		autor["imagem"] = get_wiki_main_image(autor["autor"])
+		autor["imagem"] = '/static/images/autor_not_found.png'
 
 	return render(request, "home/home.html", {
 		"recentes": recentes,
 		"autores_populares": autores_populares
 		})
 
-def get_wiki_main_image(title):
+"""def get_wiki_main_image(title):
     url = 'https://en.wikipedia.org/w/api.php'
     data = {
         'action' :'query',
@@ -42,4 +42,4 @@ def get_wiki_main_image(title):
     if json_data['query']['pages'][0].get('original'):
     	return json_data['query']['pages'][0]['original']['source']
     else:
-    	return "/static/images/autor_not_found.png"
+    	return "/static/images/autor_not_found.png"""
