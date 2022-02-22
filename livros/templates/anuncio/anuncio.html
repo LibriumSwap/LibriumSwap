@@ -158,17 +158,19 @@
 		<h1>Sinópse</h1>
 		<p>{{ anuncio.sinopse }}</p>
 	</div>
-	<div class="anuncio-detalhes">
-		<h1>Detalhes</h1>
-		<table>
-			{% for key, value in anuncio.detalhes.items %}
-			<tr>
-				<td>{{ key|capfirst }}</td>
-				<td>{{ value|capfirst }}</td>
-			</tr>
-			{% endfor %}
-		</table>
-	</div>
+	{% if anuncio.detalhes.items %}
+		<div class="anuncio-detalhes">
+			<h1>Detalhes</h1>
+			<table>
+				{% for key, value in anuncio.detalhes.items %}
+				<tr>
+					<td>{{ key|capfirst }}</td>
+					<td>{{ value|capfirst }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	{% endif %}
 	{% if anuncio.avaliacoes.all %}
 		<div class="anuncio-avaliacoes">
 			<h1>Avaliações</h1>

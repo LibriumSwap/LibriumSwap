@@ -73,7 +73,7 @@ def pesquisa(request):
 	if not request.GET.get('page'):
 		page_number = 1
 
-	paginator= Paginator(resultados, 1)
+	paginator= Paginator(resultados, 20)
 	page_obj = paginator.get_page(page_number)
 
 	return render(request, "anuncio/pesquisa.html", {
@@ -225,37 +225,39 @@ def categorias(request, categorias):
 
 @login_required	
 def editar_anuncio(request, id_anuncio):
-	if request.method == "POST":
-		livro_anuncio = LivroAnuncio.objects.get(id=id_anuncio)
-		form = EditarAnuncioForm(request.POST, request.FILES, instance=livro_anuncio)
-		anuncio = form.save()
+	anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)
 
-		for i in range(1, 5):
-			if form.cleaned_data[f"imagem{i}"]:
-				if anuncio.imagens.filter(num=i):
-					imagem = livro_anuncio.imagens.get(num=i)
-					imagem.imagem = nova_imagem(form.cleaned_data[f"imagem{i}"])
-					imagem.save()
+	if request.user == anuncio.anunciante:
+		if request.method == "POST":
+			livro_anuncio = LivroAnuncio.objects.get(id=id_anuncio)
+			form = EditarAnuncioForm(request.POST, request.FILES, instance=livro_anuncio)
+			anuncio = form.save()
 
-				else:
-					imagem_model = LivroAnuncioImagem(imagem=nova_imagem(form.cleaned_data[f"imagem{i}"]), num=i)
-					imagem_model.save()
-					anuncio.imagens.add(imagem_model)
+			for i in range(1, 5):
+				if form.cleaned_data[f"imagem{i}"]:
+					if anuncio.imagens.filter(num=i):
+						imagem = livro_anuncio.imagens.get(num=i)
+						imagem.imagem = nova_imagem(form.cleaned_data[f"imagem{i}"])
+						imagem.save()
 
-		anuncio.save()
+					else:
+						imagem_model = LivroAnuncioImagem(imagem=nova_imagem(form.cleaned_data[f"imagem{i}"]), num=i)
+						imagem_model.save()
+						anuncio.imagens.add(imagem_model)
 
-		return redirect('anuncio_livro', id_anuncio=anuncio.id)
+			anuncio.save()
 
-	if request.method == "GET":
-		anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)
+			return redirect('anuncio_livro', id_anuncio=anuncio.id)
 
-		form = EditarAnuncioForm(instance=anuncio)
+		if request.method == "GET":
+			form = EditarAnuncioForm(instance=anuncio)
 
-		if request.user == anuncio.anunciante:
 			return render(request, "anuncio/editar_anuncio.html", {
 				"form": form,
 				"anuncio": anuncio
 				})
+	else:
+		return redirect('home')
 
 @login_required
 def pausar_anuncio(request, id_anuncio):
@@ -270,6 +272,8 @@ def pausar_anuncio(request, id_anuncio):
 		anuncio.save()
 
 		return redirect('anuncio_livro', id_anuncio=livro_anuncio.id)
+	else:
+		return redirect('home')
 
 @login_required
 def excluir_anuncio(request, id_anuncio):

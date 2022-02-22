@@ -97,17 +97,18 @@ function preencherDetalhe () {
 
   detalheInputs = document.querySelectorAll('.detalhe-input')
 
-  for(i=0; i < Object.keys(detalhes).length; i++){
+  if (Object.keys(detalhes).length > 0) {
+    for(i=0; i < Object.keys(detalhes).length; i++){
 
-    detalheInput = detalheInputs[0].cloneNode(true)
-    detalheInput.children[0].children[0].children[0].value = Object.keys(detalhes)[i]
-    detalheInput.children[0].children[1].children[0].value = Object.values(detalhes)[i]
-    detalheInputsDiv = document.querySelector('.detalhe-inputs')
-    detalheInputsDiv.appendChild(detalheInput)
+      detalheInput = detalheInputs[0].cloneNode(true)
+      detalheInput.children[0].children[0].children[0].value = Object.keys(detalhes)[i]
+      detalheInput.children[0].children[1].children[0].value = Object.values(detalhes)[i]
+      detalheInputsDiv = document.querySelector('.detalhe-inputs')
+      detalheInputsDiv.appendChild(detalheInput)
+    }
+
+    detalheInputs[0].remove()
   }
-
-  detalheInputs[0].remove()
-
 }
 
 function anunciar () {
@@ -120,7 +121,8 @@ function anunciar () {
     }
   }
 
-  detalhesTexto = document.querySelector('#id_detalhes')
+  detalhesTexto = document.querySelector('.detalhes')
+  console.log(detalhesTexto)
   detalhesTexto.value = JSON.stringify(detalhes).replace(/'/g, '"')
   return true;
 }

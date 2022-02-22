@@ -15,6 +15,7 @@ NOTA_CHOICES = [('1', '☆'),
 			   ('5', '☆'),]
 
 class NovoAnuncioForm(ModelForm):
+	detalhes = forms.CharField(required=False)
 	imagem1 = forms.ImageField(widget=forms.FileInput(attrs={'class': 'image-input'}))
 	imagem2 = forms.ImageField(required=False, widget=forms.FileInput(attrs={'class': 'image-input'}))
 	imagem3 = forms.ImageField(required=False, widget=forms.FileInput(attrs={'class': 'image-input'}))
@@ -32,6 +33,7 @@ class NovoAnuncioForm(ModelForm):
 		}
 
 class EditarAnuncioForm(ModelForm):
+	detalhes = forms.CharField(required=False)
 	imagem1 = forms.ImageField(required=False, widget=forms.FileInput(attrs={'class': 'image-input'}))
 	imagem2 = forms.ImageField(required=False, widget=forms.FileInput(attrs={'class': 'image-input'}))
 	imagem3 = forms.ImageField(required=False, widget=forms.FileInput(attrs={'class': 'image-input'}))
