@@ -26,6 +26,7 @@
 				<button class="search-btn" type="submit"><i class="bi bi-search"></i></button>
 			</div>
 			<div class="contacts">
+				
 				{% for contact_detail in contacts_details %}
 				<div class="contact">
 					<a href="{% url 'room' contact_detail.0 %}">
