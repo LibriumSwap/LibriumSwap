@@ -2,10 +2,15 @@ body{
   margin: 0;
   overflow: hidden;
   padding: 0;
+  height: 100vh;
 }
 
 .nav-2{
   display: none;
+}
+
+.nav-container{
+  height: auto;
 }
 
 /* DROPDOWN STATUS */
@@ -14,13 +19,18 @@ body{
 }
 
 
-.container-panel p{
-  margin: 0;
+.container{
+  height: 91.8%;
 }
+
 .container-panel{
   display: flex;
   width: 100%;
-  height: 80%;
+  height: 90%;
+}
+
+.container-panel p{
+  margin: 0;
 }
 
 .sidepanel{
@@ -32,12 +42,8 @@ body{
   width: 25%;
 }
 
-.container{
-  height: 100vh;
-}
 
 .topbar-container{
-  padding-top: 1%;
   display: flex;
   background-color: #A959DD;
   height: 10%;
@@ -126,13 +132,16 @@ body{
 }
 
 .contact-container{
-  padding-bottom: 15px;
-  padding-top: 5px;
-  margin-left: 4%;
+  margin-left: 10%;
   display: flex;
   align-items: center;
+  justify-content: left;
+  height: 100%;
 }
 
+.contact{
+  height: 80px;
+}
 .contact:hover{
   background: #CB98EC;
 }

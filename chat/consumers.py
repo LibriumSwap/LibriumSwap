@@ -83,7 +83,9 @@ class ChatConsumer(WebsocketConsumer):
         threads = self.get_current_thread(user, other_user) # filter threads
         thread_obj = threads.get(thread_type="private") # get thread specific object
 
-        message = Message.objects.create(author=author_user, content=data['message'], thread=thread_obj)
+        contact_obj = Contact.objects.get(user=user)
+
+        message = Message.objects.create(author=author_user, contact=contact_obj, content=data['message'], thread=thread_obj)
         content = {
             'author': author,
             'command': 'new_message',
@@ -114,10 +116,10 @@ class ChatConsumer(WebsocketConsumer):
 
     def get_or_create_private_thread(self, user1, user2):
         threads = Thread.objects.filter(thread_type='private')
-
         threads = threads.filter(users__in=[user1, user2]).distinct()
 
         threads = threads.annotate(u_count=Count('users')).filter(u_count=2)
+
         if threads.exists():
             return threads.first()
         else:
@@ -151,29 +153,28 @@ class ChatConsumer(WebsocketConsumer):
     
     #Create contact
     def new_contact(self, username, other_username):
-        contact_name = User.objects.get(username=other_username)
-        contacts = Contact.objects.all()
-        if(username == contact_name):
-            print("1")
+        #Object
+        otherusername_obj = User.objects.get(username=other_username)
+        username_obj = User.objects.get(username=username)
+
+        #print("--NEW CONTACT--")
+        if Contact.objects.filter(user=username_obj):
+            #print("ADDED CONTACT")
+            otheruser_image = otherusername_obj.profile_image
+            contact_obj = Contact.objects.get(user=username_obj)
+            contact_obj.contacts.add(otherusername_obj)
+            #print("-------------")
         else:
-            username_filter = User.objects.filter(username=username)
-            otheruser_filter = User.objects.filter(username=other_username)
-            if(contacts.filter(user__in=username_filter, contacts__in=otheruser_filter).exists()):
-                print("2")
-            else:
-                print("3")
-                for otheruser in otheruser_filter:
-                    continue
-                otheruser_image = otheruser.profile_image
-                contact = Contact.objects.create(user=username)
-                contact.contacts.add(contact_name)
-                content = {
-                    'command': 'new_contact',
-                    'contact': self.contact_to_json(contact, otheruser_image)
-                }
-
-
-                self.send(text_data=json.dumps(content))
+            #print("CREATED CONTACT AND ADDED")
+            otheruser_image = otherusername_obj.profile_image
+            contact_obj = Contact.objects.create(user=username)
+            contact_obj.contacts.add(otherusername_obj)
+            content = {
+                'command': 'new_contact',
+                'contact': self.contact_to_json(contact_obj, otheruser_image)
+            }
+            #print("--------------")
+            self.send(text_data=json.dumps(content))
 
     def contact_to_json(self, contact, otheruser_image):
         return {
