@@ -1,4 +1,4 @@
-# LibriumSwap [(demo)](https://libriumswap.herokuapp.com/home/)
+# LibriumSwap
 
 
 ## Sobre o projeto

@@ -125,13 +125,13 @@
 
 			<p>por {{ anuncio.autor }}</p>
 
-			<div class="avaliacoes">
-				<i class="bi bi-star-fill"></i>
-				<i class="bi bi-star-fill"></i>
-				<i class="bi bi-star-fill"></i>
-				<i class="bi bi-star-fill"></i>
-				<i class="bi bi-star-fill"></i>
-				<p>100 avaliações</p>
+			<div class="avaliacoes" data-nota="{{ nota.nota__avg }}">
+				<i class="bi"></i>
+				<i class="bi"></i>
+				<i class="bi"></i>
+				<i class="bi"></i>
+				<i class="bi"></i>
+				<p>{{ anuncio.avaliacoes.count }} avaliações</p>
 			</div>
 
 			{% if anunciante %}
@@ -147,7 +147,7 @@
 				{% if anuncio.preco %}
 					<h2 id="anuncio-preco">R$ {{ anuncio.preco }}</h2>
 					<a href="{% url 'checkout' anuncio.id %}" class="btn btn-comprar">Comprar</a>
-					<button class="btn btn-carrinho"><span>Adicionar ao carrinho</span><i class="bi bi-check-circle-fill"></i></button>
+					<button class="btn btn-carrinho"><span>Adicionar ao carrinho</span><i class="bi bi-check-circle-fill"></i><i class="bi bi-x-circle-fill"></i></button>
 				{% else %}
 					<a href="{% url 'troca' anuncio.id %}" class="btn btn-comprar">Trocar</a>
 				{% endif %}
@@ -158,17 +158,37 @@
 		<h1>Sinópse</h1>
 		<p>{{ anuncio.sinopse }}</p>
 	</div>
-	<div class="anuncio-detalhes">
-		<h1>Detalhes</h1>
-		<table>
-			{% for key, value in anuncio.detalhes.items %}
-			<tr>
-				<td>{{ key|capfirst }}</td>
-				<td>{{ value|capfirst }}</td>
-			</tr>
+	{% if anuncio.detalhes.items %}
+		<div class="anuncio-detalhes">
+			<h1>Detalhes</h1>
+			<table>
+				{% for key, value in anuncio.detalhes.items %}
+				<tr>
+					<td>{{ key|capfirst }}</td>
+					<td>{{ value|capfirst }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	{% endif %}
+	{% if anuncio.avaliacoes.all %}
+		<div class="anuncio-avaliacoes">
+			<h1>Avaliações</h1>
+			{% for avaliacao in anuncio.avaliacoes.all %}
+			<div class="avaliacao">
+				<div class="nota">
+					{{ avaliacao.user }} -
+					<i class="bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
+				</div>
+				{{ avaliacao.comentario }}
+			</div>
 			{% endfor %}
-		</table>
-	</div>
+		</div>
+	{% endif %}
 
 	<script type="text/javascript" src="{% static 'js/anuncio.js' %}"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

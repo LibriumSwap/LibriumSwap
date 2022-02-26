@@ -186,6 +186,32 @@ body {
 	display: none;
 }
 
+.paginacao {
+	display: flex;
+	margin-top: 30px;
+	margin-bottom: 90px;
+}
+
+.paginacao a {
+	text-decoration: none;
+	color: #343434;
+	font-size: 18px;
+}
+
+.paginacao .paginas {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.paginacao .pagina {
+	color: #820AD1;
+	font-weight: bold;
+}
+
+.paginacao .proxima {
+	margin-left: auto;
+}
+
 @media screen and (max-width: 835px) {
 	.filtros {
 		display: flex;

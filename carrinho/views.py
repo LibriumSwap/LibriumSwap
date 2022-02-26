@@ -30,10 +30,15 @@ def adicionar_ao_carrinho(request):
 		if not request.session.get('carrinho'):
 			request.session['carrinho'] = []
 
-		request.session['carrinho'].append(anuncio_id)
-		request.session.modified = True
+		if anuncio_id in request.session['carrinho']:
+			return JsonResponse({"error": "adicionado"})
 
-		return JsonResponse({"success": "adicionado"})
+		if len(request.session['carrinho']) == 5:
+			return JsonResponse({"error": "cheio"})
+		else:
+			request.session['carrinho'].append(anuncio_id)
+			request.session.modified = True
+			return JsonResponse({"success": "adicionado"})
 	else:
 		return JsonResponse({"error": "login"})
 

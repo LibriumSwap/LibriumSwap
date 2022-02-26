@@ -24,7 +24,7 @@
 				<a href="{% url 'home' %}"><img id="logomarca-mobile" src="{% static 'images/logomarca.png' %}"></a>
 				<form class="pesquisa" action="{% url 'pesquisa' %}" method="get">
 					<input type="text" name="q">
-					<button type="submit"><i class="bi bi-search"></i></button>
+					<button type="submit"><img src="{% static 'images/pesquisa.svg' %}"></button>
 				</form>
 				{% if request.user.is_authenticated %}
 				<div class="menu">
@@ -43,11 +43,11 @@
 								<a href="{% url 'privacity' %}">Privacidade</a>
 								<a href="{% url 'settings' %}">Configurações</a>
 								<a disabled style="color: white;">Curioso</a>
-								<a href="{% url 'logout' %}">Sair</a>
+								<a href="{% url 'logout' %}">Sair<i class="bi bi-box-arrow-right"></i></a>
 							</div>
 						</div>
 					<div class="btn-icones">
-						<a href="{% url 'chat' %}"><img id="icone-chat" src="{% static 'images/bi_chat-left.svg' %}"></a>
+						<!--<a href="{% url 'chat' %}"><img id="icone-chat" src="{% static 'images/bi_chat-left.svg' %}"></a>-->
 						<a href="{% url 'carrinho' %}"><img src="{% static 'images/btn-icone.svg' %}"></i></a>
 					</div>
 				</div>
@@ -118,7 +118,6 @@
 				<h4 id="categorias">Categorias<i id="arrow-usuario" class="bi bi-caret-down-fill"></i></h4>
 				<div class="dropdown dropdown-categorias">
 					<a href="{% url 'categorias' 'venda'%}">Venda</a>
-					<a href="{% url 'categorias' 'aluguel'%}">Aluguel</a>
 					<a href="{% url 'categorias' 'troca'%}">Troca</a>
 				</div>
 			</div>

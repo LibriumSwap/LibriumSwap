@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
   categorias()
   efeitosInput()
   detalhes()
-  excluirDetalhe()
   preencherDetalhe()
   preencherImagens()
 })
@@ -74,40 +73,36 @@ function detalhes () {
     detalheInputsDiv = document.querySelector('.detalhe-inputs')
     detalheInputsDiv.appendChild(detalheInputs)
     detalheInputs.scrollIntoView({ behavior: 'smooth'})
-    excluirDetalhe()
   })
 }
 
-function excluirDetalhe () {
-  excluirBtns = document.querySelectorAll('.btn-excluir')
-
-  excluirBtns.forEach(excluirBtn => {
-    excluirBtn.onclick = function () {
-      detalheInputsDiv = document.querySelector('.detalhe-inputs')
-      if (detalheInputsDiv.children.length > 1) {
-        detalheInputsDiv.removeChild(excluirBtn.parentElement)
-      }
-    }
-  })
+function excluirDetalhe (button) {
+  detalheInputsDiv = document.querySelector('.detalhe-inputs')
+  if (detalheInputsDiv.children.length > 1) {
+    detalheInputsDiv.removeChild(button.parentElement)
+  }
 }
 
 function preencherDetalhe () {
-  detalhes = document.querySelector('.detalhes').value
-  detalhes = JSON.parse(detalhes.replace(/'/g, '"'))
+  if (document.querySelector('.detalhes')) {
+    detalhes = document.querySelector('.detalhes').value
+    detalhes = JSON.parse(detalhes.replace(/'/g, '"'))
 
-  detalheInputs = document.querySelectorAll('.detalhe-input')
+    detalheInputs = document.querySelectorAll('.detalhe-input')
 
-  for(i=0; i < Object.keys(detalhes).length; i++){
+    if (Object.keys(detalhes).length > 0) {
+      for(i=0; i < Object.keys(detalhes).length; i++){
 
-    detalheInput = detalheInputs[0].cloneNode(true)
-    detalheInput.children[0].children[0].children[0].value = Object.keys(detalhes)[i]
-    detalheInput.children[0].children[1].children[0].value = Object.values(detalhes)[i]
-    detalheInputsDiv = document.querySelector('.detalhe-inputs')
-    detalheInputsDiv.appendChild(detalheInput)
+        detalheInput = detalheInputs[0].cloneNode(true)
+        detalheInput.children[0].children[0].children[0].value = Object.keys(detalhes)[i]
+        detalheInput.children[0].children[1].children[0].value = Object.values(detalhes)[i]
+        detalheInputsDiv = document.querySelector('.detalhe-inputs')
+        detalheInputsDiv.appendChild(detalheInput)
+      }
+
+      detalheInputs[0].remove()
+    }
   }
-
-  detalheInputs[0].remove()
-
 }
 
 function anunciar () {
@@ -120,7 +115,7 @@ function anunciar () {
     }
   }
 
-  detalhesTexto = document.querySelector('#id_detalhes')
+  detalhesTexto = document.querySelector('.detalhes')
   detalhesTexto.value = JSON.stringify(detalhes).replace(/'/g, '"')
   return true;
 }

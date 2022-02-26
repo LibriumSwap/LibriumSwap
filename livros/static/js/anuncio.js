@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 	favoritar()
 	adicionarAoCarrinho()
+	nota()
 })
 
 function favoritar () {
@@ -37,7 +38,8 @@ function favoritar () {
 function adicionarAoCarrinho () {
 	btnAdicionarAoCarrinho = document.querySelector('.btn-carrinho')
 
-	btnAdicionarAoCarrinho.onclick = function () {
+	if (btnAdicionarAoCarrinho) {
+		btnAdicionarAoCarrinho.onclick = function () {
 		id = document.querySelector('h2').dataset.id
 		csrf = document.getElementsByName('csrfmiddlewaretoken')
 
@@ -52,10 +54,36 @@ function adicionarAoCarrinho () {
 		.then(result => {
 			if (result.error == 'login') {
 				window.location.href = "/login/"
+			} else if (result.error == 'cheio') {
+				btnAdicionarAoCarrinho.querySelector('span').innerText = "Carrinho cheio "
+				btnAdicionarAoCarrinho.querySelector('.bi-x-circle-fill').style.display = "inline-block"
+			} else if (result.error == 'adicionado') {
+				btnAdicionarAoCarrinho.querySelector('span').innerText = "Já adicionado "
+				btnAdicionarAoCarrinho.querySelector('.bi-check-circle-fill').style.display = "inline-block"
 			} else {
 				btnAdicionarAoCarrinho.querySelector('span').innerText = "Adicionado "
-				btnAdicionarAoCarrinho.querySelector('i').style.display = "inline-block"
+				btnAdicionarAoCarrinho.querySelector('.bi-check-circle-fill').style.display = "inline-block"
 			}
 		})
+	}
+	}
+}
+
+function nota () {
+	icones = String("bi-star#").repeat(5).split("#")
+	icones.pop(icones[5])
+
+	avaliacoes_div = document.querySelector('.avaliacoes')
+
+	nota = parseInt(avaliacoes_div.dataset.nota)
+
+	for (let i=0; i < nota; i++) {
+		icones[i] = "bi-star-fill"
+	}
+
+	i_tags = avaliacoes_div.querySelectorAll('i')
+
+	for (let i=0; i < 5; i++) {
+		i_tags[i].classList.add(icones[i])
 	}
 }

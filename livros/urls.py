@@ -14,6 +14,7 @@ urlpatterns = [
     path('favoritos/', views.favoritos, name="favoritos"),
     path('compras/', views.compras, name="compras"),
     path('compra/<str:id_compra>', views.compra, name="compra"),
+    path('avaliar/<str:id_anuncio>', views.avaliar_produto, name='avaliar_produto'),
     path('generos/<str:generos>', views.generos, name="generos"),
     path('categorias/<str:categorias>', views.categorias, name="categorias"),
     path('autor/<str:autor>', views.livros_autor, name="livros_autor")

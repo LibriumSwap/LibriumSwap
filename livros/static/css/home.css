@@ -25,9 +25,9 @@ body {
 	content: "";
 	height: 45px;
 	background: #A959DD;
-	width: 5px;
+	width: 7px;
 	position: absolute;
-	left: 3%;
+	left: 3.5%;
 	border-radius: 20px;
 }
 
@@ -53,12 +53,11 @@ hr {
 	height: 500px;
 }
 
-.swiper2 .swiper-slide img {
+.swiper1 .swiper-slide img {
 	height: 350px;
 }
 
 .swiper-slide img {
-	height: 100%;
 	width: 100%;
 }
 
@@ -92,6 +91,40 @@ hr {
 	margin-top: 50px;
 }
 
+footer {
+	background-color: #A959DD;
+	color: white;
+	padding: 30px 60px 30px 60px;
+	margin-top: 200px;
+}
+
+.rodape-info {
+	display: flex;
+}
+
+.rodape-sobre, .rodape-contato {
+	max-width: 450px;
+	margin-right: 50px;
+}
+
+.rodape-info p {
+	margin-left: 30px;
+}
+
+footer hr {
+	border-color: rgba(255, 255, 255, 0.44);
+}
+
+.rodape-extra-info {
+	display: flex;
+	align-items: center;
+}
+
+.rodape-extra-info img {
+	width: 200px;
+	margin-left: auto;
+}
+
 @media screen and (max-width: 1052px) {
 	.swiper-slide img {
 		height: 250px;
@@ -99,8 +132,49 @@ hr {
 }
 
 @media screen and (max-width: 768px) {
+	.recentes {
+		margin-top: 20px;
+	}
+
 	.recentes-header h1 {
 		font-size: 1.5em;
+	}
+
+	.recentes-header::after {
+		content: "";
+		height: 45px;
+		background: #A959DD;
+		width: 7px;
+		position: absolute;
+		left: 2%;
+		border-radius: 20px;
+	}
+
+	footer {
+		padding: 30px 5% 30px 5%;
+	}
+
+	.rodape-info {
+		display: block;
+	}
+
+	.rodape-sobre, .rodape-contato {
+		margin: 0;
+	}
+
+	.rodape-info p {
+		font-size: 12px;
+		margin: 0;
+		width: 100%;
+	}
+
+	.rodape-extra-info {
+		font-size: 12px;
+		text-align: center;
+	}
+
+	footer img {
+		display: none;
 	}
 }
 

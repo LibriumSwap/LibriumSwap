@@ -15,9 +15,9 @@ def index(request):
 		return render(request, "index/index.html")
 
 def home(request):
-	recentes = LivroAnuncio.objects.all().order_by('id')[:11]
+	recentes = LivroAnuncio.objects.all().order_by('id')[:10]
 	autores_populares = LivroAnuncio.objects.values("autor").order_by("autor").annotate(the_count=Count("autor"))
-	autores_populares = autores_populares.order_by("-the_count")
+	autores_populares = autores_populares.order_by("-the_count")[:10]
 	for autor in autores_populares:
 		autor["imagem"] = get_wiki_main_image(autor["autor"])
 
