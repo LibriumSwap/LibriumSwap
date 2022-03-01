@@ -24,11 +24,15 @@ def profileView(request):
 			if 'profile_image' in request.POST:
 				print(request.POST['profile_image'])
 				if request.POST['profile_image'] != "media/images/perfil/":
+					print("1")
 					image = "images/perfil/" + request.POST['profile_image']
 					username.profile_image = image
 					username.save()
 					return redirect('profile')
+				else:
+					print("2")
 			else:
+				print("2")
 				return render(request, "config/settings/profile.html", {
 				"config_form": config_form,
 				"address_form": address_form,
