@@ -23,13 +23,14 @@
 <script>
     var other_username = "{{ other_username }}";
     var username = {{ username }};
+    var wsStart = 'ws'
     if (window.location.protocol === 'https:') {
          wsStart = 'wss';
     }
     const chatSocket = new ReconnectingWebSocket(
-        start + ':/'
+        wsStart + ':/'
         + window.location.host
-        + '/' + start
+        + '/' + wsStart
         + window.location.pathname
     );
     chatSocket.onopen = function(e){
