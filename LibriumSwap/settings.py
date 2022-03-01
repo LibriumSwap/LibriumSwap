@@ -36,6 +36,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     'libriumswap.herokuapp.com',
+    'libriumswap.live',
+    'www.libriumswap.live',
 ]
 
 
@@ -95,7 +97,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [('0.0.0.0', 6379)],
         },
     },
 }
