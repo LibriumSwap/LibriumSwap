@@ -1,3 +1,7 @@
+.security-container{
+	width: 90%;
+}
+
 .change-psswd-container{
 	display: flex;
 	border-bottom: 1px solid grey;

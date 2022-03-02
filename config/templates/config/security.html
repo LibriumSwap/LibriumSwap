@@ -3,13 +3,12 @@
 
 {% block right %}
 <div class="rightbox">
-		<div class="my-account-container">
-			<div class="security-field">
-				<div class="change-psswd-container">
-					<p><a href="{% url 'password_reset' %}">Mudar senha</a></p>
-				</div>
-			</div>
+	<div class="security-container">
+		<div class="change-psswd-container">
+			<p><a href="{% url 'password_reset' %}">Mudar senha</a></p>
 		</div>
+	</div>
+		
 	</div>
 </div>
 <link rel="stylesheet" type="text/css" href="{% static 'css/security.css' %}">

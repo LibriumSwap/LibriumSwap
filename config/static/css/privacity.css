@@ -1,3 +1,7 @@
+.privacity-container{
+	width: 90%;
+}
+
 .delete-account{
 	display: flex;
 	flex-direction: column;
