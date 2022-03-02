@@ -1,3 +1,7 @@
+.payment-container{
+	width: 80%;
+}
+
 .credit-cards{
 	display: flex;
 	flex-direction: column;
@@ -31,7 +35,11 @@
 .add-credit-card{
 	margin-top: 5%;
 	cursor: pointer;
+}
+
+.add-credit-card a{
 	color: #A959DD;
+	text-decoration: none;
 }
 
 .add-credit-card-container{

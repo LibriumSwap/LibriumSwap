@@ -4,45 +4,43 @@
 
 {% block right %}
 <div class="rightbox">
-		<div class="my-account-container">
-			<div class="payment-fields">
-				<div class="credit-cards">
-					<div class="credit-card">
-						<div class="h2-title">
-							<h2>Cartão 1</h2>
-						</div>
-						<div class="credit-card-field">
-							<img src="{% static 'images/credit-card.png' %}">
-							<div class="credit-card-number">
-								<p>3213 **** **** ****</p>
-								<button>Excluir</button>
-							</div>
-						</div>
-					</div>
-					<div class="credit-card">
-						<div class="h2-title">
-							<h2>Cartão 2</h2>
-						</div>
-						<div class="credit-card-field">
-							<img src="{% static 'images/credit-card.png' %}">
-							<div class="credit-card-number">
-								<p>3213 **** **** ****</p>
-								<button>Excluir</button>
-							</div>
-						</div>
+	<div class="payment-container">
+		<div class="credit-cards">
+			<div class="credit-card">
+				<div class="h2-title">
+					<h2>Cartão 1</h2>
+				</div>
+				<div class="credit-card-field">
+					<img src="{% static 'images/credit-card.png' %}">
+					<div class="credit-card-number">
+						<p>3213 **** **** ****</p>
+						<button class="remove-payment">Excluir</button>
 					</div>
 				</div>
-				<div class="add-credit-card-container">
-					<p class="add-credit-card">Adicionar cartão</p>
-				<div>
+			</div>
+			<div class="credit-card">
+				<div class="h2-title">
+					<h2>Cartão 2</h2>
+				</div>
+				<div class="credit-card-field">
+					<img src="{% static 'images/credit-card.png' %}">
+					<div class="credit-card-number">
+						<p>3213 **** **** ****</p>
+						<button class="remove-payment">Excluir</button>
+					</div>
+				</div>
 			</div>
 		</div>
+		<div class="add-credit-card-container">
+			<p class="add-credit-card"><a href="{% url 'new-payment' %}">Adicionar cartão</p></a>
+		<div>
 	</div>
 </div>
 <link rel="stylesheet" type="text/css" href="{% static 'css/payment.css' %}">
 <script type="text/javascript">
-		document.querySelector('.my-account-options').style.display = "block";
-		document.querySelector('.settings-options').style.display = "none";
-		document.querySelector('.middlebox').style.borderRight = "1px solid grey"
+	document.querySelector('.my-account-options').style.display = "block";
+	document.querySelector('.settings-options').style.display = "none";
+	document.querySelector('.middlebox').style.borderRight = "1px solid grey"
+
 </script>
 {% endblock %}
