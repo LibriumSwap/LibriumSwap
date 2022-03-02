@@ -1,0 +1,45 @@
+{% extends "config/settings.html"%}
+
+{% load static %}
+
+{% block right %}
+<div class="rightbox">
+	<div class="new-payment-container">
+		<div class="new-credit-card">
+			<h2>Novo cartão</h2>
+			<div class="bank-flags">
+				<img src="#">
+			</div>
+			<form method="POST">
+				{% csrf_token %}
+				<div class="new-payment-input-field">
+					<label for="credit_card_number">Credit Card Number</label><br>
+					<input type="text" name="credit_card_number">
+				</div>
+				<div class="new-payment-input-field">
+					<label for="owner_name">Name</label><br>
+					<input type="text" name="owner_name">
+				</div>
+				<div class="new-payment-input-field">
+					<label for="expiration_date">Expiration Date</label><br>
+					<input type="text" name="expiration_date">
+				</div>
+				<div class="new-payment-buttons">
+					<button class="back"><a href="{% url 'payment' %}">Back</a></button>
+					<button class="finish">Finish</button>
+				</div>
+			</form>
+		</div>
+		<div class="new-credit-card-image">
+			<img src="{% static 'images/credit-card.png' %}" width="100%">
+		</div>
+	</div>
+</div>
+<link rel="stylesheet" type="text/css" href="{% static 'css/new-payment.css' %}">
+<script type="text/javascript">
+	document.querySelector('.my-account-options').style.display = "block";
+	document.querySelector('.settings-options').style.display = "none";
+	document.querySelector('.middlebox').style.borderRight = "1px solid grey"
+
+</script>
+{% endblock %}

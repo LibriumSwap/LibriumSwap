@@ -1,0 +1,62 @@
+.new-payment-container{
+	display: flex;
+}
+.new-credit-card form{
+	display: flex;
+	flex-direction: column;
+}
+
+.new-credit-card form input{
+	border: none;
+	border-bottom: 1px solid grey;
+	outline: none;
+	font-size: 18px;
+	width: 90%;
+}
+
+.new-credit-card form label{
+	font-size: 14px;
+	color: grey;
+}
+
+.new-payment-input-field{
+	margin-top: 5%;
+}
+
+.new-credit-card{
+	width: 30%;
+}
+.new-credit-card-image{
+	padding-top: 2%;
+	width: 42%;
+}
+
+.new-payment-buttons{
+	margin-top: 18%;
+	display: flex;
+	height: 40px;
+}
+
+.new-payment-buttons button{
+	border-radius: 5px;
+}
+
+.back{
+	border: 1px solid #820AD1;
+	background-color: white;
+	width: 25%;
+}
+
+.back a{
+	text-decoration: none;
+	color: #820AD1;
+}
+
+
+.finish{
+	border: none;
+	background-color: #820AD1;
+	color: white;
+	margin-left: 3%;
+	width: 65%;
+}
