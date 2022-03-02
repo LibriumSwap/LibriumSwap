@@ -20,40 +20,36 @@ def profileView(request):
 		config_form = ConfigForm(request.POST, request.FILES)
 		address_form = CheckoutInfo(request.POST, instance=username)
 		if config_form.is_valid():
-			print("1")
-			if 'profile_image' in request.POST:
-				print(request.POST['profile_image'])
-				if request.POST['profile_image'] != "media/images/perfil/":
-					print("1")
-					image = "images/perfil/" + request.POST['profile_image']
-					username.profile_image = image
-					username.save()
-					return redirect('profile')
-				else:
-					print("2")
-			else:
-				print("2")
-				return render(request, "config/settings/profile.html", {
-				"config_form": config_form,
-				"address_form": address_form,
-				"username": username,
-				})
+			if len(request.FILES) > 0:
+				username.profile_image = request.FILES['profile_image']
+				username.save()
+				return redirect('profile')
+
+		elif address_form.is_valid():
+			print("valido")
+			return redirect('chat')
+
 		else:
-			print("2")
 			return render(request, "config/settings/profile.html", {
 				"config_form": config_form,
 				"address_form": address_form,
 				"username": username,
 				})
-	else:
-		return render(request, "config/settings/profile.html", {
-			"config_form": ConfigForm(),
-			"address_form": CheckoutInfo(),
-			"username": username,
-			})
+
+		
+
+	return render(request, "config/settings/profile.html", {
+		"config_form": ConfigForm(),
+		"address_form": CheckoutInfo(),
+		"username": username,
+	})
 
 def paymentView(request):
 	return render(request, "config/settings/payment.html", {})
+
+def newPaymentView(request):
+	return render(request, "config/settings/new-payment.html", {})
+
 
 def notificationsView(request):
 	return render(request, "config/settings/notifications.html", {})
