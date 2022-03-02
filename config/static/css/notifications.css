@@ -1,9 +1,15 @@
+.notifications-container{
+	width: 90%;
+}
+
 .message-container{
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	border-bottom: 1px solid grey;
 }
 
-.message-container img{
-	padding-left: 68%;
+.h2-title{
+	padding-top: 4%;
+	margin: 0;
 }
