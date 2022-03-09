@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from autenticacao.models import User
 from django.shortcuts import render, redirect
-from .forms import ConfigForm
-from checkout.forms import CheckoutInfo
+from .forms import ConfigForm, CheckoutInfo
 
 # Create your views here.
 def securityView(request):
@@ -19,6 +18,7 @@ def profileView(request):
 	if request.method == "POST":
 		config_form = ConfigForm(request.POST, request.FILES)
 		address_form = CheckoutInfo(request.POST)
+
 		print("post")
 		if config_form.is_valid():
 			if len(request.FILES) > 0:
@@ -26,7 +26,7 @@ def profileView(request):
 				username.save()
 				return redirect('profile')
 
-		elif address_form.is_valid():
+		if address_form.is_valid():
 			print("valido")
 			return redirect('chat')
 
