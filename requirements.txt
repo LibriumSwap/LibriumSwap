@@ -11,5 +11,5 @@ mercadopago
 
 django-heroku==0.0.0
 gunicorn
-psycopg2
+psycopg2-binary
 whitenoise==5.3.0
