@@ -35,7 +35,6 @@ def checkout(request, anuncio_id):
 		if request.method == "POST":
 			form = CheckoutInfo(request.POST)
 			user = get_object_or_404(User, username=request.user.username)
-
 			if form.is_valid():
 				pedido = form.save(commit=False)
 				pedido.user = user

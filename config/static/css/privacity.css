@@ -7,11 +7,11 @@
 	flex-direction: column;
 }
 
-.delete-p{
+.container-p-delete{
 	border-bottom: 1px solid grey;
 }
 
-.delete-p p{
+.p-delete{
 	color: #820AD1;
 	cursor: pointer;
 }

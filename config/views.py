@@ -18,7 +18,8 @@ def profileView(request):
 	username = User.objects.get(username=request.user.username)
 	if request.method == "POST":
 		config_form = ConfigForm(request.POST, request.FILES)
-		address_form = CheckoutInfo(request.POST, instance=username)
+		address_form = CheckoutInfo(request.POST)
+		print("post")
 		if config_form.is_valid():
 			if len(request.FILES) > 0:
 				username.profile_image = request.FILES['profile_image']
@@ -34,10 +35,7 @@ def profileView(request):
 				"config_form": config_form,
 				"address_form": address_form,
 				"username": username,
-				})
-
-		
-
+				})	
 	return render(request, "config/settings/profile.html", {
 		"config_form": ConfigForm(),
 		"address_form": CheckoutInfo(),
