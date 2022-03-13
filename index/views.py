@@ -18,7 +18,7 @@ def home(request):
 	autores_populares = LivroAnuncio.objects.values("autor").order_by("autor").annotate(the_count=Count("autor"))
 	autores_populares = autores_populares.order_by("-the_count")[:10]
 	for autor in autores_populares:
-		autor["imagem"] = "/static/images/autor_not_found.png"
+		autor["imagem"] = "https://cdn.iconscout.com/icon/free/png-256/person-2653741-2202553.png"
 
 	return render(request, "home/home.html", {
 		"recentes": recentes,
