@@ -21,19 +21,19 @@ def anuncio(request, id_anuncio):
 	anuncio = LivroAnuncio.objects.get(id=id_anuncio)
 	nota = anuncio.avaliacoes.all().aggregate(Avg('nota'))
 
-
 	context = {
 		"anuncio": anuncio,
 		"nota": nota,
 		}
 
 	# Caso seja favorito o botão de favoritar anúncio aparecerá já selecionado
-	if Favorito.objects.filter(username=request.user.username, favoritos=anuncio):
-		context['favorito']  = True
+	if request.user.is_authenticated:
+		if Favorito.objects.filter(user=request.user, favoritos=anuncio):
+			context['favorito']  = True
 
-	# Se for anunciante as ferramentas de edição para o anúncio aparecerão
-	if anuncio.anunciante.username == request.user.username:
-		context['anunciante'] = True
+		# Se for anunciante as ferramentas de edição para o anúncio aparecerão
+		if anuncio.anunciante.username == request.user.username:
+			context['anunciante'] = True
 
 	return render(request, "anuncio/anuncio.html", context)
 
@@ -181,24 +181,23 @@ def avaliar_produto(request, id_anuncio):
 def favorito(request):
 	data = json.loads(request.body)
 	id_anuncio = data.get('id')
-
+	
 	anuncio = get_object_or_404(LivroAnuncio, id=id_anuncio)
-
 	if request.user.is_authenticated:
 		user = get_object_or_404(User, username=request.user.username)
-		favorito = get_object_or_404(user=user)
+		
+		if not Favorito.objects.filter(user=user):
+			favorito = Favorito.objects.create(user=user)
+		else:
+			favorito = get_object_or_404(Favorito, user=user)
 
-
-		if Favorito.objects.filter(user=request.user.username, favoritos=anuncio):
+		if Favorito.objects.filter(user=request.user, favoritos=anuncio):
 			favorito.favoritos.remove(anuncio)
 			favorito.save()
-
 			return JsonResponse({'success': 'removido'})
-
 		else:
 			favorito.favoritos.add(anuncio)
 			favorito.save()
-
 			return JsonResponse({'success': 'adicionado'})
 	else:
 		return JsonResponse({'error': 'login'})
