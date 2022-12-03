@@ -1,1 +1,1 @@
-web: gunicorn LibriumSwap.wsgi --log-file -
+web: python manage.py makemigrations autenticacao livros chat checkout pagamento troca && python manage.py migrate && gunicorn LibriumSwap.wsgi --log-file -
