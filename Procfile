@@ -1,1 +1,1 @@
-web: gunicorn LibriumSwap.wsgi
+web: gunicorn LibriumSwap.wsgi --log-file -

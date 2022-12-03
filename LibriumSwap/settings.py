@@ -32,13 +32,7 @@ SECRET_KEY = ')4^vxo#b!sj_^qs!1xz=g=_+uku1w=ta=hi(2aa+1i@1+-y^o2'
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
-    'libriumswap.herokuapp.com',
-    'libriumswap.live',
-    'www.libriumswap.live',
-]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -159,6 +153,12 @@ USE_TZ = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    #os.path.join(BASE_DIR, 'static')
+]
+
 # AUTH SETTINGS
 AUTH_USER_MODEL = 'autenticacao.User'
 AUTHENTICATION_BACKENDS = ['autenticacao.backends.EmailBackend']
@@ -178,5 +178,3 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 # MERCADO PAGO
 MERCADO_PAGO_ACCESS_TOKEN = env("MERCADO_PAGO_ACCESS_TOKEN")
-
-STATIC_URL = '/static/'
