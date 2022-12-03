@@ -12,7 +12,7 @@ from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 from .forms import NovoAnuncioForm, EditarAnuncioForm, AvaliarProdutoForm
-from .models import LivroAnuncio, LivroAnuncioImagem, AnuncioAvaliacao
+from .models import LivroAnuncio, LivroAnuncioImagem, AnuncioAvaliacao, Favorito
 from autenticacao.models import User
 from checkout.models import Pedido
 from pagamento.models import Pagamento
@@ -21,13 +21,14 @@ def anuncio(request, id_anuncio):
 	anuncio = LivroAnuncio.objects.get(id=id_anuncio)
 	nota = anuncio.avaliacoes.all().aggregate(Avg('nota'))
 
+
 	context = {
 		"anuncio": anuncio,
 		"nota": nota,
 		}
 
 	# Caso seja favorito o botão de favoritar anúncio aparecerá já selecionado
-	if User.objects.filter(username=request.user.username, favoritos=anuncio):
+	if Favorito.objects.filter(username=request.user.username, favoritos=anuncio):
 		context['favorito']  = True
 
 	# Se for anunciante as ferramentas de edição para o anúncio aparecerão
@@ -185,16 +186,18 @@ def favorito(request):
 
 	if request.user.is_authenticated:
 		user = get_object_or_404(User, username=request.user.username)
+		favorito = get_object_or_404(user=user)
 
-		if User.objects.filter(username=request.user.username, favoritos=anuncio):
-			user.favoritos.remove(anuncio)
-			user.save()
+
+		if Favorito.objects.filter(user=request.user.username, favoritos=anuncio):
+			favorito.favoritos.remove(anuncio)
+			favorito.save()
 
 			return JsonResponse({'success': 'removido'})
 
 		else:
-			user.favoritos.add(anuncio)
-			user.save()
+			favorito.favoritos.add(anuncio)
+			favorito.save()
 
 			return JsonResponse({'success': 'adicionado'})
 	else:
@@ -203,9 +206,11 @@ def favorito(request):
 @login_required	
 def favoritos(request):
 	user = User.objects.get(username=request.user.username)
+	favoritos = Favorito.objects.filter(user=user)
+	
 
 	return render(request, "anuncio/favoritos.html", {
-		"favoritos": user.favoritos.all()
+		"favoritos": favoritos.objects.all()
 		})
 
 def generos(request, generos):

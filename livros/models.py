@@ -31,3 +31,7 @@ class AnuncioAvaliacao(models.Model):
 	nota = models.IntegerField()
 	comentario = models.CharField(max_length=256)
 	data = models.DateTimeField(auto_now_add=True)
+
+class Favorito(models.Model):
+	user = models.ForeignKey(User, related_name="favorito")
+	favoritos = models.ManyToManyField(LivroAnuncio, blank=True) 
