@@ -34,9 +34,13 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
     '*',
-    'https://libriumswap-production.up.railway.app'
+    'https://libriumswap-production.up.railway.app',
+    '127.0.0.1',
+    'localhost',
+
 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://libriumswap-production.up.railway.app']
 
 # Application definition
 
