@@ -2,7 +2,7 @@
 
 
 ## Sobre o projeto
-Este foi um projeto para TCC do curso Desenvolvimento de Sistemas oferecido pela ETEC Uirapuru (Turma 2019-2021) <br\>
+Este foi um projeto para TCC do curso Desenvolvimento de Sistemas oferecido pela ETEC Uirapuru (Turma 2019-2021) <br/>
 LibriumSwap é um website para venda e troca de livros físicos, visando em melhorar a circulação de livros pelo Brasil.
 
 <br />
