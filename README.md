@@ -1,3 +1,4 @@
+
 # LibriumSwap
 
 
@@ -23,7 +24,7 @@ LibriumSwap é um website para venda e troca de livros físicos, visando em melh
 - CSS
 - ~~Docker~~
 
-## Instalação 
+## Instalação em máquina local (TESTADO SOMENTE NO UBUNTU)
 Siga os passos a seguir para instalar o projeto
 
 <br />
@@ -41,10 +42,35 @@ Para instalar todas as dependências necessárias para rodar o projeto:
 ~~~shell
 pip3 install -r requirements.txt
 ~~~
+Crie um arquivo **.env** dentro da pasta com as seguintes variáveis:
 
-Faça a migração do banco de dados:
+Para o **banco de dados** ([mais informações](https://docs.djangoproject.com/en/4.2/ref/databases/)):
+~~~env
+DB_ENGINE='[ENGINE DO SEU BANCO DE DADOS]'
+DB_NAME='[NOME DO DB]'
+DB_USER='[USUARIO]'
+DB_PASSWORD='[SENHA]'
+DB_HOST='[HOST]'
+DB_PORT='[PORTA]'
+~~~
+Para o **envio de emails** ([mais informações](https://opensource.com/article/22/12/django-send-emails-smtp)):
+~~~env
+EMAIL_HOST_USER='[HOST]'
+EMAIL_HOST_PASSWORD='[SENHA]'
+~~~
+
+**Token mercado pago**:
+~~~env
+MERCADO_PAGO_ACCESS_TOKEN='[SEU_TOKEN_MERCADO_PAGO]'
+~~~
+
+Faça a migração do banco de dados. :
 ~~~shell
-python3 manage.py makemigrations
+python3 manage.py makemigrations autenticacao
+~~~
+Retire a comentação da linha 37 no arquivo livros.models, em seguida:
+~~~shell
+python3 manage.py makemigrations livros
 ~~~
 
 Em seguida:
@@ -56,10 +82,10 @@ python3 manage.py migrate
 
 Digite o comando:
 ~~~shell
-python3 manage.py runserver
+gunicorn --bind 0.0.0.0:8000 LibriumSwap.asgi -w 4 -k uvicorn.workers.UvicornWorker
 ~~~
 
 <br />
 
 Para acessar o website digite o seguinte link no navegador:
-`127.0.0.1:8000`
+`0.0.0.0:8000`
