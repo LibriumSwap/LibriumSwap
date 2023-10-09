@@ -40,11 +40,12 @@ ALLOWED_HOSTS = [
 
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://libriumswap-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://127.0.0.1:8000']
 
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'index',
     'autenticacao',
     'livros',
@@ -53,7 +54,6 @@ INSTALLED_APPS = [
     'chat',
     'pagamento',
     'troca',
-    'channels',
     'config',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -99,7 +99,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [env("REDISURL")],
+            "hosts": [("127.0.0.1", 6379)],
         },
     },
 }
