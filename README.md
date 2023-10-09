@@ -16,7 +16,7 @@ LibriumSwap é um website para venda e troca de livros físicos, visando em melh
 
 ### Tecnologias
 
-- Python
+- **Python 3.8**
 - Django
 - SQLite
 - HTML
