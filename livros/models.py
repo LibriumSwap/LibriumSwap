@@ -34,4 +34,4 @@ class AnuncioAvaliacao(models.Model):
 
 class Favorito(models.Model):
 	user = models.ForeignKey(User, related_name="favorito", on_delete=models.CASCADE)
-	favoritos = models.ManyToManyField(LivroAnuncio, blank=True) 
+	#favoritos = models.ManyToManyField(LivroAnuncio, blank=True) 
